@@ -12,13 +12,19 @@
     tag: 'v0.1.0',
     version: '0.1.0',
     title: 'Bizora Video Studio v0.1.0',
-    publishedAt: '2026-11-24T08:08:37Z',
+    publishedAt: '2026-11-24T08:08:48Z',
     size: 122348422,
     downloadUrl: LATEST_RELEASE_URL,
     assetName: 'Bizora-Video-Studio-Setup-0.1.0.exe',
     sha256: '',
     notes: 'Phiên bản phát hành đầu tiên có hỗ trợ tự động kiểm tra và cập nhật ngay trong ứng dụng.'
   };
+
+  const SHOWCASE_CAPTIONS = Object.freeze({
+    'tab-overview': 'Không gian Tổng quan quản lý lối tắt quy trình review, sao lưu dữ liệu cục bộ và danh sách dự án gần đây.',
+    'tab-video': 'Màn hình Tạo video với lựa chọn thời lượng, thư viện nhạc nền và thiết lập tỷ lệ khung hình xuất MP4.',
+    'tab-publish': 'Khu vực Kênh đăng chuẩn bị tiêu đề, chú thích, thẻ nhanh và lịch xuất bản theo từng kênh.'
+  });
 
   const SVG_NS = 'http://www.w3.org/2000/svg';
   const ICON_PATHS = Object.freeze({
@@ -28,8 +34,6 @@
       'M10 8h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2Z',
       'M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2'
     ],
-    check: ['M20 6 9 17l-5-5'],
-    'check-circle': ['M22 11.08V12a10 10 0 1 1-5.93-9.14', 'm9 11 3 3L22 4'],
     'shield-check': [
       'M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z',
       'm9 12 2 2 4-4'
@@ -37,15 +41,8 @@
     film: ['M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z', 'M7 3v18', 'M17 3v18', 'M3 12h18', 'M3 7.5h4', 'M3 16.5h4', 'M17 7.5h4', 'M17 16.5h4'],
     clapperboard: ['M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z', 'm6.2 5.3 3.1 3.9', 'm12.4 3.4 3.1 4', 'M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z'],
     'book-open': ['M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z', 'M8 7h8', 'M8 11h8'],
-    sparkles: ['m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z'],
-    send: ['m22 2-7 20-4-9-9-4Z', 'M22 2 11 13'],
-    refresh: ['M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8', 'M21 3v5h-5', 'M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16', 'M8 16H3v5'],
-    'layout-grid': ['M3 3h7v9H3z', 'M14 3h7v5h-7z', 'M14 12h7v9h-7z', 'M3 16h7v5H3z'],
-    calendar: ['M8 2v4', 'M16 2v4', 'M3 10h18', 'M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z'],
     'hard-drive': ['M22 12H2', 'M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11Z', 'M6 16h.01', 'M10 16h.01'],
-    'arrow-right': ['M5 12h14', 'm12 5 7 7-7 7'],
-    tv: ['M4 7h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z', 'm17 2-5 5-5-5'],
-    subtitles: ['M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z', 'M7 15h4', 'M15 15h2', 'M7 11h2', 'M13 11h4']
+    'arrow-right': ['M5 12h14', 'm12 5 7 7-7 7']
   });
 
   function createIconSvg(name, size = 16) {
@@ -116,7 +113,85 @@
     }
   }
 
-  class BizoraDownloadCard extends HTMLElement {
+  class BizoraAppShowcase extends HTMLElement {
+    constructor() {
+      super();
+      this._bound = false;
+    }
+
+    connectedCallback() {
+      if (this._bound) return;
+      this._bound = true;
+
+      const tablist = this.querySelector('[role="tablist"]');
+      const tabs = Array.from(this.querySelectorAll('[role="tab"]'));
+      const panels = Array.from(this.querySelectorAll('[role="tabpanel"]'));
+      const captionEl = this.querySelector('#showcase-caption-text');
+      if (!tablist || !tabs.length || !panels.length) return;
+
+      const selectTab = (targetTab, shouldFocus = false) => {
+        if (!targetTab) return;
+        for (const tab of tabs) {
+          const isSelected = tab === targetTab;
+          tab.ariaSelected = isSelected ? 'true' : 'false';
+          tab.toggleAttribute('focusgroupstart', isSelected);
+          if (!Object.hasOwn(HTMLElement.prototype, 'focusGroup')) {
+            tab.tabIndex = isSelected ? 0 : -1;
+          }
+        }
+        for (const panel of panels) {
+          const matches = panel.getAttribute('aria-labelledby') === targetTab.id;
+          if (matches) {
+            panel.hidden = false;
+            panel.tabIndex = 0;
+          } else {
+            panel.hidden = 'until-found';
+            panel.removeAttribute('tabindex');
+          }
+        }
+        if (captionEl && SHOWCASE_CAPTIONS[targetTab.id]) {
+          captionEl.textContent = SHOWCASE_CAPTIONS[targetTab.id];
+        }
+        targetTab.scrollIntoView({ block: 'nearest', inline: 'nearest', container: 'nearest' });
+        if (shouldFocus) {
+          targetTab.focus({ preventScroll: true });
+        }
+      };
+
+      const initialSelected = tabs.find(t => t.getAttribute('aria-selected') === 'true') || tabs[0];
+      selectTab(initialSelected, false);
+
+      tablist.addEventListener('click', event => {
+        const tab = event.target.closest('[role="tab"]');
+        if (tab) selectTab(tab, false);
+      });
+
+      tablist.addEventListener('keydown', event => {
+        const current = event.target.closest('[role="tab"]');
+        if (!current) return;
+        const idx = tabs.indexOf(current);
+        let nextIdx = -1;
+        if (event.key === 'ArrowRight') nextIdx = (idx + 1) % tabs.length;
+        else if (event.key === 'ArrowLeft') nextIdx = (idx - 1 + tabs.length) % tabs.length;
+        else if (event.key === 'Home') nextIdx = 0;
+        else if (event.key === 'End') nextIdx = tabs.length - 1;
+        if (nextIdx >= 0) {
+          event.preventDefault();
+          selectTab(tabs[nextIdx], true);
+        }
+      });
+
+      this.addEventListener('beforematch', event => {
+        const panel = event.target.closest('[role="tabpanel"]');
+        if (!panel) return;
+        const tabId = panel.getAttribute('aria-labelledby');
+        const tab = tabs.find(t => t.id === tabId);
+        if (tab) selectTab(tab, false);
+      });
+    }
+  }
+
+  class BizoraChecksumCard extends HTMLElement {
     constructor() {
       super();
       this._release = FALLBACK_RELEASE;
@@ -141,80 +216,63 @@
 
     _ensureDom() {
       if (this._dom) return;
-      const card = document.createElement('div');
-      card.className = 'download-card';
 
-      const actions = document.createElement('div');
-      actions.className = 'hero-cta-row';
+      const panel = document.createElement('div');
+      panel.className = 'spec-panel';
 
-      const primaryBtn = document.createElement('a');
-      primaryBtn.className = 'shiny-cta';
-      primaryBtn.id = 'hero-download-btn';
-      const inner = document.createElement('span');
-      inner.className = 'shiny-cta-inner';
-      const primaryLabel = document.createElement('span');
-      primaryLabel.textContent = 'Tải cho Windows';
-      const primaryVer = document.createElement('span');
-      primaryVer.className = 'cta-ver-pill';
-      inner.append(
-        makeIconNode('download', 17),
-        primaryLabel,
-        primaryVer,
-        makeIconNode('arrow-right', 16, 'cta-arrow')
-      );
-      primaryBtn.append(inner);
+      const head = document.createElement('div');
+      head.className = 'spec-panel-head';
+      const title = document.createElement('div');
+      title.className = 'spec-panel-title';
+      const titleSpan = document.createElement('span');
+      titleSpan.textContent = 'Thông số bộ cài hiện tại';
+      title.append(makeIconNode('shield-check', 17), titleSpan);
 
-      const releasesLink = document.createElement('a');
-      releasesLink.className = 'btn-pill-secondary';
-      releasesLink.href = RELEASES_PAGE_URL;
-      releasesLink.target = '_blank';
-      releasesLink.rel = 'noopener noreferrer';
-      const relSpan = document.createElement('span');
-      relSpan.textContent = 'Trang phát hành';
-      releasesLink.append(relSpan, makeIconNode('external-link', 15));
+      const badge = document.createElement('span');
+      badge.className = 'spec-badge';
+      head.append(title, badge);
 
-      actions.append(primaryBtn, releasesLink);
-
-      const meta = document.createElement('div');
-      meta.className = 'download-meta';
-
-      const makeMetaItem = iconName => {
-        const item = document.createElement('span');
-        item.className = 'download-meta-item';
-        const label = document.createElement('span');
-        item.append(makeIconNode(iconName, 14), label);
-        return { item, label };
+      const dl = document.createElement('dl');
+      dl.className = 'spec-dl';
+      const addRow = label => {
+        const row = document.createElement('div');
+        row.className = 'spec-row';
+        const dt = document.createElement('dt');
+        dt.textContent = label;
+        const dd = document.createElement('dd');
+        row.append(dt, dd);
+        dl.append(row);
+        return dd;
       };
 
-      const osMeta = makeMetaItem('shield-check');
-      osMeta.label.textContent = 'Windows 10/11 (64-bit)';
-      const sizeMeta = makeMetaItem('hard-drive');
-      const dateMeta = makeMetaItem('calendar');
-      const updateMeta = makeMetaItem('refresh');
-      updateMeta.label.textContent = 'Tự cập nhật trong app';
-      meta.append(osMeta.item, sizeMeta.item, dateMeta.item, updateMeta.item);
+      const fileVal = addRow('Tên tệp');
+      fileVal.className = 'mono';
+      const dateVal = addRow('Ngày phát hành');
+      const sizeVal = addRow('Dung lượng');
+      const osVal = addRow('Hệ điều hành');
+      osVal.textContent = 'Windows 10 / 11 (64-bit)';
 
-      const checksumBox = document.createElement('div');
-      checksumBox.className = 'checksum-box';
-      checksumBox.hidden = true;
+      const shaBlock = document.createElement('div');
+      shaBlock.className = 'sha-block';
+      shaBlock.hidden = true;
 
-      const checksumCopyWrap = document.createElement('div');
-      checksumCopyWrap.className = 'checksum-copy-wrap';
-      const checksumLabel = document.createElement('span');
-      checksumLabel.className = 'checksum-label';
-      checksumLabel.textContent = 'Mã kiểm tra tệp cài đặt (SHA-256)';
-      const checksumCode = document.createElement('code');
-      checksumCode.className = 'checksum-value';
-      checksumCopyWrap.append(checksumLabel, checksumCode);
+      const shaHead = document.createElement('div');
+      shaHead.className = 'sha-head';
+      const shaLabel = document.createElement('span');
+      shaLabel.className = 'sha-label';
+      shaLabel.textContent = 'SHA-256 Checksum';
 
       const copyBtn = document.createElement('button');
       copyBtn.type = 'button';
-      copyBtn.className = 'btn copy-btn';
+      copyBtn.className = 'copy-btn';
       const copyText = document.createElement('span');
       copyText.textContent = 'Sao chép';
-      copyBtn.append(makeIconNode('copy', 14), copyText);
+      copyBtn.append(makeIconNode('copy', 13), copyText);
 
-      checksumBox.append(checksumCopyWrap, copyBtn);
+      shaHead.append(shaLabel, copyBtn);
+
+      const shaCode = document.createElement('code');
+      shaCode.className = 'sha-code';
 
       const copyStatus = document.createElement('p');
       copyStatus.className = 'copy-status';
@@ -240,18 +298,37 @@
         }
       });
 
-      card.append(actions, meta, checksumBox, copyStatus);
-      this.replaceChildren(card);
+      shaBlock.append(shaHead, shaCode, copyStatus);
+
+      const foot = document.createElement('div');
+      foot.className = 'spec-panel-foot';
+      const releasePageLink = document.createElement('a');
+      releasePageLink.className = 'ext-link';
+      releasePageLink.href = RELEASES_PAGE_URL;
+      releasePageLink.target = '_blank';
+      releasePageLink.rel = 'noopener noreferrer';
+      const linkLabel = document.createElement('span');
+      linkLabel.textContent = 'Xem trên GitHub Releases';
+      releasePageLink.append(linkLabel, makeIconNode('external-link', 13));
+
+      const cardDownload = document.createElement('a');
+      cardDownload.className = 'btn btn-primary btn-sm';
+      const dlLabel = document.createElement('span');
+      dlLabel.textContent = 'Tải .exe';
+      cardDownload.append(makeIconNode('download', 14), dlLabel);
+
+      foot.append(releasePageLink, cardDownload);
+      panel.append(head, dl, shaBlock, foot);
+      this.replaceChildren(panel);
 
       this._dom = {
-        primaryBtn,
-        primaryVer,
-        sizeItem: sizeMeta.item,
-        sizeLabel: sizeMeta.label,
-        dateItem: dateMeta.item,
-        dateLabel: dateMeta.label,
-        checksumBox,
-        checksumCode
+        badge,
+        fileVal,
+        dateVal,
+        sizeVal,
+        shaBlock,
+        shaCode,
+        cardDownload
       };
     }
 
@@ -260,21 +337,16 @@
       const r = this._release;
       const d = this._dom;
 
-      d.primaryBtn.href = r.downloadUrl || LATEST_RELEASE_URL;
-      d.primaryVer.textContent = r.tag || `v${r.version}`;
-
-      const sizeStr = formatBytes(r.size);
-      d.sizeItem.hidden = !sizeStr;
-      d.sizeLabel.textContent = sizeStr;
-
-      const dateStr = formatDateVi(r.publishedAt);
-      d.dateItem.hidden = !dateStr;
-      d.dateLabel.textContent = dateStr ? `Phát hành ${dateStr}` : '';
+      d.badge.textContent = r.tag || `v${r.version}`;
+      d.fileVal.textContent = r.assetName || `Bizora-Video-Studio-Setup-${r.version}.exe`;
+      d.dateVal.textContent = formatDateVi(r.publishedAt) || '—';
+      d.sizeVal.textContent = formatBytes(r.size) || '—';
+      d.cardDownload.href = r.downloadUrl || LATEST_RELEASE_URL;
 
       const hash = r.sha256 || '';
-      d.checksumBox.hidden = !hash;
-      d.checksumCode.textContent = hash;
-      d.checksumCode.title = hash;
+      d.shaBlock.hidden = !hash;
+      d.shaCode.textContent = hash;
+      d.shaCode.title = hash;
     }
   }
 
@@ -355,24 +427,22 @@
         tagPill.textContent = rel.tag || `v${rel.version}`;
         titleGroup.append(tagPill);
 
+        const parts = [];
         const dateStr = formatDateVi(rel.publishedAt);
-        if (dateStr) {
-          const dateEl = document.createElement('span');
-          dateEl.className = 'release-date';
-          dateEl.textContent = dateStr;
-          titleGroup.append(dateEl);
-        }
-
+        if (dateStr) parts.push(`Phát hành ${dateStr}`);
         const sizeStr = formatBytes(rel.size);
-        if (sizeStr) {
-          const sizeEl = document.createElement('span');
-          sizeEl.className = 'release-size';
-          sizeEl.textContent = `· ${sizeStr}`;
-          titleGroup.append(sizeEl);
+        if (sizeStr) parts.push(sizeStr);
+        if (rel.assetName) parts.push(rel.assetName);
+
+        if (parts.length) {
+          const metaEl = document.createElement('span');
+          metaEl.className = 'release-meta';
+          metaEl.textContent = parts.join(' · ');
+          titleGroup.append(metaEl);
         }
 
         const dlBtn = document.createElement('a');
-        dlBtn.className = 'btn btn-sm';
+        dlBtn.className = 'btn btn-ghost btn-sm';
         dlBtn.href = rel.downloadUrl || LATEST_RELEASE_URL;
         const dlSpan = document.createElement('span');
         dlSpan.textContent = 'Tải bản này';
@@ -393,7 +463,8 @@
   }
 
   customElements.define('bizora-icon', BizoraIcon);
-  customElements.define('bizora-download-card', BizoraDownloadCard);
+  customElements.define('bizora-app-showcase', BizoraAppShowcase);
+  customElements.define('bizora-checksum-card', BizoraChecksumCard);
   customElements.define('bizora-release-notes', BizoraReleaseNotes);
 
   function mapReleaseItem(raw) {
@@ -428,25 +499,28 @@
     const headerBtn = document.getElementById('header-download-btn');
     if (headerBtn) headerBtn.href = dlUrl;
 
-    const footerBtn = document.getElementById('footer-download-btn');
-    if (footerBtn) footerBtn.href = dlUrl;
+    const heroBtn = document.getElementById('hero-download-btn');
+    if (heroBtn) heroBtn.href = dlUrl;
 
-    const footerLabel = document.getElementById('footer-download-label');
-    if (footerLabel) {
-      footerLabel.textContent = latest.tag ? `Tải Bizora ${latest.tag} cho Windows` : 'Tải Bizora cho Windows';
-    }
+    const heroVer = document.getElementById('hero-download-ver');
+    if (heroVer) heroVer.textContent = latest.tag || `v${latest.version}`;
 
     const versionText = document.getElementById('hero-version-text');
-    if (versionText) {
-      versionText.textContent = `Phiên bản ${latest.tag} · Windows 64-bit`;
-    }
+    if (versionText) versionText.textContent = `Phiên bản ${latest.tag || `v${latest.version}`}`;
+
+    const assetName = document.getElementById('hero-asset-name');
+    if (assetName && latest.assetName) assetName.textContent = latest.assetName;
+
+    const assetSize = document.getElementById('hero-asset-size');
+    const sizeStr = formatBytes(latest.size);
+    if (assetSize && sizeStr) assetSize.textContent = sizeStr;
 
     const certSnippet = document.querySelector('#main-content .code-snippet code');
     if (certSnippet && latest.assetName) {
       certSnippet.textContent = `certutil -hashfile ${latest.assetName} SHA256`;
     }
 
-    document.getElementById('download-card')?.setRelease?.(latest);
+    document.getElementById('checksum-card')?.setRelease?.(latest);
   }
 
   async function fetchSameOriginReleases(signal) {
@@ -478,9 +552,9 @@
   }
 
   async function syncReleases() {
-    const card = document.getElementById('download-card');
+    const checksumCard = document.getElementById('checksum-card');
     const notesEl = document.getElementById('release-notes');
-    card?.setRelease?.(FALLBACK_RELEASE);
+    checksumCard?.setRelease?.(FALLBACK_RELEASE);
     notesEl?.setReleases?.([FALLBACK_RELEASE]);
 
     const signal = typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function'
@@ -502,7 +576,7 @@
       applyLatestToPage(FALLBACK_RELEASE);
       notesEl?.setReleases?.(
         [FALLBACK_RELEASE],
-        'Đang hiển thị thông tin mặc định — bấm Trang phát hành để xem đầy đủ tất cả phiên bản mới nhất.'
+        'Đang hiển thị thông tin mặc định — mở GitHub Releases để xem đầy đủ các bản phát hành mới nhất.'
       );
     }
   }
