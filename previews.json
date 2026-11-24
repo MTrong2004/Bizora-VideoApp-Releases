@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "appVersion": "0.2.0",
-  "buildHash": "5f7d2e08",
-  "uiFingerprint": "a953f99ee6d030de",
-  "capturedAt": "2026-11-24T23:40:14.343Z",
+  "buildHash": "8a8edd7f",
+  "uiFingerprint": "276e2f875ce6c99b",
+  "capturedAt": "2026-11-24T23:53:11.434Z",
   "viewport": {
     "width": 1440,
     "height": 900
@@ -23,7 +23,7 @@
       ],
       "image": "./assets/previews/film-translate.webp",
       "thumb": "./assets/previews/film-translate-thumb.webp",
-      "hash": "cc0010523a9f",
+      "hash": "8abd91fb7681",
       "width": 1440,
       "height": 900
     },
@@ -41,7 +41,7 @@
       ],
       "image": "./assets/previews/film.webp",
       "thumb": "./assets/previews/film-thumb.webp",
-      "hash": "394f398ff1b9",
+      "hash": "6fe5dfa6666b",
       "width": 1440,
       "height": 900
     },
@@ -59,7 +59,7 @@
       ],
       "image": "./assets/previews/comic.webp",
       "thumb": "./assets/previews/comic-thumb.webp",
-      "hash": "b50d2d83d6b2",
+      "hash": "ad765c5edfb4",
       "width": 1440,
       "height": 900
     },
@@ -77,7 +77,7 @@
       ],
       "image": "./assets/previews/generate.webp",
       "thumb": "./assets/previews/generate-thumb.webp",
-      "hash": "e8a5615c8808",
+      "hash": "44113eab3cab",
       "width": 1440,
       "height": 900
     },
@@ -95,7 +95,7 @@
       ],
       "image": "./assets/previews/publishing.webp",
       "thumb": "./assets/previews/publishing-thumb.webp",
-      "hash": "a06124850b3a",
+      "hash": "2a2abbf034f7",
       "width": 1440,
       "height": 900
     },
@@ -113,7 +113,7 @@
       ],
       "image": "./assets/previews/home.webp",
       "thumb": "./assets/previews/home-thumb.webp",
-      "hash": "93e0e8a78680",
+      "hash": "1b7a19496b55",
       "width": 1440,
       "height": 900
     }
