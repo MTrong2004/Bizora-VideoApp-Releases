@@ -21,9 +21,22 @@
   };
 
   const SHOWCASE_CAPTIONS = Object.freeze({
-    'tab-overview': 'Không gian Tổng quan quản lý lối tắt quy trình review, sao lưu dữ liệu cục bộ và danh sách dự án gần đây.',
-    'tab-video': 'Màn hình Tạo video với lựa chọn thời lượng, thư viện nhạc nền và thiết lập tỷ lệ khung hình xuất MP4.',
-    'tab-publish': 'Khu vực Kênh đăng chuẩn bị tiêu đề, chú thích, thẻ nhanh và lịch xuất bản theo từng kênh.'
+    'tab-reel': {
+      tag: 'Video thực tế xuất từ Bizora',
+      text: 'Ba video review 9:16 xuất trực tiếp từ Bizora Video Studio — có giọng đọc AI, phụ đề đồng bộ và nhạc nền cân bằng âm lượng.'
+    },
+    'tab-overview': {
+      tag: 'Ảnh chụp ứng dụng desktop',
+      text: 'Không gian Tổng quan quản lý lối tắt quy trình review, sao lưu dữ liệu cục bộ và danh sách dự án gần đây.'
+    },
+    'tab-video': {
+      tag: 'Ảnh chụp ứng dụng desktop',
+      text: 'Màn hình Tạo video với lựa chọn thời lượng, thư viện nhạc nền và thiết lập tỷ lệ khung hình xuất MP4.'
+    },
+    'tab-publish': {
+      tag: 'Ảnh chụp ứng dụng desktop',
+      text: 'Khu vực Kênh đăng chuẩn bị tiêu đề, chú thích, thẻ nhanh và lịch xuất bản theo từng kênh.'
+    }
   });
 
   const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -48,7 +61,27 @@
     monitor: ['M2 5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2Z', 'M8 21h8', 'M12 17v4'],
     layers: ['m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z', 'm22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65', 'm22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65'],
     cpu: ['M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z', 'M9 9h6v6H9Z', 'M15 2v2', 'M15 20v2', 'M2 15h2', 'M2 9h2', 'M20 15h2', 'M20 9h2', 'M9 2v2', 'M9 20v2'],
-    github: ['M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4', 'M9 18c-4.51 2-5-2-7-2']
+    github: ['M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4', 'M9 18c-4.51 2-5-2-7-2'],
+    play: ['M6 4l14 8-14 8V4Z'],
+    pause: ['M14 4h4v16h-4z', 'M6 4h4v16H6z'],
+    'volume-2': [
+      'M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z',
+      'M16 9a5 5 0 0 1 0 6',
+      'M19.364 18.364a9 9 0 0 0 0-12.728'
+    ],
+    'volume-x': [
+      'M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z',
+      'm22 9-6 6',
+      'm16 9 6 6'
+    ],
+    'maximize-2': ['M15 3h6v6', 'm21 3-7 7', 'm3 21 7-7', 'M9 21H3v-6'],
+    x: ['M18 6 6 18', 'm6 6 12 12'],
+    sparkles: [
+      'M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z',
+      'M20 2v4',
+      'M22 4h-4',
+      'M4 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4z'
+    ]
   });
 
   function createIconSvg(name, size = 16) {
@@ -132,8 +165,11 @@
       const tablist = this.querySelector('[role="tablist"]');
       const tabs = Array.from(this.querySelectorAll('[role="tab"]'));
       const panels = Array.from(this.querySelectorAll('[role="tabpanel"]'));
+      const captionTagEl = this.querySelector('#showcase-caption-tag');
       const captionEl = this.querySelector('#showcase-caption-text');
       if (!tablist || !tabs.length || !panels.length) return;
+
+      const reducedMotionQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
 
       const selectTab = (targetTab, shouldFocus = false) => {
         if (!targetTab) return;
@@ -147,16 +183,30 @@
         }
         for (const panel of panels) {
           const matches = panel.getAttribute('aria-labelledby') === targetTab.id;
+          const panelVideo = panel.querySelector('video');
           if (matches) {
             panel.hidden = false;
             panel.tabIndex = 0;
+            if (panelVideo) {
+              delete panelVideo.dataset.tabHidden;
+              const host = panelVideo.closest('bizora-video-stage, bizora-video-reel');
+              if (!reducedMotionQuery?.matches && !host?.isUserPaused?.()) {
+                panelVideo.play().catch(() => {});
+              }
+            }
           } else {
             panel.hidden = 'until-found';
             panel.removeAttribute('tabindex');
+            if (panelVideo) {
+              panelVideo.dataset.tabHidden = '1';
+              panelVideo.pause();
+            }
           }
         }
-        if (captionEl && SHOWCASE_CAPTIONS[targetTab.id]) {
-          captionEl.textContent = SHOWCASE_CAPTIONS[targetTab.id];
+        const captionEntry = SHOWCASE_CAPTIONS[targetTab.id];
+        if (captionEntry) {
+          if (captionTagEl) captionTagEl.textContent = captionEntry.tag;
+          if (captionEl) captionEl.textContent = captionEntry.text;
         }
         targetTab.scrollIntoView({ block: 'nearest', inline: 'nearest', container: 'nearest' });
         if (shouldFocus) {
@@ -352,7 +402,6 @@
       const hash = r.sha256 || '';
       d.shaBlock.hidden = !hash;
       d.shaCode.textContent = hash;
-      d.shaCode.title = hash;
     }
   }
 
@@ -468,10 +517,225 @@
     }
   }
 
+  class BizoraMediaElement extends HTMLElement {
+    constructor() {
+      super();
+      this._bound = false;
+      this._userPaused = false;
+      this._inView = false;
+      this._video = null;
+      this._playBtn = null;
+      this._muteBtn = null;
+      this._expandBtn = null;
+    }
+
+    isUserPaused() {
+      return this._userPaused;
+    }
+
+    setInView(inView) {
+      this._inView = Boolean(inView);
+    }
+
+    isInView() {
+      return this._inView;
+    }
+
+    getVideo() {
+      return this._video;
+    }
+
+    connectedCallback() {
+      if (this._bound) return;
+      this._bound = true;
+
+      this._video = this.querySelector('video');
+      this._playBtn = this.querySelector('[data-action="toggle-play"]');
+      this._muteBtn = this.querySelector('[data-action="toggle-mute"]');
+      this._expandBtn = this.querySelector('[data-action="expand"]');
+
+      if (!this._video) return;
+
+      this._syncControls();
+
+      this._video.addEventListener('play', () => this._syncControls());
+      this._video.addEventListener('pause', () => this._syncControls());
+      this._video.addEventListener('volumechange', () => this._syncControls());
+
+      this._playBtn?.addEventListener('click', () => this.togglePlay());
+      this._muteBtn?.addEventListener('click', () => this.toggleMute());
+      this._expandBtn?.addEventListener('click', () => {
+        document.getElementById('video-lightbox')?.openFromElement?.(this);
+      });
+    }
+
+    togglePlay() {
+      const video = this._video;
+      if (!video) return;
+      if (video.paused) {
+        this._userPaused = false;
+        video.play().catch(() => {});
+      } else {
+        this._userPaused = true;
+        video.pause();
+      }
+      this._syncControls();
+    }
+
+    toggleMute() {
+      const video = this._video;
+      if (!video) return;
+      if (video.muted) {
+        for (const other of document.querySelectorAll('video')) {
+          if (other !== video) other.muted = true;
+        }
+        video.muted = false;
+        if (video.paused) {
+          this._userPaused = false;
+          video.play().catch(() => {});
+        }
+      } else {
+        video.muted = true;
+      }
+      this._syncControls();
+    }
+
+    _syncControls() {
+      const video = this._video;
+      if (!video) return;
+
+      if (this._playBtn) {
+        const paused = video.paused;
+        this._playBtn.setAttribute('aria-label', paused ? 'Phát video' : 'Tạm dừng video');
+        const icon = this._playBtn.querySelector('bizora-icon');
+        if (icon) icon.setAttribute('name', paused ? 'play' : 'pause');
+      }
+
+      if (this._muteBtn) {
+        const muted = video.muted;
+        this._muteBtn.setAttribute('aria-label', muted ? 'Bật âm thanh' : 'Tắt âm thanh');
+        const icon = this._muteBtn.querySelector('bizora-icon');
+        if (icon) icon.setAttribute('name', muted ? 'volume-x' : 'volume-2');
+      }
+    }
+  }
+
+  class BizoraVideoStage extends BizoraMediaElement {}
+
+  class BizoraVideoReel extends BizoraMediaElement {}
+
+  class BizoraVideoLightbox extends HTMLElement {
+    constructor() {
+      super();
+      this._bound = false;
+      this._dialog = null;
+      this._video = null;
+      this._titleEl = null;
+      this._badgeEl = null;
+      this._closeBtn = null;
+    }
+
+    isOpen() {
+      return Boolean(this._dialog?.open);
+    }
+
+    connectedCallback() {
+      if (this._bound) return;
+      this._bound = true;
+
+      this._dialog = this.querySelector('dialog');
+      this._video = this.querySelector('video');
+      this._titleEl = this.querySelector('#lightbox-title');
+      this._badgeEl = this.querySelector('#lightbox-badge');
+      this._closeBtn = this.querySelector('[data-action="close"]');
+
+      if (!this._dialog || !this._video) return;
+
+      this._closeBtn?.addEventListener('click', () => {
+        this._dialog.close();
+      });
+
+      if (!('closedBy' in HTMLDialogElement.prototype)) {
+        this._dialog.addEventListener('click', event => {
+          if (event.target !== this._dialog) return;
+          const rect = this._dialog.getBoundingClientRect();
+          const isDialogContent = (
+            rect.top <= event.clientY &&
+            event.clientY <= rect.top + rect.height &&
+            rect.left <= event.clientX &&
+            event.clientX <= rect.left + rect.width
+          );
+          if (!isDialogContent) this._dialog.close();
+        });
+      }
+
+      this._dialog.addEventListener('close', () => {
+        this._video.pause();
+        this._video.replaceChildren();
+        this._video.removeAttribute('poster');
+        this._video.load();
+        resumeVisibleInlineVideos();
+      });
+    }
+
+    openFromElement(sourceEl) {
+      if (!this._dialog || !this._video || !sourceEl) return;
+
+      const mp4 = sourceEl.dataset.lightboxSrc || '';
+      const webm = sourceEl.dataset.lightboxWebm || '';
+      const poster = sourceEl.dataset.lightboxPoster || '';
+      const title = sourceEl.dataset.lightboxTitle || 'Xem trước video Bizora';
+      const badge = sourceEl.dataset.lightboxBadge || '';
+      const aspect = sourceEl.dataset.lightboxAspect || '16:9';
+
+      if (!mp4 && !webm) return;
+
+      pauseAllInlineVideos();
+
+      if (this._titleEl) this._titleEl.textContent = title;
+      if (this._badgeEl) {
+        this._badgeEl.textContent = badge;
+        this._badgeEl.hidden = !badge;
+      }
+
+      this._dialog.dataset.aspect = aspect;
+      if (poster) {
+        this._video.poster = poster;
+      } else {
+        this._video.removeAttribute('poster');
+      }
+
+      const sources = [];
+      if (webm) {
+        const sWebm = document.createElement('source');
+        sWebm.src = webm;
+        sWebm.type = 'video/webm';
+        sources.push(sWebm);
+      }
+      if (mp4) {
+        const sMp4 = document.createElement('source');
+        sMp4.src = mp4;
+        sMp4.type = 'video/mp4';
+        sources.push(sMp4);
+      }
+      this._video.replaceChildren(...sources);
+      this._video.muted = false;
+      this._video.load();
+
+      if (!this._dialog.open) {
+        this._dialog.showModal();
+      }
+      this._video.play().catch(() => {});
+    }
+  }
+
   customElements.define('bizora-icon', BizoraIcon);
   customElements.define('bizora-app-showcase', BizoraAppShowcase);
   customElements.define('bizora-checksum-card', BizoraChecksumCard);
   customElements.define('bizora-release-notes', BizoraReleaseNotes);
+  customElements.define('bizora-video-stage', BizoraVideoStage);
+  customElements.define('bizora-video-reel', BizoraVideoReel);
+  customElements.define('bizora-video-lightbox', BizoraVideoLightbox);
 
   function mapReleaseItem(raw) {
     if (!raw || typeof raw !== 'object') return null;
@@ -597,13 +861,140 @@
     }
   }
 
+  function pauseAllInlineVideos() {
+    for (const host of document.querySelectorAll('bizora-video-stage, bizora-video-reel')) {
+      const video = host.getVideo?.();
+      if (video) {
+        video.muted = true;
+        video.pause();
+      }
+    }
+  }
+
+  function resumeVisibleInlineVideos() {
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches) return;
+    const lightbox = document.getElementById('video-lightbox');
+    if (lightbox?.isOpen?.()) return;
+    for (const host of document.querySelectorAll('bizora-video-stage, bizora-video-reel')) {
+      const video = host.getVideo?.();
+      if (!video) continue;
+      if (host.isInView?.() && !host.isUserPaused?.() && video.dataset.tabHidden !== '1') {
+        video.play().catch(() => {});
+      }
+    }
+  }
+
+  function initVideoPlaybackController() {
+    if (typeof window === 'undefined') return;
+
+    const reducedMotionQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+    const syncReducedMotion = prefersReducedMotion => {
+      if (!prefersReducedMotion) return;
+      for (const video of document.querySelectorAll('video[autoplay]')) {
+        video.removeAttribute('autoplay');
+        video.pause();
+      }
+    };
+    syncReducedMotion(Boolean(reducedMotionQuery?.matches));
+    reducedMotionQuery?.addEventListener?.('change', event => {
+      syncReducedMotion(event.matches);
+      if (!event.matches) resumeVisibleInlineVideos();
+    });
+
+    const supportsLazyMedia =
+      typeof HTMLMediaElement !== 'undefined' &&
+      Object.hasOwn(HTMLMediaElement.prototype, 'loading');
+
+    if (!supportsLazyMedia && typeof IntersectionObserver !== 'undefined') {
+      const lazyMediaElements = document.querySelectorAll(
+        'video[loading="lazy"], audio[loading="lazy"][controls]'
+      );
+      const mediaObserver = new IntersectionObserver(
+        (entries, observer) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            const media = entry.target;
+            if (media.dataset.poster) {
+              media.poster = media.dataset.poster;
+              delete media.dataset.poster;
+            }
+            if (media.dataset.preload) {
+              media.preload = media.dataset.preload;
+              delete media.dataset.preload;
+            }
+            if (media.dataset.src) {
+              media.src = media.dataset.src;
+              delete media.dataset.src;
+            }
+            for (const source of media.querySelectorAll('source[data-src]')) {
+              source.src = source.dataset.src;
+              delete source.dataset.src;
+            }
+            media.load();
+            observer.unobserve(media);
+          }
+        },
+        { rootMargin: '200px 0px' }
+      );
+
+      for (const media of lazyMediaElements) {
+        if (media.hasAttribute('poster')) {
+          media.dataset.poster = media.getAttribute('poster');
+          media.removeAttribute('poster');
+        }
+        if (media.hasAttribute('preload') && media.getAttribute('preload') !== 'none') {
+          media.dataset.preload = media.getAttribute('preload');
+        }
+        media.preload = 'none';
+        for (const source of media.querySelectorAll('source[src]')) {
+          source.dataset.src = source.getAttribute('src');
+          source.removeAttribute('src');
+        }
+        mediaObserver.observe(media);
+      }
+    }
+
+    if (typeof IntersectionObserver !== 'undefined') {
+      const hosts = Array.from(document.querySelectorAll('bizora-video-stage, bizora-video-reel'));
+      const visibilityObserver = new IntersectionObserver(
+        entries => {
+          const lightboxOpen = document.getElementById('video-lightbox')?.isOpen?.();
+          for (const entry of entries) {
+            const host = entry.target;
+            const video = host.getVideo?.();
+            if (!video) continue;
+            if (entry.isIntersecting) {
+              host.setInView?.(true);
+              if (
+                !reducedMotionQuery?.matches &&
+                !host.isUserPaused?.() &&
+                video.dataset.tabHidden !== '1' &&
+                !lightboxOpen
+              ) {
+                video.play().catch(() => {});
+              }
+            } else {
+              host.setInView?.(false);
+              video.muted = true;
+              video.pause();
+            }
+          }
+        },
+        { threshold: 0.25 }
+      );
+      for (const host of hosts) {
+        visibilityObserver.observe(host);
+      }
+    }
+  }
+
   function initLuxuryInteractions() {
     if (typeof window === 'undefined') return;
     const motionOk = window.matchMedia?.('(prefers-reduced-motion: no-preference)')?.matches;
     if (!motionOk) return;
 
     if (window.matchMedia?.('(pointer: fine)')?.matches) {
-      const cards = document.querySelectorAll('.bento-card, .tier-card, .spec-panel, .release-card');
+      const cards = document.querySelectorAll('.bento-card, .reel-card, .tier-card, .spec-panel, .release-card');
       for (const card of cards) {
         let rafId = 0;
         let nextX = 0;
@@ -661,6 +1052,7 @@
     }
   }
 
+  initVideoPlaybackController();
   initLuxuryInteractions();
   void syncReleases();
 })();

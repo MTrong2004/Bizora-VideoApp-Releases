@@ -14,12 +14,13 @@
   <meta name="twitter:title" content="Bizora Video Studio — Tải xuống cho Windows">
   <meta name="twitter:description" content="Ứng dụng desktop dựng video review phim &amp; truyện cho Windows 10/11 (64-bit).">
   <meta name="twitter:image" content="https://mtrong2004.github.io/Bizora-VideoApp-Releases/assets/icon.png?v=20261124i">
-  <link rel="icon" type="image/svg+xml" href="./assets/logo.svg?v=20261124i">
-  <link rel="icon" href="./favicon.ico?v=20261124i">
+  <link rel="icon" type="image/svg+xml" href="./assets/logo.svg?v=20261124j">
+  <link rel="icon" href="./favicon.ico?v=20261124j">
+  <link rel="preload" as="image" href="./assets/videos/bizora-showreel-poster.webp?v=20261124j" fetchpriority="high" type="image/webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=20261124i">
+  <link rel="stylesheet" href="./styles.css?v=20261124j">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Chuyển tới nội dung chính</a>
@@ -40,7 +41,7 @@
   <header class="topbar">
     <nav class="pill-nav" aria-label="Điều hướng chính">
       <a class="brand" href="#top" aria-label="Bizora Video Studio">
-        <img class="brand-logo" src="./assets/logo.svg?v=20261124i" width="24" height="24" alt="">
+        <img class="brand-logo" src="./assets/logo.svg?v=20261124j" width="24" height="24" alt="">
         <span class="brand-text">
           <span class="brand-name">Bizora</span>
           <span class="brand-sub">Studio</span>
@@ -49,6 +50,7 @@
 
       <div class="pill-links">
         <a href="#tinh-nang">Tính năng</a>
+        <a href="#thanh-pham">Thành phẩm</a>
         <a href="#giao-dien">Giao diện</a>
         <a href="#huong-dan">Cài đặt</a>
         <a href="#phien-ban">Phiên bản</a>
@@ -137,31 +139,77 @@
         </div>
       </div>
 
-      <!-- Real Desktop App Showcase -->
+      <!-- Real Desktop App & Video Output Showcase -->
       <div id="giao-dien" class="container showcase-wrap">
         <bizora-app-showcase id="app-showcase">
           <div class="showcase-shell">
             <div class="showcase-bar">
               <div class="showcase-identity">
-                <img src="./assets/logo.svg?v=20261124i" width="16" height="16" alt="">
-                <span>Bizora Video Studio — Giao diện thực tế trên Windows</span>
+                <img src="./assets/logo.svg?v=20261124j" width="16" height="16" alt="">
+                <span>Bizora Video Studio — Demo video &amp; Giao diện Windows</span>
               </div>
-              <div class="showcase-tablist" focusgroup="tablist nomemory" role="tablist" aria-label="Ảnh chụp các màn hình chính trong Bizora Video Studio">
-                <button type="button" role="tab" id="tab-overview" aria-selected="true" focusgroupstart>Tổng quan</button>
+              <div class="showcase-tablist" focusgroup="tablist nomemory" role="tablist" aria-label="Video demo và ảnh chụp các màn hình chính trong Bizora Video Studio">
+                <button type="button" role="tab" id="tab-reel" aria-selected="true" focusgroupstart>Demo video</button>
+                <button type="button" role="tab" id="tab-overview" aria-selected="false">Tổng quan</button>
                 <button type="button" role="tab" id="tab-video" aria-selected="false">Tạo video</button>
                 <button type="button" role="tab" id="tab-publish" aria-selected="false">Kênh đăng</button>
               </div>
             </div>
 
             <div class="showcase-panels">
-              <div role="tabpanel" aria-labelledby="tab-overview" tabindex="0">
+              <div role="tabpanel" aria-labelledby="tab-reel" tabindex="0">
+                <div class="showcase-panel-inner">
+                  <bizora-video-stage
+                    class="showcase-video-stage"
+                    data-lightbox-src="./assets/videos/bizora-showreel.mp4?v=20261124j"
+                    data-lightbox-webm="./assets/videos/bizora-showreel.webm?v=20261124j"
+                    data-lightbox-poster="./assets/videos/bizora-showreel-poster.webp?v=20261124j"
+                    data-lightbox-title="Ba video review 9:16 xuất trực tiếp từ Bizora Video Studio"
+                    data-lightbox-badge="Showreel 16:9 · 24fps"
+                    data-lightbox-aspect="16:9"
+                  >
+                    <video
+                      class="stage-video"
+                      width="1280"
+                      height="720"
+                      poster="./assets/videos/bizora-showreel-poster.webp?v=20261124j"
+                      preload="metadata"
+                      autoplay
+                      muted
+                      loop
+                      playsinline
+                      aria-label="Showreel ba video review sản phẩm 9:16 xuất trực tiếp từ Bizora Video Studio"
+                    >
+                      <source src="./assets/videos/bizora-showreel.webm?v=20261124j" type="video/webm">
+                      <source src="./assets/videos/bizora-showreel.mp4?v=20261124j" type="video/mp4">
+                    </video>
+                    <div class="stage-hud-top">
+                      <span class="stage-live-badge">
+                        <span class="stage-live-dot" aria-hidden="true"></span>
+                        <span>Thành phẩm thật · 9:16</span>
+                      </span>
+                    </div>
+                    <div class="media-overlay-controls">
+                      <button type="button" class="media-ctrl-btn" data-action="toggle-play" aria-label="Tạm dừng video demo">
+                        <bizora-icon name="pause" size="15"></bizora-icon>
+                      </button>
+                      <button type="button" class="media-ctrl-btn" data-action="expand" aria-label="Mở trình phát lớn">
+                        <bizora-icon name="maximize-2" size="15"></bizora-icon>
+                      </button>
+                    </div>
+                  </bizora-video-stage>
+                </div>
+              </div>
+
+              <div role="tabpanel" aria-labelledby="tab-overview" hidden="until-found">
                 <div class="showcase-panel-inner">
                   <img
                     class="showcase-img"
                     src="./assets/screenshots/overview.png?v=20261124f"
                     width="1280"
                     height="800"
-                    fetchpriority="high"
+                    fetchpriority="low"
+                    loading="lazy"
                     alt="Giao diện Tổng quan của Bizora Video Studio trên Windows với thanh điều hướng bên trái và các lối tắt bắt đầu nhanh."
                   >
                 </div>
@@ -197,8 +245,8 @@
             </div>
 
             <div class="showcase-caption-bar">
-              <span class="caption-tag">Ảnh chụp ứng dụng desktop</span>
-              <p id="showcase-caption-text">Không gian Tổng quan quản lý lối tắt quy trình review, sao lưu dữ liệu cục bộ và danh sách dự án gần đây.</p>
+              <span class="caption-tag" id="showcase-caption-tag">Video thực tế xuất từ Bizora</span>
+              <p id="showcase-caption-text">Ba video review 9:16 xuất trực tiếp từ Bizora Video Studio — có giọng đọc AI, phụ đề đồng bộ và nhạc nền cân bằng âm lượng.</p>
             </div>
           </div>
         </bizora-app-showcase>
@@ -231,8 +279,46 @@
                 <li>Kịch bản lời bình</li>
                 <li>Đẩy thẳng sang Tạo video</li>
               </ul>
-              <a class="bento-cue" href="#giao-dien">
-                <span>KHÁM PHÁ QUY TRÌNH</span>
+
+              <div class="bento-media-wrap">
+                <bizora-video-stage
+                  class="bento-video-stage"
+                  data-lightbox-src="./assets/videos/workflow-demo.mp4?v=20261124j"
+                  data-lightbox-webm="./assets/videos/workflow-demo.webm?v=20261124j"
+                  data-lightbox-poster="./assets/videos/workflow-demo-poster.webp?v=20261124j"
+                  data-lightbox-title="Quy trình dựng video cục bộ trong Bizora Video Studio"
+                  data-lightbox-badge="Quy trình Studio · 16:9"
+                  data-lightbox-aspect="16:9"
+                >
+                  <video
+                    class="stage-video"
+                    width="960"
+                    height="540"
+                    loading="lazy"
+                    preload="none"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    poster="./assets/videos/workflow-demo-poster.webp?v=20261124j"
+                    aria-label="Video minh họa chuyển cảnh qua các màn hình Tạo video, Kênh đăng và Tổng quan của Bizora Video Studio"
+                  >
+                    <source src="./assets/videos/workflow-demo.webm?v=20261124j" type="video/webm">
+                    <source src="./assets/videos/workflow-demo.mp4?v=20261124j" type="video/mp4">
+                  </video>
+                  <div class="media-overlay-controls">
+                    <button type="button" class="media-ctrl-btn" data-action="toggle-play" aria-label="Tạm dừng video quy trình dựng">
+                      <bizora-icon name="pause" size="14"></bizora-icon>
+                    </button>
+                    <button type="button" class="media-ctrl-btn" data-action="expand" aria-label="Mở trình phát lớn quy trình dựng">
+                      <bizora-icon name="maximize-2" size="14"></bizora-icon>
+                    </button>
+                  </div>
+                </bizora-video-stage>
+              </div>
+
+              <a class="bento-cue" href="#thanh-pham">
+                <span>XEM THÀNH PHẨM THỰC TẾ</span>
                 <bizora-icon name="arrow-right" size="14"></bizora-icon>
               </a>
             </div>
@@ -240,14 +326,57 @@
           </article>
 
           <article class="bento-card bento-wide" data-reveal>
-            <div class="bento-content">
-              <div class="bento-icon bento-icon-sky">
-                <bizora-icon name="book-open" size="22"></bizora-icon>
+            <div class="bento-content bento-wide-grid">
+              <div class="bento-wide-copy">
+                <div class="bento-icon bento-icon-sky">
+                  <bizora-icon name="book-open" size="22"></bizora-icon>
+                </div>
+                <h3>Review Truyện Tranh Trọn Bộ</h3>
+                <p>
+                  Đọc truyện cuộn dọc mượt mà, tự động cắt tách khung hình hợp lý, gắn giọng đọc tiếng Việt tự nhiên và tạo phụ đề đồng bộ từng câu.
+                </p>
+                <ul class="bento-pills bento-pills-compact">
+                  <li>Tách khung tự động</li>
+                  <li>Phụ đề khớp câu</li>
+                </ul>
               </div>
-              <h3>Review Truyện Tranh Trọn Bộ</h3>
-              <p>
-                Đọc truyện cuộn dọc mượt mà, tự động cắt tách khung hình hợp lý, gắn giọng đọc tiếng Việt tự nhiên và tạo phụ đề đồng bộ từng câu.
-              </p>
+
+              <div class="bento-wide-media">
+                <bizora-video-stage
+                  class="bento-video-stage"
+                  data-lightbox-src="./assets/videos/manga-review-demo.mp4?v=20261124j"
+                  data-lightbox-webm="./assets/videos/manga-review-demo.webm?v=20261124j"
+                  data-lightbox-poster="./assets/videos/manga-review-demo-poster.webp?v=20261124j"
+                  data-lightbox-title="Review truyện tranh đồng bộ phụ đề &amp; giọng đọc AI"
+                  data-lightbox-badge="Review Truyện · 16:9"
+                  data-lightbox-aspect="16:9"
+                >
+                  <video
+                    class="stage-video"
+                    width="960"
+                    height="540"
+                    loading="lazy"
+                    preload="none"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    poster="./assets/videos/manga-review-demo-poster.webp?v=20261124j"
+                    aria-label="Video demo review truyện tranh xuất từ Bizora Video Studio"
+                  >
+                    <source src="./assets/videos/manga-review-demo.webm?v=20261124j" type="video/webm">
+                    <source src="./assets/videos/manga-review-demo.mp4?v=20261124j" type="video/mp4">
+                  </video>
+                  <div class="media-overlay-controls">
+                    <button type="button" class="media-ctrl-btn" data-action="toggle-play" aria-label="Tạm dừng demo review truyện">
+                      <bizora-icon name="pause" size="14"></bizora-icon>
+                    </button>
+                    <button type="button" class="media-ctrl-btn" data-action="expand" aria-label="Mở lớn và nghe review truyện">
+                      <bizora-icon name="maximize-2" size="14"></bizora-icon>
+                    </button>
+                  </div>
+                </bizora-video-stage>
+              </div>
             </div>
             <div class="bento-glow bento-glow-soft" aria-hidden="true"></div>
           </article>
@@ -259,6 +388,24 @@
               </div>
               <h3>Xuất MP4 Chuẩn Từng Kênh</h3>
               <p>Hỗ trợ 16:9, 9:16 và 1:1 cùng nhạc nền tự giảm âm lượng cho YouTube, Shorts, TikTok và Reels.</p>
+
+              <div class="bento-ratio-dock" aria-label="Các tỷ lệ khung hình hỗ trợ">
+                <div class="ratio-chip">
+                  <span class="ratio-frame ratio-16-9" aria-hidden="true"></span>
+                  <span class="ratio-val">16:9</span>
+                  <span class="ratio-sub">YouTube</span>
+                </div>
+                <div class="ratio-chip">
+                  <span class="ratio-frame ratio-9-16" aria-hidden="true"></span>
+                  <span class="ratio-val">9:16</span>
+                  <span class="ratio-sub">Shorts</span>
+                </div>
+                <div class="ratio-chip">
+                  <span class="ratio-frame ratio-1-1" aria-hidden="true"></span>
+                  <span class="ratio-val">1:1</span>
+                  <span class="ratio-sub">Bảng tin</span>
+                </div>
+              </div>
             </div>
           </article>
 
@@ -269,8 +416,184 @@
               </div>
               <h3>Lưu Cục Bộ &amp; Tự Cập Nhật</h3>
               <p>Toàn bộ dự án và tệp MP4 nằm gọn trên thiết bị; bản vá mới được tải và nâng cấp ngay trong Cài đặt.</p>
+
+              <dl class="bento-status-dock">
+                <div class="status-row">
+                  <dt>Kho dữ liệu</dt>
+                  <dd>Trên thiết bị</dd>
+                </div>
+                <div class="status-row">
+                  <dt>Nâng cấp bản vá</dt>
+                  <dd>Tự động NSIS</dd>
+                </div>
+              </dl>
             </div>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Real Rendered 9:16 Video Showcase -->
+    <section id="thanh-pham" class="section section-bordered">
+      <div class="container">
+        <div class="section-head section-head-center" data-reveal>
+          <h2>
+            Thành Phẩm Xuất Trực Tiếp<br>
+            <span class="text-accent">Từ Bizora Video Studio</span>
+          </h2>
+          <p>Ba video dọc 9:16 hoàn chỉnh được dựng cục bộ — bật tiếng trực tiếp hoặc mở toàn khung để nghe giọng đọc AI và nhạc nền.</p>
+        </div>
+
+        <div class="reel-grid">
+          <bizora-video-reel
+            class="reel-card"
+            data-reveal
+            data-lightbox-src="./assets/videos/reel-blazer.mp4?v=20261124j"
+            data-lightbox-webm="./assets/videos/reel-blazer.webm?v=20261124j"
+            data-lightbox-poster="./assets/videos/reel-blazer-poster.webp?v=20261124j"
+            data-lightbox-title="Áo Blazer Linen Kem Phom Suông"
+            data-lightbox-badge="Thời trang · 9:16"
+            data-lightbox-aspect="9:16"
+          >
+            <div class="reel-viewport">
+              <video
+                class="reel-video"
+                width="540"
+                height="960"
+                loading="lazy"
+                preload="none"
+                autoplay
+                muted
+                loop
+                playsinline
+                poster="./assets/videos/reel-blazer-poster.webp?v=20261124j"
+                aria-label="Video review Áo Blazer Linen Kem Phom Suông 9:16 xuất từ Bizora"
+              >
+                <source src="./assets/videos/reel-blazer.webm?v=20261124j" type="video/webm">
+                <source src="./assets/videos/reel-blazer.mp4?v=20261124j" type="video/mp4">
+              </video>
+              <div class="reel-overlay-gradient" aria-hidden="true"></div>
+              <div class="media-overlay-controls">
+                <button type="button" class="media-ctrl-btn" data-action="toggle-play" aria-label="Tạm dừng video Áo Blazer Linen Kem">
+                  <bizora-icon name="pause" size="15"></bizora-icon>
+                </button>
+                <button type="button" class="media-ctrl-btn" data-action="toggle-mute" aria-label="Bật âm thanh video Áo Blazer Linen Kem">
+                  <bizora-icon name="volume-x" size="15"></bizora-icon>
+                </button>
+                <button type="button" class="media-ctrl-btn" data-action="expand" aria-label="Mở lớn video Áo Blazer Linen Kem">
+                  <bizora-icon name="maximize-2" size="15"></bizora-icon>
+                </button>
+              </div>
+            </div>
+            <div class="reel-meta">
+              <div class="reel-meta-top">
+                <span class="reel-category reel-cat-accent">Thời trang</span>
+                <span class="reel-tech">9:16 · Giọng AI</span>
+              </div>
+              <h3>Áo Blazer Linen Kem Phom Suông</h3>
+              <p>Chuyển cảnh đa góc phối cùng thẻ điểm nhấn USP và lời bình giữ nhịp nhanh.</p>
+            </div>
+          </bizora-video-reel>
+
+          <bizora-video-reel
+            class="reel-card"
+            data-reveal
+            data-lightbox-src="./assets/videos/reel-serum.mp4?v=20261124j"
+            data-lightbox-webm="./assets/videos/reel-serum.webm?v=20261124j"
+            data-lightbox-poster="./assets/videos/reel-serum-poster.webp?v=20261124j"
+            data-lightbox-title="Son Dưỡng Bóng Collagen Hồng Đào"
+            data-lightbox-badge="Mỹ phẩm · 9:16"
+            data-lightbox-aspect="9:16"
+          >
+            <div class="reel-viewport">
+              <video
+                class="reel-video"
+                width="540"
+                height="960"
+                loading="lazy"
+                preload="none"
+                autoplay
+                muted
+                loop
+                playsinline
+                poster="./assets/videos/reel-serum-poster.webp?v=20261124j"
+                aria-label="Video review Son Dưỡng Bóng Collagen Hồng Đào 9:16 xuất từ Bizora"
+              >
+                <source src="./assets/videos/reel-serum.webm?v=20261124j" type="video/webm">
+                <source src="./assets/videos/reel-serum.mp4?v=20261124j" type="video/mp4">
+              </video>
+              <div class="reel-overlay-gradient" aria-hidden="true"></div>
+              <div class="media-overlay-controls">
+                <button type="button" class="media-ctrl-btn" data-action="toggle-play" aria-label="Tạm dừng video Son Dưỡng Bóng Collagen">
+                  <bizora-icon name="pause" size="15"></bizora-icon>
+                </button>
+                <button type="button" class="media-ctrl-btn" data-action="toggle-mute" aria-label="Bật âm thanh video Son Dưỡng Bóng Collagen">
+                  <bizora-icon name="volume-x" size="15"></bizora-icon>
+                </button>
+                <button type="button" class="media-ctrl-btn" data-action="expand" aria-label="Mở lớn video Son Dưỡng Bóng Collagen">
+                  <bizora-icon name="maximize-2" size="15"></bizora-icon>
+                </button>
+              </div>
+            </div>
+            <div class="reel-meta">
+              <div class="reel-meta-top">
+                <span class="reel-category reel-cat-sky">Mỹ phẩm</span>
+                <span class="reel-tech">9:16 · Phụ đề</span>
+              </div>
+              <h3>Son Dưỡng Bóng Collagen Hồng Đào</h3>
+              <p>Cận cảnh chất son kết hợp lời thoại tự nhiên và nhạc nền giảm âm đều nhịp.</p>
+            </div>
+          </bizora-video-reel>
+
+          <bizora-video-reel
+            class="reel-card"
+            data-reveal
+            data-lightbox-src="./assets/videos/reel-blender.mp4?v=20261124j"
+            data-lightbox-webm="./assets/videos/reel-blender.webm?v=20261124j"
+            data-lightbox-poster="./assets/videos/reel-blender-poster.webp?v=20261124j"
+            data-lightbox-title="Máy Xay Sinh Tố Mini Không Dây"
+            data-lightbox-badge="Gia dụng · 9:16"
+            data-lightbox-aspect="9:16"
+          >
+            <div class="reel-viewport">
+              <video
+                class="reel-video"
+                width="540"
+                height="960"
+                loading="lazy"
+                preload="none"
+                autoplay
+                muted
+                loop
+                playsinline
+                poster="./assets/videos/reel-blender-poster.webp?v=20261124j"
+                aria-label="Video review Máy Xay Sinh Tố Mini Không Dây 9:16 xuất từ Bizora"
+              >
+                <source src="./assets/videos/reel-blender.webm?v=20261124j" type="video/webm">
+                <source src="./assets/videos/reel-blender.mp4?v=20261124j" type="video/mp4">
+              </video>
+              <div class="reel-overlay-gradient" aria-hidden="true"></div>
+              <div class="media-overlay-controls">
+                <button type="button" class="media-ctrl-btn" data-action="toggle-play" aria-label="Tạm dừng video Máy Xay Sinh Tố Mini">
+                  <bizora-icon name="pause" size="15"></bizora-icon>
+                </button>
+                <button type="button" class="media-ctrl-btn" data-action="toggle-mute" aria-label="Bật âm thanh video Máy Xay Sinh Tố Mini">
+                  <bizora-icon name="volume-x" size="15"></bizora-icon>
+                </button>
+                <button type="button" class="media-ctrl-btn" data-action="expand" aria-label="Mở lớn video Máy Xay Sinh Tố Mini">
+                  <bizora-icon name="maximize-2" size="15"></bizora-icon>
+                </button>
+              </div>
+            </div>
+            <div class="reel-meta">
+              <div class="reel-meta-top">
+                <span class="reel-category reel-cat-emerald">Gia dụng</span>
+                <span class="reel-tech">9:16 · CTA</span>
+              </div>
+              <h3>Máy Xay Sinh Tố Mini Không Dây</h3>
+              <p>Trình diễn thao tác thực tế từng bước và đóng khung CTA kêu gọi ở đoạn kết.</p>
+            </div>
+          </bizora-video-reel>
         </div>
       </div>
     </section>
@@ -442,13 +765,32 @@
         </div>
       </div>
     </section>
+
+    <bizora-video-lightbox id="video-lightbox">
+      <dialog class="video-lightbox" closedby="any" aria-labelledby="lightbox-title">
+        <div class="lightbox-shell">
+          <div class="lightbox-head">
+            <div class="lightbox-title-group">
+              <span class="lightbox-badge" id="lightbox-badge"></span>
+              <h2 class="lightbox-title" id="lightbox-title">Xem trước video Bizora</h2>
+            </div>
+            <button type="button" class="lightbox-close" data-action="close" aria-label="Đóng trình phát video">
+              <bizora-icon name="x" size="18"></bizora-icon>
+            </button>
+          </div>
+          <div class="lightbox-body">
+            <video class="lightbox-video" controls playsinline preload="metadata"></video>
+          </div>
+        </div>
+      </dialog>
+    </bizora-video-lightbox>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-brand-col">
         <div class="footer-brand">
-          <img src="./assets/logo.svg?v=20261124i" width="24" height="24" alt="">
+          <img src="./assets/logo.svg?v=20261124j" width="24" height="24" alt="">
           <span>Bizora Video Studio</span>
         </div>
         <p class="footer-tagline">
@@ -460,6 +802,7 @@
         <h4>Sản phẩm</h4>
         <ul>
           <li><a href="#tinh-nang">Tính năng</a></li>
+          <li><a href="#thanh-pham">Thành phẩm</a></li>
           <li><a href="#giao-dien">Giao diện</a></li>
           <li><a href="#huong-dan">Cài đặt &amp; SHA-256</a></li>
           <li><a href="#phien-ban">Phiên bản</a></li>
@@ -491,6 +834,6 @@
     </div>
   </footer>
 
-  <script src="./app.js?v=20261124i" defer></script>
+  <script src="./app.js?v=20261124j" defer></script>
 </body>
 </html>
