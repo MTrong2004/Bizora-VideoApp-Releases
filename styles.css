@@ -691,7 +691,6 @@ code {
   border: 1px solid var(--border-hairline);
   border-radius: var(--radius-md);
   background: var(--bg-surface);
-  overflow: hidden;
 }
 
 .accordion summary {
@@ -701,11 +700,16 @@ code {
   gap: 10px;
   min-height: 48px;
   padding: 12px 16px;
+  border-radius: var(--radius-md);
   font-size: 14.5px;
   font-weight: 600;
   color: var(--text-primary);
   cursor: pointer;
   user-select: none;
+}
+
+.accordion summary:focus-visible {
+  outline-offset: -2px;
 }
 
 .accordion summary::-webkit-details-marker {
@@ -1077,6 +1081,14 @@ code {
 
   .hero-actions .btn {
     width: 100%;
+  }
+
+  .hero-spec {
+    gap: 4px 12px;
+  }
+
+  .hero-spec .dot {
+    display: none;
   }
 
   .matrix-grid {
