@@ -60,9 +60,7 @@
     monitor: ['M2 5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2Z', 'M8 21h8', 'M12 17v4'],
     layers: ['m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z', 'm22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65', 'm22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65'],
     cpu: ['M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z', 'M9 9h6v6H9Z', 'M15 2v2', 'M15 20v2', 'M2 15h2', 'M2 9h2', 'M20 15h2', 'M20 9h2', 'M9 2v2', 'M9 20v2'],
-    github: ['M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4', 'M9 18c-4.51 2-5-2-7-2'],
-    play: ['M6 4l14 8-14 8V4Z'],
-    pause: ['M14 4h4v16h-4z', 'M6 4h4v16H6z']
+    github: ['M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4', 'M9 18c-4.51 2-5-2-7-2']
   });
 
   function createIconSvg(name, size = 16) {
@@ -137,10 +135,8 @@
     constructor() {
       super();
       this._bound = false;
-      this._userPaused = false;
       this._inView = true;
       this._video = null;
-      this._toggleBtn = null;
       this._reducedQuery = null;
       this._observer = null;
     }
@@ -150,35 +146,21 @@
       this._bound = true;
 
       this._video = this.querySelector('.hero-ambient-video');
-      this._toggleBtn = this.querySelector('[data-action="toggle-ambient"]');
       if (!this._video) return;
 
       this._reducedQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
       if (this._reducedQuery?.matches) {
-        this._userPaused = true;
         this._video.removeAttribute('autoplay');
         this._video.pause();
       }
 
-      this._syncButton();
-
-      this._video.addEventListener('play', () => this._syncButton());
-      this._video.addEventListener('pause', () => this._syncButton());
-
-      this._toggleBtn?.addEventListener('click', () => this._handleToggle());
-
       this._reducedQuery?.addEventListener?.('change', event => {
         if (event.matches) {
-          this._userPaused = true;
           this._video.removeAttribute('autoplay');
           this._video.pause();
-        } else {
-          this._userPaused = false;
-          if (this._inView) {
-            this._video.play().catch(() => {});
-          }
+        } else if (this._inView) {
+          this._video.play().catch(() => {});
         }
-        this._syncButton();
       });
 
       if (typeof IntersectionObserver !== 'undefined') {
@@ -187,7 +169,7 @@
             for (const entry of entries) {
               this._inView = entry.isIntersecting;
               if (entry.isIntersecting) {
-                if (!this._userPaused && !this._reducedQuery?.matches) {
+                if (!this._reducedQuery?.matches) {
                   this._video.play().catch(() => {});
                 }
               } else {
@@ -203,28 +185,6 @@
 
     disconnectedCallback() {
       this._observer?.disconnect();
-    }
-
-    _handleToggle() {
-      if (!this._video) return;
-      if (this._video.paused) {
-        this._userPaused = false;
-        this._video.play().catch(() => {});
-      } else {
-        this._userPaused = true;
-        this._video.pause();
-      }
-      this._syncButton();
-    }
-
-    _syncButton() {
-      if (!this._toggleBtn || !this._video) return;
-      const paused = this._video.paused;
-      this._toggleBtn.setAttribute('aria-label', paused ? 'Phát video nền' : 'Tạm dừng video nền');
-      const icon = this._toggleBtn.querySelector('bizora-icon');
-      if (icon) icon.setAttribute('name', paused ? 'play' : 'pause');
-      const labelEl = this._toggleBtn.querySelector('.ambient-toggle-label');
-      if (labelEl) labelEl.textContent = paused ? 'Phát nền' : 'Tạm dừng nền';
     }
   }
 
@@ -639,9 +599,6 @@
     const ctaVer = document.getElementById('cta-download-ver');
     if (ctaVer) ctaVer.textContent = tag;
 
-    const versionText = document.getElementById('hero-version-text');
-    if (versionText) versionText.textContent = `Bizora Video Studio ${tag} đã phát hành`;
-
     const assetName = document.getElementById('hero-asset-name');
     if (assetName && latest.assetName) assetName.textContent = latest.assetName;
 
@@ -715,6 +672,36 @@
     }
   }
 
+  function initTopbarScrollState() {
+    if (typeof window === 'undefined') return;
+    const topbar = document.querySelector('.topbar');
+    const veil = document.querySelector('.gradient-blur');
+    const sentinel = document.getElementById('nav-sentinel');
+    if (!topbar) return;
+
+    const applyState = isScrolled => {
+      topbar.classList.toggle('is-scrolled', isScrolled);
+      veil?.classList.toggle('is-scrolled', isScrolled);
+    };
+
+    if (sentinel && typeof IntersectionObserver !== 'undefined') {
+      const observer = new IntersectionObserver(
+        entries => {
+          for (const entry of entries) {
+            applyState(!entry.isIntersecting);
+          }
+        },
+        { threshold: 0 }
+      );
+      observer.observe(sentinel);
+      return;
+    }
+
+    const onScroll = () => applyState(window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
   function initLuxuryInteractions() {
     if (typeof window === 'undefined') return;
     const motionOk = window.matchMedia?.('(prefers-reduced-motion: no-preference)')?.matches;
@@ -735,24 +722,6 @@
             card.style.setProperty('--spot-x', `${nextX}px`);
             card.style.setProperty('--spot-y', `${nextY}px`);
             rafId = 0;
-          });
-        }, { passive: true });
-      }
-
-      const watermark = document.getElementById('footer-watermark');
-      if (watermark) {
-        let wmRaf = 0;
-        let wmX = 0;
-        let wmY = 0;
-        watermark.addEventListener('pointermove', event => {
-          const rect = watermark.getBoundingClientRect();
-          wmX = Math.round(event.clientX - rect.left);
-          wmY = Math.round(event.clientY - rect.top);
-          if (wmRaf) return;
-          wmRaf = requestAnimationFrame(() => {
-            watermark.style.setProperty('--wm-x', `${wmX}px`);
-            watermark.style.setProperty('--wm-y', `${wmY}px`);
-            wmRaf = 0;
           });
         }, { passive: true });
       }
@@ -779,6 +748,7 @@
     }
   }
 
+  initTopbarScrollState();
   initLuxuryInteractions();
   void syncReleases();
 })();

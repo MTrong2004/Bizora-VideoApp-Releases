@@ -14,13 +14,13 @@
   <meta name="twitter:title" content="Bizora Video Studio — Tải xuống cho Windows">
   <meta name="twitter:description" content="Ứng dụng desktop dựng video review phim &amp; truyện cho Windows 10/11 (64-bit).">
   <meta name="twitter:image" content="https://mtrong2004.github.io/Bizora-VideoApp-Releases/assets/icon.png?v=20261125a">
-  <link rel="icon" type="image/svg+xml" href="./assets/logo.svg?v=20261125a">
-  <link rel="icon" href="./favicon.ico?v=20261125a">
-  <link rel="preload" as="image" href="./assets/videos/hero-ambient-poster.webp?v=20261125a" fetchpriority="high" type="image/webp">
+  <link rel="icon" type="image/svg+xml" href="./assets/logo.svg?v=20261125b">
+  <link rel="icon" href="./favicon.ico?v=20261125b">
+  <link rel="preload" as="image" href="./assets/videos/hero-ambient-poster.webp?v=20261125b" fetchpriority="high" type="image/webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=20261125a">
+  <link rel="stylesheet" href="./styles.css?v=20261125b">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Chuyển tới nội dung chính</a>
@@ -36,6 +36,7 @@
 
   <!-- Top Atmospheric Blur Veil -->
   <div class="gradient-blur" aria-hidden="true"></div>
+  <div class="nav-sentinel" id="nav-sentinel" aria-hidden="true"></div>
 
   <!-- Floating Pill Navbar -->
   <header class="topbar">
@@ -78,44 +79,29 @@
             class="hero-ambient-video"
             width="1280"
             height="720"
-            poster="./assets/videos/hero-ambient-poster.webp?v=20261125a"
+            poster="./assets/videos/hero-ambient-poster.webp?v=20261125b"
             preload="metadata"
             autoplay
             muted
             loop
             playsinline
           >
-            <source src="./assets/videos/hero-ambient.webm?v=20261125a" type="video/webm">
-            <source src="./assets/videos/hero-ambient.mp4?v=20261125a" type="video/mp4">
+            <source src="./assets/videos/hero-ambient.webm?v=20261125b" type="video/webm">
+            <source src="./assets/videos/hero-ambient.mp4?v=20261125b" type="video/mp4">
           </video>
           <div class="hero-ambient-scrim"></div>
         </div>
 
         <div class="container hero-inner">
-          <a class="hero-badge" href="#phien-ban">
-            <span class="pulse-dot" aria-hidden="true">
-              <span class="pulse-ping"></span>
-              <span class="pulse-core"></span>
-            </span>
-            <span id="hero-version-text">Bizora Video Studio v0.1.0 đã phát hành</span>
-            <bizora-icon name="arrow-right" size="13"></bizora-icon>
-          </a>
-
           <h1 class="hero-title">
             <span class="hero-grad-line">Dựng video review</span>
             <span class="hero-grad-line">
-              chuẩn studio trên
-              <span class="hero-accent">
-                Windows
-                <svg class="hero-arc" viewBox="0 0 120 12" preserveAspectRatio="none" aria-hidden="true">
-                  <path d="M2 7 Q 60 12 118 5" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round"></path>
-                </svg>
-              </span>
+              chuẩn studio trên <span class="hero-accent">Windows</span>
             </span>
           </h1>
 
           <p class="hero-lead">
-            Chọn nguồn phim hoặc truyện, soạn lời bình tiếng Việt và xuất tệp MP4 đúng tỷ lệ từng kênh trong một không gian làm việc gọn nhẹ — lưu cục bộ trên máy và tự cập nhật khi có bản mới.
+            Dựng video review phim, truyện tranh có lời bình tiếng Việt và xuất tệp MP4 cục bộ ngay trên Windows.
           </p>
 
           <div class="hero-actions">
@@ -142,16 +128,6 @@
             <a class="inline-anchor" href="#kiem-tra-tep">Đối chiếu SHA-256</a>
           </p>
         </div>
-
-        <button
-          type="button"
-          class="hero-ambient-toggle"
-          data-action="toggle-ambient"
-          aria-label="Tạm dừng video nền"
-        >
-          <bizora-icon name="pause" size="14"></bizora-icon>
-          <span class="ambient-toggle-label">Tạm dừng nền</span>
-        </button>
       </bizora-hero-ambient>
 
       <!-- Full-Width Capabilities Strip -->
@@ -548,6 +524,6 @@
     </div>
   </footer>
 
-  <script src="./app.js?v=20261125a" defer></script>
+  <script src="./app.js?v=20261125b" defer></script>
 </body>
 </html>
