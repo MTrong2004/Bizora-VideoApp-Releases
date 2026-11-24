@@ -9,18 +9,18 @@
   <meta property="og:title" content="Bizora Video Studio — Tải xuống cho Windows">
   <meta property="og:description" content="Dựng video review phim, truyện và xuất MP4 ngay trên Windows với dữ liệu lưu cục bộ và tự cập nhật trong ứng dụng.">
   <meta property="og:url" content="https://mtrong2004.github.io/Bizora-VideoApp-Releases/">
-  <meta property="og:image" content="https://mtrong2004.github.io/Bizora-VideoApp-Releases/assets/icon.png?v=20261125a">
+  <meta property="og:image" content="https://mtrong2004.github.io/Bizora-VideoApp-Releases/assets/icon.png?v=20261125c">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Bizora Video Studio — Tải xuống cho Windows">
   <meta name="twitter:description" content="Ứng dụng desktop dựng video review phim &amp; truyện cho Windows 10/11 (64-bit).">
-  <meta name="twitter:image" content="https://mtrong2004.github.io/Bizora-VideoApp-Releases/assets/icon.png?v=20261125a">
-  <link rel="icon" type="image/svg+xml" href="./assets/logo.svg?v=20261125b">
-  <link rel="icon" href="./favicon.ico?v=20261125b">
-  <link rel="preload" as="image" href="./assets/videos/hero-ambient-poster.webp?v=20261125b" fetchpriority="high" type="image/webp">
+  <meta name="twitter:image" content="https://mtrong2004.github.io/Bizora-VideoApp-Releases/assets/icon.png?v=20261125c">
+  <link rel="icon" type="image/svg+xml" href="./assets/logo.svg?v=20261125c">
+  <link rel="icon" href="./favicon.ico?v=20261125c">
+  <link rel="preload" as="image" href="./assets/videos/hero-ambient-poster.webp?v=20261125c" fetchpriority="high" type="image/webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=20261125b">
+  <link rel="stylesheet" href="./styles.css?v=20261125c">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Chuyển tới nội dung chính</a>
@@ -38,11 +38,11 @@
   <div class="gradient-blur" aria-hidden="true"></div>
   <div class="nav-sentinel" id="nav-sentinel" aria-hidden="true"></div>
 
-  <!-- Floating Pill Navbar -->
+  <!-- Adaptive Top Navbar -->
   <header class="topbar">
     <nav class="pill-nav" aria-label="Điều hướng chính">
       <a class="brand" href="#top" aria-label="Bizora Video Studio">
-        <img class="brand-logo" src="./assets/logo.svg?v=20261125a" width="24" height="24" alt="">
+        <img class="brand-logo" src="./assets/logo.svg?v=20261125c" width="24" height="24" alt="">
         <span class="brand-text">
           <span class="brand-name">Bizora</span>
           <span class="brand-sub">Studio</span>
@@ -51,7 +51,7 @@
 
       <div class="pill-links">
         <a href="#tinh-nang">Tính năng</a>
-        <a href="#giao-dien">Giao diện</a>
+        <a href="#giao-dien">Demo</a>
         <a href="#huong-dan">Cài đặt</a>
         <a href="#phien-ban">Phiên bản</a>
       </div>
@@ -79,15 +79,15 @@
             class="hero-ambient-video"
             width="1280"
             height="720"
-            poster="./assets/videos/hero-ambient-poster.webp?v=20261125b"
+            poster="./assets/videos/hero-ambient-poster.webp?v=20261125c"
             preload="metadata"
             autoplay
             muted
             loop
             playsinline
           >
-            <source src="./assets/videos/hero-ambient.webm?v=20261125b" type="video/webm">
-            <source src="./assets/videos/hero-ambient.mp4?v=20261125b" type="video/mp4">
+            <source src="./assets/videos/hero-ambient.webm?v=20261125c" type="video/webm">
+            <source src="./assets/videos/hero-ambient.mp4?v=20261125c" type="video/mp4">
           </video>
           <div class="hero-ambient-scrim"></div>
         </div>
@@ -145,178 +145,189 @@
       </div>
     </section>
 
-    <!-- Option 1: Flat Interactive Split Feature & Interface Showcase -->
+    <!-- Option A: Full-Width Cinema Stage Showcase with Live Video Demos -->
     <section id="tinh-nang" class="section">
       <div class="container">
-        <div class="section-head" data-reveal>
+        <div class="section-head section-head-center" data-reveal>
           <h2>
-            Một không gian làm việc<br>
-            <span class="text-accent">cho mọi bước dựng</span>
+            Thành phẩm thực tế, dựng trọn <span class="text-accent">trong một không gian</span>
           </h2>
-          <p>Quản lý dự án phim, truyện tranh, lời bình tiếng Việt và xuất MP4 ngay trên máy cá nhân.</p>
+          <p>Từ cảnh phim, trang truyện đến tệp MP4 đúng tỷ lệ từng kênh — xem trực tiếp quy trình vận hành của Bizora.</p>
         </div>
 
-        <bizora-feature-showcase id="feature-showcase" data-reveal>
-          <div class="feature-split">
+        <bizora-cinema-stage id="giao-dien" class="cinema-stage" data-reveal>
+          <div class="cinema-tabs-wrap">
             <div
-              class="feature-tablist"
+              class="cinema-tablist"
               focusgroup="tablist nomemory"
               role="tablist"
-              aria-orientation="vertical"
-              aria-label="Các tính năng chính của Bizora Video Studio"
+              aria-label="Chọn chế độ trình diễn video Bizora"
             >
               <button
                 type="button"
-                class="feature-tab"
+                class="cinema-tab"
                 role="tab"
-                id="feat-tab-workflow"
+                id="stage-tab-film"
                 aria-selected="true"
                 focusgroupstart
               >
-                <span class="feature-tab-head">
-                  <span class="feature-tab-num">01</span>
-                  <span class="feature-tab-title">Review phim &amp; quản lý dự án</span>
-                </span>
-                <span class="feature-tab-desc">
-                  Tập hợp dự án phim, kịch bản lời bình và hàng đợi dựng trong một không gian cục bộ gọn gàng.
-                </span>
+                <span class="cinema-tab-idx">01</span>
+                <span>Review phim</span>
               </button>
 
               <button
                 type="button"
-                class="feature-tab"
+                class="cinema-tab"
                 role="tab"
-                id="feat-tab-manga"
+                id="stage-tab-manga"
                 aria-selected="false"
               >
-                <span class="feature-tab-head">
-                  <span class="feature-tab-num">02</span>
-                  <span class="feature-tab-title">Review truyện tranh &amp; phụ đề khớp câu</span>
-                </span>
-                <span class="feature-tab-desc">
-                  Đọc truyện cuộn dọc, tự tách khung hình, gắn giọng đọc tiếng Việt và đồng bộ phụ đề từng câu.
-                </span>
+                <span class="cinema-tab-idx">02</span>
+                <span>Review truyện tranh</span>
               </button>
 
               <button
                 type="button"
-                class="feature-tab"
+                class="cinema-tab"
                 role="tab"
-                id="feat-tab-export"
+                id="stage-tab-ratio"
                 aria-selected="false"
               >
-                <span class="feature-tab-head">
-                  <span class="feature-tab-num">03</span>
-                  <span class="feature-tab-title">Xuất MP4 chuẩn từng kênh</span>
-                </span>
-                <span class="feature-tab-desc">
-                  Cấu hình thời lượng, thư viện nhạc nền tự giảm âm lượng và xuất 16:9, 9:16 hoặc 1:1 sắc nét.
-                </span>
+                <span class="cinema-tab-idx">03</span>
+                <span>Xuất đa khung hình</span>
               </button>
-
-              <button
-                type="button"
-                class="feature-tab"
-                role="tab"
-                id="feat-tab-publish"
-                aria-selected="false"
-              >
-                <span class="feature-tab-head">
-                  <span class="feature-tab-num">04</span>
-                  <span class="feature-tab-title">Kênh đăng, lưu cục bộ &amp; tự cập nhật</span>
-                </span>
-                <span class="feature-tab-desc">
-                  Soạn tiêu đề, thẻ nhanh, lịch đăng kênh; toàn bộ tệp nằm trên máy và bản vá NSIS tự nâng cấp trong app.
-                </span>
-              </button>
-            </div>
-
-            <div id="giao-dien" class="feature-stage-shell">
-              <div class="feature-stage-bar">
-                <div class="feature-stage-identity">
-                  <img src="./assets/logo.svg?v=20261125a" width="16" height="16" alt="">
-                  <span id="feature-stage-label">Không gian Tổng quan &amp; quản lý dự án</span>
-                </div>
-                <span class="feature-stage-os">Windows 64-bit</span>
-              </div>
-
-              <div class="feature-panels">
-                <div role="tabpanel" aria-labelledby="feat-tab-workflow" tabindex="0">
-                  <div class="feature-panel-inner">
-                    <img
-                      class="feature-panel-img"
-                      src="./assets/screenshots/overview.png?v=20261125a"
-                      width="1280"
-                      height="800"
-                      loading="eager"
-                      decoding="async"
-                      alt="Không gian Tổng quan trong Bizora Video Studio quản lý dự án gần đây, lối tắt dựng video và sao lưu cục bộ."
-                    >
-                  </div>
-                </div>
-
-                <div role="tabpanel" aria-labelledby="feat-tab-manga" hidden="until-found">
-                  <div class="feature-panel-inner">
-                    <img
-                      class="feature-panel-img feature-panel-img-contain"
-                      src="./assets/screenshots/manga-review.webp?v=20261125a"
-                      width="960"
-                      height="540"
-                      loading="lazy"
-                      decoding="async"
-                      alt="Khung hình review truyện tranh với minh họa trích đoạn, lời bình tiếng Việt và thanh tiến độ đồng bộ từng câu."
-                    >
-                  </div>
-                </div>
-
-                <div role="tabpanel" aria-labelledby="feat-tab-export" hidden="until-found">
-                  <div class="feature-panel-inner">
-                    <img
-                      class="feature-panel-img"
-                      src="./assets/screenshots/video-studio.png?v=20261125a"
-                      width="1280"
-                      height="800"
-                      loading="lazy"
-                      decoding="async"
-                      alt="Màn hình Tạo video trên Bizora Video Studio cho phép chọn ảnh, cấu hình thời lượng, nhạc nền và xuất tệp MP4."
-                    >
-                  </div>
-                </div>
-
-                <div role="tabpanel" aria-labelledby="feat-tab-publish" hidden="until-found">
-                  <div class="feature-panel-inner">
-                    <img
-                      class="feature-panel-img"
-                      src="./assets/screenshots/publishing.png?v=20261125a"
-                      width="1280"
-                      height="800"
-                      loading="lazy"
-                      decoding="async"
-                      alt="Màn hình Kênh đăng trên Bizora Video Studio để soạn tiêu đề, thẻ nhanh và quản lý lịch xuất bản từng kênh."
-                    >
-                  </div>
-                </div>
-              </div>
-
-              <div class="feature-stage-foot">
-                <span class="feature-stage-dot" aria-hidden="true"></span>
-                <p id="feature-stage-spec">Windows 10/11 64-bit · Dữ liệu lưu cục bộ</p>
-              </div>
             </div>
           </div>
-        </bizora-feature-showcase>
+
+          <div class="cinema-frame">
+            <div class="cinema-panels">
+              <div role="tabpanel" aria-labelledby="stage-tab-film" tabindex="0">
+                <div class="cinema-panel-inner">
+                  <video
+                    class="cinema-video"
+                    width="1280"
+                    height="720"
+                    poster="./assets/videos/demo-film-review-poster.webp?v=20261125c"
+                    preload="metadata"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                  >
+                    <source src="./assets/videos/demo-film-review.webm?v=20261125c" type="video/webm">
+                    <source src="./assets/videos/demo-film-review.mp4?v=20261125c" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+
+              <div role="tabpanel" aria-labelledby="stage-tab-manga" hidden="until-found">
+                <div class="cinema-panel-inner">
+                  <video
+                    class="cinema-video"
+                    width="960"
+                    height="540"
+                    poster="./assets/videos/demo-manga-review-poster.webp?v=20261125c"
+                    preload="none"
+                    muted
+                    loop
+                    playsinline
+                  >
+                    <source src="./assets/videos/demo-manga-review.webm?v=20261125c" type="video/webm">
+                    <source src="./assets/videos/demo-manga-review.mp4?v=20261125c" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+
+              <div role="tabpanel" aria-labelledby="stage-tab-ratio" hidden="until-found">
+                <div class="cinema-panel-inner">
+                  <video
+                    class="cinema-video"
+                    width="1280"
+                    height="720"
+                    poster="./assets/videos/demo-multiratio-poster.webp?v=20261125c"
+                    preload="none"
+                    muted
+                    loop
+                    playsinline
+                  >
+                    <source src="./assets/videos/demo-multiratio.webm?v=20261125c" type="video/webm">
+                    <source src="./assets/videos/demo-multiratio.mp4?v=20261125c" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+            </div>
+
+            <div class="cinema-hud">
+              <div class="cinema-hud-left">
+                <span class="eq-bars" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </span>
+                <span id="cinema-hud-title">Review phim điện ảnh · Phụ đề khớp nhịp</span>
+              </div>
+              <p id="cinema-hud-spec" class="cinema-hud-spec">16:9 · Giọng Việt tự nhiên · Xuất MP4 cục bộ</p>
+            </div>
+          </div>
+
+          <div class="cinema-highlights">
+            <div class="highlight-col">
+              <h3>Giọng Việt tự nhiên</h3>
+              <p>Tự ngắt nhịp lời bình và cân bằng âm lượng nhạc nền.</p>
+            </div>
+            <div class="highlight-col">
+              <h3>Tách khung thông minh</h3>
+              <p>Đọc truyện cuộn dọc, tách khung rõ nét và khớp phụ đề từng câu.</p>
+            </div>
+            <div class="highlight-col">
+              <h3>Xuất MP4 đa tỷ lệ</h3>
+              <p>Dựng chuẩn 16:9, 9:16 và 1:1 bằng FFmpeg ngay trên máy cá nhân.</p>
+            </div>
+          </div>
+        </bizora-cinema-stage>
       </div>
     </section>
 
-    <!-- Full-Width Ocean Blue Impact Statement Band -->
+    <!-- Kinetic Atmospheric Ocean Blue Impact Band -->
     <section class="impact-band" aria-labelledby="impact-statement">
-      <div class="container impact-band-inner" data-reveal>
-        <ul class="impact-pillars">
-          <li><bizora-icon name="hard-drive" size="16"></bizora-icon><span>100% cục bộ</span></li>
-          <li><bizora-icon name="shield-check" size="16"></bizora-icon><span>Không cloud bắt buộc</span></li>
-          <li><bizora-icon name="refresh-cw" size="16"></bizora-icon><span>Tự cập nhật NSIS</span></li>
-        </ul>
+      <div class="impact-atmosphere" aria-hidden="true">
+        <video
+          class="impact-bg-video"
+          width="1280"
+          height="720"
+          preload="none"
+          muted
+          loop
+          playsinline
+        >
+          <source src="./assets/videos/hero-ambient.webm?v=20261125c" type="video/webm">
+          <source src="./assets/videos/hero-ambient.mp4?v=20261125c" type="video/mp4">
+        </video>
+        <div class="impact-aurora impact-aurora-a"></div>
+        <div class="impact-aurora impact-aurora-b"></div>
+        <div class="impact-sheen"></div>
+      </div>
 
+      <div class="impact-marquee" aria-label="Ưu điểm nền tảng cục bộ">
+        <div class="impact-marquee-viewport">
+          <ul class="impact-marquee-track">
+            <li><bizora-icon name="hard-drive" size="15"></bizora-icon><span>100% cục bộ trên máy</span></li>
+            <li><bizora-icon name="shield-check" size="15"></bizora-icon><span>Không cần cloud bắt buộc</span></li>
+            <li><bizora-icon name="cpu" size="15"></bizora-icon><span>Tăng tốc FFmpeg cục bộ</span></li>
+            <li><bizora-icon name="refresh-cw" size="15"></bizora-icon><span>Tự cập nhật NSIS trong app</span></li>
+            <li><bizora-icon name="layers" size="15"></bizora-icon><span>Dữ liệu luôn thuộc quyền kiểm soát</span></li>
+          </ul>
+          <ul class="impact-marquee-track" aria-hidden="true">
+            <li><bizora-icon name="hard-drive" size="15"></bizora-icon><span>100% cục bộ trên máy</span></li>
+            <li><bizora-icon name="shield-check" size="15"></bizora-icon><span>Không cần cloud bắt buộc</span></li>
+            <li><bizora-icon name="cpu" size="15"></bizora-icon><span>Tăng tốc FFmpeg cục bộ</span></li>
+            <li><bizora-icon name="refresh-cw" size="15"></bizora-icon><span>Tự cập nhật NSIS trong app</span></li>
+            <li><bizora-icon name="layers" size="15"></bizora-icon><span>Dữ liệu luôn thuộc quyền kiểm soát</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container impact-band-inner" data-reveal>
         <h2 id="impact-statement" class="impact-quote">
           “Toàn bộ dự án, kịch bản và tệp MP4 đều nằm gọn trên máy của bạn — chủ động tuyệt đối, xuất bản tức thì.”
         </h2>
@@ -454,6 +465,7 @@
 
     <!-- Bottom Conversion CTA -->
     <section class="final-cta">
+      <div class="final-cta-glow" aria-hidden="true"></div>
       <div class="container final-cta-inner" data-reveal>
         <h2>Sẵn sàng <span class="text-accent">bắt đầu?</span></h2>
         <p>Tải Bizora Video Studio cho Windows 64-bit và làm chủ quy trình dựng video review ngay hôm nay.</p>
@@ -481,7 +493,7 @@
     <div class="container footer-grid">
       <div class="footer-brand-col">
         <div class="footer-brand">
-          <img src="./assets/logo.svg?v=20261125a" width="24" height="24" alt="">
+          <img src="./assets/logo.svg?v=20261125c" width="24" height="24" alt="">
           <span>Bizora Video Studio</span>
         </div>
         <p class="footer-tagline">
@@ -493,7 +505,7 @@
         <h4>Sản phẩm</h4>
         <ul>
           <li><a href="#tinh-nang">Tính năng</a></li>
-          <li><a href="#giao-dien">Giao diện</a></li>
+          <li><a href="#giao-dien">Demo</a></li>
           <li><a href="#huong-dan">Cài đặt &amp; SHA-256</a></li>
           <li><a href="#phien-ban">Phiên bản</a></li>
         </ul>
@@ -524,6 +536,6 @@
     </div>
   </footer>
 
-  <script src="./app.js?v=20261125b" defer></script>
+  <script src="./app.js?v=20261125c" defer></script>
 </body>
 </html>

@@ -20,22 +20,18 @@
     notes: 'Phiên bản phát hành đầu tiên có hỗ trợ tự động kiểm tra và cập nhật ngay trong ứng dụng.'
   };
 
-  const FEATURE_STAGE_META = Object.freeze({
-    'feat-tab-workflow': {
-      label: 'Không gian Tổng quan & quản lý dự án',
-      spec: 'Windows 10/11 64-bit · Dữ liệu lưu cục bộ'
+  const CINEMA_STAGE_META = Object.freeze({
+    'stage-tab-film': {
+      title: 'Review phim điện ảnh · Phụ đề khớp nhịp',
+      spec: '16:9 · Giọng Việt tự nhiên · Xuất MP4 cục bộ'
     },
-    'feat-tab-manga': {
-      label: 'Trình dựng Review truyện tranh khớp phụ đề',
-      spec: 'Tách khung tự động · Giọng Việt · Phụ đề khớp câu'
+    'stage-tab-manga': {
+      title: 'Review truyện tranh · Tách khung tự động',
+      spec: '16:9 · Cuộn dọc mượt mà · Đồng bộ từng câu'
     },
-    'feat-tab-export': {
-      label: 'Không gian Tạo video & cấu hình xuất MP4',
-      spec: 'FFmpeg cục bộ · 16:9 · 9:16 · 1:1'
-    },
-    'feat-tab-publish': {
-      label: 'Kênh đăng & tự cập nhật ứng dụng NSIS',
-      spec: 'Chuẩn bị lịch xuất bản · Bản vá tự động trong app'
+    'stage-tab-ratio': {
+      title: 'Xuất đồng bộ đa khung hình từng kênh',
+      spec: '16:9 YouTube · 9:16 Shorts & Reels · 1:1 Bảng tin'
     }
   });
 
@@ -188,10 +184,14 @@
     }
   }
 
-  class BizoraFeatureShowcase extends HTMLElement {
+  class BizoraCinemaStage extends HTMLElement {
     constructor() {
       super();
       this._bound = false;
+      this._inView = false;
+      this._activeVideo = null;
+      this._observer = null;
+      this._reducedQuery = null;
     }
 
     connectedCallback() {
@@ -201,13 +201,34 @@
       const tablist = this.querySelector('[role="tablist"]');
       const tabs = Array.from(this.querySelectorAll('[role="tab"]'));
       const panels = Array.from(this.querySelectorAll('[role="tabpanel"]'));
-      const labelEl = this.querySelector('#feature-stage-label');
-      const specEl = this.querySelector('#feature-stage-spec');
+      const hudTitle = this.querySelector('#cinema-hud-title');
+      const hudSpec = this.querySelector('#cinema-hud-spec');
       if (!tablist || !tabs.length || !panels.length) return;
 
+      this._reducedQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
       const hasNativeFocusgroup = Object.hasOwn(HTMLElement.prototype, 'focusGroup');
 
-      const selectTab = (targetTab, shouldFocus = false) => {
+      const syncActivePlayback = (resetTime = false) => {
+        if (!this._activeVideo) return;
+        if (this._reducedQuery?.matches) {
+          this._activeVideo.removeAttribute('autoplay');
+          this._activeVideo.pause();
+          return;
+        }
+        if (this._inView) {
+          if (this._activeVideo.preload === 'none') {
+            this._activeVideo.preload = 'auto';
+          }
+          if (resetTime && Number.isFinite(this._activeVideo.duration)) {
+            this._activeVideo.currentTime = 0;
+          }
+          this._activeVideo.play().catch(() => {});
+        } else {
+          this._activeVideo.pause();
+        }
+      };
+
+      const selectTab = (targetTab, shouldFocus = false, isUserSwitch = false) => {
         if (!targetTab) return;
         for (const tab of tabs) {
           const isSelected = tab === targetTab;
@@ -217,32 +238,42 @@
             tab.tabIndex = isSelected ? 0 : -1;
           }
         }
+        let nextVideo = null;
         for (const panel of panels) {
           const matches = panel.getAttribute('aria-labelledby') === targetTab.id;
+          const panelVideo = panel.querySelector('video');
           if (matches) {
             panel.hidden = false;
             panel.tabIndex = 0;
+            nextVideo = panelVideo;
           } else {
             panel.hidden = 'until-found';
             panel.removeAttribute('tabindex');
+            if (panelVideo) panelVideo.pause();
           }
         }
-        const meta = FEATURE_STAGE_META[targetTab.id];
+        this._activeVideo = nextVideo;
+
+        const meta = CINEMA_STAGE_META[targetTab.id];
         if (meta) {
-          if (labelEl) labelEl.textContent = meta.label;
-          if (specEl) specEl.textContent = meta.spec;
+          if (hudTitle) hudTitle.textContent = meta.title;
+          if (hudSpec) hudSpec.textContent = meta.spec;
         }
+
+        syncActivePlayback(isUserSwitch);
+        targetTab.scrollIntoView({ block: 'nearest', inline: 'nearest', container: 'nearest' });
+
         if (shouldFocus) {
           targetTab.focus({ preventScroll: true });
         }
       };
 
       const initialSelected = tabs.find(t => t.getAttribute('aria-selected') === 'true') || tabs[0];
-      selectTab(initialSelected, false);
+      selectTab(initialSelected, false, false);
 
       tablist.addEventListener('click', event => {
         const tab = event.target.closest('[role="tab"]');
-        if (tab) selectTab(tab, false);
+        if (tab) selectTab(tab, false, true);
       });
 
       tablist.addEventListener('keydown', event => {
@@ -250,9 +281,9 @@
         if (!current) return;
         const idx = tabs.indexOf(current);
         let nextIdx = -1;
-        if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
           nextIdx = (idx + 1) % tabs.length;
-        } else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+        } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
           nextIdx = (idx - 1 + tabs.length) % tabs.length;
         } else if (event.key === 'Home') {
           nextIdx = 0;
@@ -261,7 +292,7 @@
         }
         if (nextIdx >= 0) {
           event.preventDefault();
-          selectTab(tabs[nextIdx], true);
+          selectTab(tabs[nextIdx], true, true);
         }
       });
 
@@ -270,8 +301,30 @@
         if (!panel) return;
         const tabId = panel.getAttribute('aria-labelledby');
         const tab = tabs.find(t => t.id === tabId);
-        if (tab) selectTab(tab, false);
+        if (tab) selectTab(tab, false, false);
       });
+
+      this._reducedQuery?.addEventListener?.('change', () => syncActivePlayback(false));
+
+      if (typeof IntersectionObserver !== 'undefined') {
+        this._observer = new IntersectionObserver(
+          entries => {
+            for (const entry of entries) {
+              this._inView = entry.isIntersecting;
+              syncActivePlayback(false);
+            }
+          },
+          { threshold: 0.2 }
+        );
+        this._observer.observe(this);
+      } else {
+        this._inView = true;
+        syncActivePlayback(false);
+      }
+    }
+
+    disconnectedCallback() {
+      this._observer?.disconnect();
     }
   }
 
@@ -547,7 +600,7 @@
 
   customElements.define('bizora-icon', BizoraIcon);
   customElements.define('bizora-hero-ambient', BizoraHeroAmbient);
-  customElements.define('bizora-feature-showcase', BizoraFeatureShowcase);
+  customElements.define('bizora-cinema-stage', BizoraCinemaStage);
   customElements.define('bizora-checksum-card', BizoraChecksumCard);
   customElements.define('bizora-release-notes', BizoraReleaseNotes);
 
@@ -702,6 +755,45 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
+  function initImpactBandVideo() {
+    if (typeof window === 'undefined') return;
+    const band = document.querySelector('.impact-band');
+    const video = band?.querySelector('.impact-bg-video');
+    if (!band || !video) return;
+
+    const reducedQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+    let inView = false;
+
+    const sync = () => {
+      if (reducedQuery?.matches || !inView) {
+        video.pause();
+        return;
+      }
+      if (video.preload === 'none') {
+        video.preload = 'auto';
+      }
+      video.play().catch(() => {});
+    };
+
+    reducedQuery?.addEventListener?.('change', sync);
+
+    if (typeof IntersectionObserver !== 'undefined') {
+      const observer = new IntersectionObserver(
+        entries => {
+          for (const entry of entries) {
+            inView = entry.isIntersecting;
+            sync();
+          }
+        },
+        { threshold: 0.1 }
+      );
+      observer.observe(band);
+    } else {
+      inView = true;
+      sync();
+    }
+  }
+
   function initLuxuryInteractions() {
     if (typeof window === 'undefined') return;
     const motionOk = window.matchMedia?.('(prefers-reduced-motion: no-preference)')?.matches;
@@ -749,6 +841,7 @@
   }
 
   initTopbarScrollState();
+  initImpactBandVideo();
   initLuxuryInteractions();
   void syncReleases();
 })();
