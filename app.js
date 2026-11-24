@@ -597,5 +597,70 @@
     }
   }
 
+  function initLuxuryInteractions() {
+    if (typeof window === 'undefined') return;
+    const motionOk = window.matchMedia?.('(prefers-reduced-motion: no-preference)')?.matches;
+    if (!motionOk) return;
+
+    if (window.matchMedia?.('(pointer: fine)')?.matches) {
+      const cards = document.querySelectorAll('.bento-card, .tier-card, .spec-panel, .release-card');
+      for (const card of cards) {
+        let rafId = 0;
+        let nextX = 0;
+        let nextY = 0;
+        card.addEventListener('pointermove', event => {
+          const rect = card.getBoundingClientRect();
+          nextX = Math.round(event.clientX - rect.left);
+          nextY = Math.round(event.clientY - rect.top);
+          if (rafId) return;
+          rafId = requestAnimationFrame(() => {
+            card.style.setProperty('--spot-x', `${nextX}px`);
+            card.style.setProperty('--spot-y', `${nextY}px`);
+            rafId = 0;
+          });
+        }, { passive: true });
+      }
+
+      const watermark = document.getElementById('footer-watermark');
+      if (watermark) {
+        let wmRaf = 0;
+        let wmX = 0;
+        let wmY = 0;
+        watermark.addEventListener('pointermove', event => {
+          const rect = watermark.getBoundingClientRect();
+          wmX = Math.round(event.clientX - rect.left);
+          wmY = Math.round(event.clientY - rect.top);
+          if (wmRaf) return;
+          wmRaf = requestAnimationFrame(() => {
+            watermark.style.setProperty('--wm-x', `${wmX}px`);
+            watermark.style.setProperty('--wm-y', `${wmY}px`);
+            wmRaf = 0;
+          });
+        }, { passive: true });
+      }
+    }
+
+    const supportsViewTimeline = typeof CSS !== 'undefined' &&
+      CSS.supports('(animation-timeline: view()) and (animation-range: entry)');
+    if (!supportsViewTimeline && typeof IntersectionObserver !== 'undefined') {
+      const revealEls = Array.from(document.querySelectorAll('[data-reveal]'));
+      for (const el of revealEls) {
+        el.classList.add('reveal-pending');
+      }
+      const io = new IntersectionObserver(entries => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            io.unobserve(entry.target);
+          }
+        }
+      }, { threshold: 0.12 });
+      for (const el of revealEls) {
+        io.observe(el);
+      }
+    }
+  }
+
+  initLuxuryInteractions();
   void syncReleases();
 })();
