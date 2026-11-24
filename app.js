@@ -42,7 +42,13 @@
     clapperboard: ['M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z', 'm6.2 5.3 3.1 3.9', 'm12.4 3.4 3.1 4', 'M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z'],
     'book-open': ['M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z', 'M8 7h8', 'M8 11h8'],
     'hard-drive': ['M22 12H2', 'M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11Z', 'M6 16h.01', 'M10 16h.01'],
-    'arrow-right': ['M5 12h14', 'm12 5 7 7-7 7']
+    'arrow-right': ['M5 12h14', 'm12 5 7 7-7 7'],
+    check: ['M20 6 9 17l-5-5'],
+    'refresh-cw': ['M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8', 'M21 3v5h-5', 'M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16', 'M8 16H3v5'],
+    monitor: ['M2 5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2Z', 'M8 21h8', 'M12 17v4'],
+    layers: ['m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z', 'm22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65', 'm22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65'],
+    cpu: ['M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z', 'M9 9h6v6H9Z', 'M15 2v2', 'M15 20v2', 'M2 15h2', 'M2 9h2', 'M20 15h2', 'M20 9h2', 'M9 2v2', 'M9 20v2'],
+    github: ['M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4', 'M9 18c-4.51 2-5-2-7-2']
   });
 
   function createIconSvg(name, size = 16) {
@@ -312,7 +318,7 @@
       releasePageLink.append(linkLabel, makeIconNode('external-link', 13));
 
       const cardDownload = document.createElement('a');
-      cardDownload.className = 'btn btn-primary btn-sm';
+      cardDownload.className = 'btn btn-crimson-solid btn-sm';
       const dlLabel = document.createElement('span');
       dlLabel.textContent = 'Tải .exe';
       cardDownload.append(makeIconNode('download', 14), dlLabel);
@@ -495,6 +501,7 @@
   function applyLatestToPage(latest) {
     if (!latest) return;
     const dlUrl = latest.downloadUrl || LATEST_RELEASE_URL;
+    const tag = latest.tag || `v${latest.version}`;
 
     const headerBtn = document.getElementById('header-download-btn');
     if (headerBtn) headerBtn.href = dlUrl;
@@ -502,11 +509,20 @@
     const heroBtn = document.getElementById('hero-download-btn');
     if (heroBtn) heroBtn.href = dlUrl;
 
+    const stepBtn = document.getElementById('step-download-btn');
+    if (stepBtn) stepBtn.href = dlUrl;
+
+    const ctaBtn = document.getElementById('cta-download-btn');
+    if (ctaBtn) ctaBtn.href = dlUrl;
+
     const heroVer = document.getElementById('hero-download-ver');
-    if (heroVer) heroVer.textContent = latest.tag || `v${latest.version}`;
+    if (heroVer) heroVer.textContent = tag;
+
+    const ctaVer = document.getElementById('cta-download-ver');
+    if (ctaVer) ctaVer.textContent = tag;
 
     const versionText = document.getElementById('hero-version-text');
-    if (versionText) versionText.textContent = `Phiên bản ${latest.tag || `v${latest.version}`}`;
+    if (versionText) versionText.textContent = `Bizora Video Studio ${tag} đã phát hành`;
 
     const assetName = document.getElementById('hero-asset-name');
     if (assetName && latest.assetName) assetName.textContent = latest.assetName;
