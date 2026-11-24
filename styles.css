@@ -6,50 +6,51 @@
   --font-display: 'Manrope', 'Be Vietnam Pro', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  /* Abyssal Ocean Slate Surfaces (mirrors Bizora Desktop Ocean Blue) */
-  --bg-canvas: #050811;
-  --bg-surface: #0a111f;
-  --bg-elevated: #0f192d;
-  --bg-inset: #070c17;
-  --bg-header: rgba(5, 8, 17, 0.84);
-  --bg-bar: #0c1425;
+  /* Smoked Obsidian Surfaces (mirrors Bizora Desktop low-glare palette) */
+  --bg-canvas: #04060a;
+  --bg-surface: #090d14;
+  --bg-elevated: #0e141f;
+  --bg-inset: #06090f;
+  --bg-header: rgba(4, 6, 10, 0.86);
+  --bg-bar: #0b1019;
 
-  /* Hairline Borders */
-  --border-hairline: rgba(148, 185, 255, 0.11);
-  --border-strong: rgba(148, 185, 255, 0.22);
-  --border-focus: #38bdf8;
-  --border-brand: #3b82f6;
-  --surface-specular: rgba(186, 220, 255, 0.08);
-  --btn-specular: rgba(255, 255, 255, 0.22);
-  --btn-ver-bg: rgba(255, 255, 255, 0.16);
+  /* Whisper-thin Hairline Borders */
+  --border-hairline: rgba(203, 218, 245, 0.08);
+  --border-strong: rgba(203, 218, 245, 0.16);
+  --border-focus: #7ea2d6;
+  --border-brand: #3a5c91;
+  --surface-specular: rgba(203, 218, 245, 0.06);
+  --btn-specular: rgba(214, 230, 255, 0.15);
+  --btn-ver-bg: rgba(255, 255, 255, 0.10);
 
-  /* Text Tokens (WCAG AA+ >= 4.5:1) */
-  --text-primary: #f4f7fc;
-  --text-secondary: #9bb0d0;
-  --text-muted: #7f94b5;
-  --text-code: #cde4ff;
-  --text-on-brand: #ffffff;
+  /* Low-Glare Platinum Typography (WCAG AA+ >= 4.5:1) */
+  --text-primary: #e8edf5;
+  --text-secondary: #92a0b8;
+  --text-muted: #76839b;
+  --text-code: #b9cce8;
+  --text-on-brand: #eef3fb;
 
-  /* Ocean Blue Brand Accents */
-  --brand-blue: #2563eb;
-  --brand-blue-hover: #1d4ed8;
-  --accent-sky: #38bdf8;
-  --accent-blue-soft: rgba(37, 99, 235, 0.16);
-  --accent-sky-soft: rgba(56, 189, 248, 0.14);
-  --hero-glow-center: rgba(37, 99, 235, 0.14);
-  --hero-glow-edge: rgba(56, 189, 248, 0.05);
+  /* Satin Sapphire Accents (zero neon glare) */
+  --brand-blue: #1e365c;
+  --brand-blue-top: #264370;
+  --brand-blue-hover: #29487a;
+  --accent-sky: #7ea2d6;
+  --accent-blue-soft: rgba(126, 162, 214, 0.11);
+  --accent-sky-soft: rgba(126, 162, 214, 0.10);
+  --hero-glow-center: rgba(54, 86, 138, 0.09);
+  --hero-glow-edge: rgba(126, 162, 214, 0.03);
 
   /* Status & Scrollbar */
-  --status-ok: #5ec9a2;
-  --status-warn-bg: rgba(245, 158, 11, 0.10);
-  --status-warn-border: rgba(245, 158, 11, 0.30);
-  --status-warn-text: #fcd34d;
-  --shadow-window: 0 28px 72px rgba(0, 0, 0, 0.65), 0 4px 18px rgba(0, 0, 0, 0.40);
+  --status-ok: #52b08d;
+  --status-warn-bg: rgba(212, 176, 106, 0.09);
+  --status-warn-border: rgba(212, 176, 106, 0.26);
+  --status-warn-text: #d4b06a;
+  --shadow-window: 0 28px 72px rgba(0, 0, 0, 0.72), 0 4px 18px rgba(0, 0, 0, 0.48);
 
   /* Custom Scrollbar (contrast >= 3:1 against track) */
-  --scrollbar-thumb: #3c547e;
-  --scrollbar-thumb-hover: #5373a8;
-  --scrollbar-track: #070d19;
+  --scrollbar-thumb: #33435e;
+  --scrollbar-thumb-hover: #475e85;
+  --scrollbar-track: #06090f;
 
   /* Radius & Sizing */
   --radius-sm: 6px;
@@ -276,7 +277,7 @@ summary:focus-visible,
 }
 
 .btn-primary {
-  background: var(--brand-blue);
+  background: linear-gradient(180deg, var(--brand-blue-top), var(--brand-blue));
   border-color: var(--border-brand);
   color: var(--text-on-brand);
   box-shadow: inset 0 1px 0 var(--btn-specular);
@@ -284,7 +285,7 @@ summary:focus-visible,
 
 .btn-primary:hover {
   background: var(--brand-blue-hover);
-  border-color: var(--brand-blue-hover);
+  border-color: var(--accent-sky);
 }
 
 .btn-ghost {
