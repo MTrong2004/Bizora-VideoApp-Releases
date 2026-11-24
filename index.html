@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bizora Video Studio — Tải xuống cho Windows</title>
-  <meta name="description" content="Ứng dụng dựng video review phim, review truyện và tạo video AI chạy cục bộ trên Windows, kèm cơ chế tự cập nhật ngay trong app.">
+  <meta name="description" content="Ứng dụng dựng video review phim, review truyện và tạo video AI chạy cục bộ trên Windows, kèm cơ chế tự cập nhật ngay trong ứng dụng.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Bizora Video Studio — Tải xuống cho Windows">
   <meta property="og:description" content="Dựng video review phim, truyện và nội dung AI ngay trên máy Windows của bạn với cập nhật tự động trong ứng dụng.">
@@ -14,209 +14,205 @@
   <meta name="twitter:title" content="Bizora Video Studio — Tải xuống cho Windows">
   <meta name="twitter:description" content="Ứng dụng dựng video review phim, truyện và nội dung AI cho Windows.">
   <meta name="twitter:image" content="https://mtrong2004.github.io/Bizora-VideoApp-Releases/assets/icon.png">
+  <link rel="icon" type="image/svg+xml" href="./assets/logo.svg">
   <link rel="icon" href="./favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css?v=noir-blue-1">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Chuyển tới nội dung chính</a>
 
+  <!-- Global Ocean Noir Backdrop -->
+  <div class="scene-bg" aria-hidden="true">
+    <div class="scene-abyss"></div>
+    <div class="stars-layer stars-1"></div>
+    <div class="stars-layer stars-2"></div>
+    <div class="scene-aura"></div>
+    <div class="scene-grid"></div>
+  </div>
+
+  <!-- Top Backdrop Blur Veil -->
+  <div class="gradient-blur" aria-hidden="true"></div>
+
+  <!-- Floating Pill Navbar -->
   <header class="site-header">
-    <div class="container header-inner">
+    <nav class="nav-pill" aria-label="Điều hướng chính">
       <a class="brand" href="#top" aria-label="Bizora Video Studio">
-        <img class="brand-logo" src="./assets/icon.png" width="32" height="32" alt="">
-        <span class="brand-copy">
-          <strong>Bizora</strong>
-          <span>Video Studio</span>
-        </span>
+        <img class="brand-logo" src="./assets/logo.svg" width="28" height="28" alt="">
+        <span class="brand-name">Bizora</span>
       </a>
 
-      <nav class="header-nav" aria-label="Điều hướng chính">
+      <div class="header-nav">
         <a href="#tinh-nang">Tính năng</a>
         <a href="#huong-dan">Cài đặt</a>
         <a href="#phien-ban">Phiên bản</a>
-      </nav>
+      </div>
 
-      <a id="header-download-btn" class="btn btn-primary btn-sm header-cta" href="https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases/latest">
-        <bizora-icon name="download" size="15"></bizora-icon>
-        <span>Tải cho Windows</span>
+      <a id="header-download-btn" class="nav-cta" href="https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases/latest">
+        <span class="nav-cta-rim" aria-hidden="true"></span>
+        <span class="nav-cta-fill" aria-hidden="true"></span>
+        <span class="nav-cta-label">
+          <span>Tải xuống</span>
+          <bizora-icon name="arrow-right" size="14"></bizora-icon>
+        </span>
       </a>
-    </div>
+    </nav>
   </header>
 
-  <main id="main-content">
+  <main id="main-content" class="site-main">
+    <!-- Hero Section -->
     <section id="top" class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <div id="hero-version-pill" class="version-pill">
-            <bizora-icon name="sparkles" size="14"></bizora-icon>
-            <span id="hero-version-text">Phiên bản v0.1.0 · Windows 64-bit</span>
-          </div>
-
-          <h1>Dựng video review phim, truyện &amp; nội dung AI ngay trên máy của bạn</h1>
-          <p class="hero-lead">
-            Không gian làm việc gọn gàng giúp chuyển từ kịch bản, giọng đọc tiếng Việt đến video hoàn chỉnh chuẩn 16:9 hay 9:16. Dữ liệu lưu trên máy và tự động cập nhật khi có bản mới.
-          </p>
-
-          <bizora-download-card id="download-card"></bizora-download-card>
+      <div class="container hero-center">
+        <div id="hero-version-pill" class="version-pill">
+          <span class="ping-dot" aria-hidden="true">
+            <span class="ping-halo"></span>
+            <span class="ping-core"></span>
+          </span>
+          <span id="hero-version-text">Phiên bản v0.1.0 · Windows 64-bit</span>
+          <bizora-icon name="arrow-right" size="13"></bizora-icon>
         </div>
 
-        <aside class="studio-preview" aria-label="Minh họa giao diện Bizora Video Studio">
-          <div class="preview-window">
-            <div class="preview-titlebar">
-              <div class="preview-dots" aria-hidden="true">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-              <span class="preview-title">Bizora Video Studio</span>
-              <span class="preview-update-pill">
-                <bizora-icon name="check-circle" size="13"></bizora-icon>
-                <span>Tự cập nhật sẵn sàng</span>
-              </span>
-            </div>
+        <h1 class="hero-title">
+          <span class="hero-line-1">Dựng Video Review</span>
+          <span class="hero-line-2">
+            Chuẩn
+            <span class="hero-accent">Studio AI
+              <svg class="hero-underline" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="2.2" fill="none" />
+              </svg>
+            </span>
+          </span>
+        </h1>
 
-            <div class="preview-shell">
-              <div class="preview-sidebar" aria-hidden="true">
-                <div class="preview-nav-item">
-                  <bizora-icon name="layout-grid" size="14"></bizora-icon>
-                  <span>Tổng quan</span>
-                </div>
-                <div class="preview-nav-item">
-                  <bizora-icon name="film" size="14"></bizora-icon>
-                  <span>Review phim</span>
-                </div>
-                <div class="preview-nav-item is-active">
-                  <bizora-icon name="book-open" size="14"></bizora-icon>
-                  <span>Review truyện</span>
-                </div>
-                <div class="preview-nav-item">
-                  <bizora-icon name="sparkles" size="14"></bizora-icon>
-                  <span>Tạo video</span>
-                </div>
-                <div class="preview-nav-item">
-                  <bizora-icon name="send" size="14"></bizora-icon>
-                  <span>Kênh đăng</span>
-                </div>
-                <div class="preview-sidebar-foot">
-                  <bizora-icon name="hard-drive" size="13"></bizora-icon>
-                  <span>Lưu trên thiết bị</span>
-                </div>
-              </div>
+        <p class="hero-lead">
+          Không gian dựng video review phim, review truyện và tạo video AI ngay trên máy Windows — dữ liệu lưu cục bộ an toàn, tự động cập nhật bản mới trong ứng dụng.
+        </p>
 
-              <div class="preview-stage">
-                <div class="preview-stage-head">
-                  <div>
-                    <span class="preview-eyebrow">Quy trình 3 bước</span>
-                    <strong>Xuất video review hoàn chỉnh</strong>
-                  </div>
-                  <span class="preview-chip">9:16 · 1080×1920</span>
-                </div>
+        <bizora-download-card id="download-card"></bizora-download-card>
+      </div>
 
-                <ol class="preview-stepper">
-                  <li class="is-done">
-                    <span class="step-idx">1</span>
-                    <span>Chọn nguồn</span>
-                  </li>
-                  <li class="is-active">
-                    <span class="step-idx">2</span>
-                    <span>Lời bình &amp; AI</span>
-                  </li>
-                  <li>
-                    <span class="step-idx">3</span>
-                    <span>Xuất MP4</span>
-                  </li>
-                </ol>
-
-                <div class="preview-cards">
-                  <div class="preview-mini-card">
-                    <span class="mini-label">Giọng đọc tiếng Việt</span>
-                    <strong>Phụ đề đồng bộ theo câu</strong>
-                  </div>
-                  <div class="preview-mini-card">
-                    <span class="mini-label">An toàn dữ liệu</span>
-                    <strong>Không mất dự án khi lên đời app</strong>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </aside>
+      <!-- Full-Width Capabilities Strip -->
+      <div class="capabilities-strip">
+        <div class="container capabilities-inner">
+          <p class="strip-label">HỖ TRỢ ĐẦY ĐỦ:</p>
+          <ul class="strip-items">
+            <li><bizora-icon name="film" size="15"></bizora-icon><span>Review phim</span></li>
+            <li><bizora-icon name="book-open" size="15"></bizora-icon><span>Review truyện</span></li>
+            <li><bizora-icon name="tv" size="15"></bizora-icon><span>YouTube &amp; Shorts</span></li>
+            <li><bizora-icon name="sparkles" size="15"></bizora-icon><span>TikTok &amp; Reels</span></li>
+            <li><bizora-icon name="subtitles" size="15"></bizora-icon><span>Phụ đề tiếng Việt</span></li>
+            <li><bizora-icon name="refresh" size="15"></bizora-icon><span>Tự cập nhật</span></li>
+          </ul>
+        </div>
       </div>
     </section>
 
+    <!-- Asymmetric 4-Column Bento Grid -->
     <section id="tinh-nang" class="section">
       <div class="container">
-        <div class="section-head">
-          <h2>Bốn không gian chuyên biệt trong một ứng dụng</h2>
-          <p>Thiết kế cho quy trình sản xuất video review hàng ngày trên máy tính Windows.</p>
+        <div class="section-head-center">
+          <h2>
+            Mọi công cụ dựng review trong<br>
+            <span class="text-accent">Một Không Gian Thống Nhất</span>
+          </h2>
+          <p>Thay thế quy trình rời rạc bằng một ứng dụng desktop thống nhất cho sáng tạo nội dung.</p>
         </div>
 
-        <div class="feature-grid">
-          <article class="surface-card feature-card">
-            <div class="icon-badge">
-              <bizora-icon name="film" size="20"></bizora-icon>
+        <div class="bento-grid">
+          <!-- Primary 2x2 Card -->
+          <article class="bento-card bento-hero">
+            <div class="bento-content">
+              <div class="bento-icon bento-icon-blue">
+                <bizora-icon name="book-open" size="22"></bizora-icon>
+              </div>
+              <h3>Review Truyện &amp; Phim Trọn Bộ</h3>
+              <p class="bento-desc-lg">
+                Quy trình khép kín từ chọn nguồn truyện tranh, truyện chữ hoặc tư liệu phim đến soạn kịch bản lời bình, tạo giọng đọc tiếng Việt và xuất video hoàn chỉnh kèm phụ đề đồng bộ cùng nhạc nền tự cân âm lượng.
+              </p>
+              <ol class="bento-pipeline">
+                <li class="is-done"><span class="pipe-num">01</span><span>Chọn nguồn</span></li>
+                <li class="is-active"><span class="pipe-num">02</span><span>Lời bình AI</span></li>
+                <li><span class="pipe-num">03</span><span>Xuất MP4</span></li>
+              </ol>
             </div>
-            <h3>Review phim</h3>
-            <p>Quản lý dự án theo bộ phim, theo dõi từng tập, soạn kịch bản lời bình và ghép video hoàn chỉnh ngay trên máy.</p>
           </article>
 
-          <article class="surface-card feature-card">
-            <div class="icon-badge">
-              <bizora-icon name="book-open" size="20"></bizora-icon>
+          <!-- Wide Top-Right Card -->
+          <article class="bento-card bento-wide">
+            <div class="bento-content">
+              <div class="bento-icon bento-icon-sky">
+                <bizora-icon name="clapperboard" size="22"></bizora-icon>
+              </div>
+              <h3>Xuất Video MP4 &amp; Ghép Ảnh Chuẩn Kênh</h3>
+              <p>
+                Linh hoạt tỷ lệ 16:9, 9:16 hoặc 1:1 với hiệu ứng chuyển động mượt, đốt phụ đề sắc nét và tự khớp thời lượng theo lời bình.
+              </p>
             </div>
-            <h3>Review truyện</h3>
-            <p>Quy trình 3 bước rõ ràng từ chọn chương truyện tranh hoặc truyện chữ, biên tập lời kể đến xuất MP4 kèm phụ đề.</p>
           </article>
 
-          <article class="surface-card feature-card">
-            <div class="icon-badge">
-              <bizora-icon name="sparkles" size="20"></bizora-icon>
+          <!-- Bottom-Right Card 1 -->
+          <article class="bento-card bento-compact">
+            <div class="bento-content">
+              <div class="bento-icon bento-icon-blue">
+                <bizora-icon name="send" size="21"></bizora-icon>
+              </div>
+              <h3>Kênh Đăng &amp; Lịch Xuất Bản</h3>
+              <p>Chuẩn bị chú thích, lịch hẹn đăng và quản lý kênh YouTube, TikTok, Facebook với khóa mã hóa ngay trên thiết bị.</p>
             </div>
-            <h3>Tạo video &amp; Ghép ảnh</h3>
-            <p>Xuất video linh hoạt theo tỷ lệ 16:9, 9:16 hoặc 1:1 kèm hiệu ứng chuyển cảnh, lồng tiếng và cân bằng nhạc nền.</p>
           </article>
 
-          <article class="surface-card feature-card">
-            <div class="icon-badge">
-              <bizora-icon name="send" size="20"></bizora-icon>
+          <!-- Bottom-Right Card 2 -->
+          <article class="bento-card bento-compact">
+            <div class="bento-content">
+              <div class="bento-icon bento-icon-cyan">
+                <bizora-icon name="refresh" size="21"></bizora-icon>
+              </div>
+              <h3>Tự Cập Nhật Trong Ứng Dụng</h3>
+              <p>Tự động kiểm tra bản phát hành mới, tải bản vá gọn nhẹ và nâng cấp an toàn mà không làm gián đoạn tác vụ đang chạy.</p>
             </div>
-            <h3>Kênh đăng &amp; Tự cập nhật</h3>
-            <p>Chuẩn bị lịch đăng bài cho từng kênh và tự động kiểm tra, tải bản cập nhật mới ngay trong mục Cài đặt.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="huong-dan" class="section">
-      <div class="container">
-        <div class="section-head">
-          <h2>Cài đặt nhanh &amp; câu hỏi thường gặp</h2>
-          <p>Chỉ cần cài bộ cài đặt một lần đầu; các phiên bản tiếp theo tự động cập nhật ngay bên trong ứng dụng.</p>
-        </div>
+    <!-- Full-Bleed Ocean Blue Highlight Band -->
+    <section id="huong-dan" class="ocean-band" aria-labelledby="ocean-band-title">
+      <div class="container ocean-band-inner">
+        <span class="band-pill">CÀI MỘT LẦN · TỰ ĐỘNG CẬP NHẬT</span>
+        <h2 id="ocean-band-title" class="band-title">
+          Dữ liệu nằm trọn trên máy của bạn. Nâng cấp bản mới chỉ với một lần bấm.
+        </h2>
 
-        <ol class="install-steps">
-          <li class="surface-card step-card">
-            <span class="step-number">01</span>
+        <ol class="band-steps">
+          <li class="band-step-card">
+            <span class="band-step-num">01</span>
             <h3>Tải bộ cài đặt</h3>
-            <p>Bấm nút <strong>Tải cho Windows</strong> ở đầu trang để tải tệp cài đặt chính thức (<code>.exe</code>).</p>
+            <p>Tải tệp cài đặt chính thức cho Windows 10/11 (64-bit) ở đầu trang.</p>
           </li>
-          <li class="surface-card step-card">
-            <span class="step-number">02</span>
-            <h3>Cài vào máy của bạn</h3>
-            <p>Mở tệp vừa tải và làm theo hướng dẫn cài đặt. Ứng dụng cài gọn vào tài khoản Windows của bạn.</p>
+          <li class="band-step-card">
+            <span class="band-step-num">02</span>
+            <h3>Cài theo người dùng</h3>
+            <p>Mở tệp vừa tải và cài gọn vào tài khoản Windows chỉ trong vài giây.</p>
           </li>
-          <li class="surface-card step-card">
-            <span class="step-number">03</span>
-            <h3>Cập nhật ngay trong app</h3>
-            <p>Mỗi khi có bản mới, thanh bên trái sẽ báo nhẹ để bạn bấm tải về và khởi động lại khi rảnh.</p>
+          <li class="band-step-card">
+            <span class="band-step-num">03</span>
+            <h3>Tự cập nhật trong app</h3>
+            <p>Khi có bản mới, thanh bên trái báo nhẹ để bạn bấm tải và khởi động lại khi rảnh.</p>
           </li>
         </ol>
+      </div>
+    </section>
 
+    <!-- FAQ Accordion & Live Release Notes -->
+    <section class="section">
+      <div class="container narrow-container">
         <section class="accordion faq-list" aria-labelledby="faq-heading">
-          <h3 id="faq-heading" class="faq-heading">Lưu ý khi cài đặt</h3>
+          <div class="section-head-left">
+            <h2 id="faq-heading">Câu hỏi thường gặp khi cài đặt</h2>
+            <p>Thông tin hữu ích cho lần cài đầu tiên và quá trình cập nhật về sau.</p>
+          </div>
 
           <details open>
             <summary>Gặp màn hình xanh "Windows protected your PC" ở lần cài đầu thì làm sao?</summary>
@@ -226,7 +222,7 @@
                 Bạn chỉ cần bấm <strong>More info</strong> (Thông tin thêm) rồi chọn <strong>Run anyway</strong> (Vẫn chạy).
               </p>
               <p>
-                Để yên tâm tuyệt đối, bạn có thể mở PowerShell kiểm tra mã <code>SHA-256</code> của tệp vừa tải và đối chiếu với mã hiển thị ngay dưới nút tải:
+                Để đối chiếu toàn vẹn tệp vừa tải, mở PowerShell và kiểm tra mã <code>SHA-256</code> khớp với mã hiển thị ngay dưới nút tải:
               </p>
               <pre class="code-snippet"><code>certutil -hashfile Bizora-Video-Studio-Setup-0.1.0.exe SHA256</code></pre>
             </div>
@@ -250,36 +246,87 @@
             </div>
           </details>
         </section>
+
+        <section id="phien-ban" class="releases-section" aria-labelledby="releases-heading">
+          <div class="section-head-left">
+            <h2 id="releases-heading">Lịch sử phiên bản</h2>
+            <p id="releases-subtitle">Danh sách phát hành đồng bộ tự động từ kho cài đặt chính thức.</p>
+          </div>
+
+          <bizora-release-notes id="release-notes"></bizora-release-notes>
+        </section>
       </div>
     </section>
 
-    <section id="phien-ban" class="section">
-      <div class="container">
-        <div class="section-head">
-          <h2>Lịch sử phiên bản</h2>
-          <p id="releases-subtitle">Danh sách phát hành đồng bộ trực tiếp từ kho cài đặt chính thức.</p>
+    <!-- Closing CTA Section -->
+    <section class="closing-cta">
+      <div class="container closing-cta-inner">
+        <h2>Sẵn sàng <span class="text-accent">Bắt đầu?</span></h2>
+        <p>Tải Bizora Video Studio cho Windows và trải nghiệm quy trình làm video review trọn bộ ngay trên máy.</p>
+        <div class="closing-cta-actions">
+          <a id="footer-download-btn" class="shiny-cta" href="https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases/latest">
+            <span class="shiny-cta-inner">
+              <bizora-icon name="download" size="17"></bizora-icon>
+              <span id="footer-download-label">Tải Bizora cho Windows</span>
+              <bizora-icon name="arrow-right" size="16" class="cta-arrow"></bizora-icon>
+            </span>
+          </a>
         </div>
-
-        <bizora-release-notes id="release-notes"></bizora-release-notes>
       </div>
     </section>
   </main>
 
+  <!-- Noir Footer with Giant Watermark -->
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <img src="./assets/icon.png" width="24" height="24" alt="">
-        <span>Bizora Video Studio — Kênh phân phối chính thức cho Windows</span>
-      </div>
-      <div class="footer-links">
-        <a href="https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases" target="_blank" rel="noopener noreferrer">
-          <span>Kho phát hành GitHub</span>
-          <bizora-icon name="external-link" size="14"></bizora-icon>
+    <div class="container footer-grid">
+      <div class="footer-brand-col">
+        <a class="brand" href="#top">
+          <img class="brand-logo" src="./assets/logo.svg" width="28" height="28" alt="">
+          <span class="brand-name">Bizora Video Studio</span>
         </a>
+        <p class="footer-desc">
+          Ứng dụng dựng video review phim, truyện và nội dung AI cho Windows với dữ liệu lưu cục bộ và tự cập nhật ngay trong app.
+        </p>
       </div>
+
+      <div>
+        <h3 class="footer-col-title">Điều hướng</h3>
+        <ul class="footer-links-list">
+          <li><a href="#tinh-nang">Tính năng</a></li>
+          <li><a href="#huong-dan">Hướng dẫn cài đặt</a></li>
+          <li><a href="#phien-ban">Lịch sử phiên bản</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="footer-col-title">Phát hành</h3>
+        <ul class="footer-links-list">
+          <li>
+            <a href="https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases" target="_blank" rel="noopener noreferrer">
+              <span>Kho GitHub Releases</span>
+              <bizora-icon name="external-link" size="13"></bizora-icon>
+            </a>
+          </li>
+          <li>
+            <a href="./releases.json" target="_blank" rel="noopener noreferrer">
+              <span>Dữ liệu phát hành (JSON)</span>
+              <bizora-icon name="external-link" size="13"></bizora-icon>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-watermark-wrap" aria-hidden="true">
+      <span class="footer-watermark text-stroke">BIZORA</span>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>Bizora Video Studio · Kênh phân phối chính thức cho Windows</p>
+      <a href="https://github.com/MTrong2004/Bizora-VideoApp-Releases" target="_blank" rel="noopener noreferrer">GitHub Releases</a>
     </div>
   </footer>
 
-  <script src="./app.js" defer></script>
+  <script src="./app.js?v=noir-blue-1" defer></script>
 </body>
 </html>

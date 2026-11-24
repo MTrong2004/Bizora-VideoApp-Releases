@@ -35,13 +35,17 @@
       'm9 12 2 2 4-4'
     ],
     film: ['M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z', 'M7 3v18', 'M17 3v18', 'M3 12h18', 'M3 7.5h4', 'M3 16.5h4', 'M17 7.5h4', 'M17 16.5h4'],
+    clapperboard: ['M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z', 'm6.2 5.3 3.1 3.9', 'm12.4 3.4 3.1 4', 'M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z'],
     'book-open': ['M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z', 'M8 7h8', 'M8 11h8'],
     sparkles: ['m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z'],
     send: ['m22 2-7 20-4-9-9-4Z', 'M22 2 11 13'],
     refresh: ['M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8', 'M21 3v5h-5', 'M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16', 'M8 16H3v5'],
     'layout-grid': ['M3 3h7v9H3z', 'M14 3h7v5h-7z', 'M14 12h7v9h-7z', 'M3 16h7v5H3z'],
     calendar: ['M8 2v4', 'M16 2v4', 'M3 10h18', 'M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z'],
-    'hard-drive': ['M22 12H2', 'M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11Z', 'M6 16h.01', 'M10 16h.01']
+    'hard-drive': ['M22 12H2', 'M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11Z', 'M6 16h.01', 'M10 16h.01'],
+    'arrow-right': ['M5 12h14', 'm12 5 7 7-7 7'],
+    tv: ['M4 7h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z', 'm17 2-5 5-5-5'],
+    subtitles: ['M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z', 'M7 15h4', 'M15 15h2', 'M7 11h2', 'M13 11h4']
   });
 
   function createIconSvg(name, size = 16) {
@@ -81,10 +85,11 @@
     }
   }
 
-  function makeIconNode(name, size = 16) {
+  function makeIconNode(name, size = 16, className = '') {
     const el = document.createElement('bizora-icon');
     el.setAttribute('name', name);
     el.setAttribute('size', String(size));
+    if (className) el.className = className;
     return el;
   }
 
@@ -140,19 +145,27 @@
       card.className = 'download-card';
 
       const actions = document.createElement('div');
-      actions.className = 'download-actions';
+      actions.className = 'hero-cta-row';
 
       const primaryBtn = document.createElement('a');
-      primaryBtn.className = 'btn btn-primary download-btn-main';
+      primaryBtn.className = 'shiny-cta';
       primaryBtn.id = 'hero-download-btn';
+      const inner = document.createElement('span');
+      inner.className = 'shiny-cta-inner';
       const primaryLabel = document.createElement('span');
       primaryLabel.textContent = 'Tải cho Windows';
       const primaryVer = document.createElement('span');
-      primaryVer.className = 'download-btn-version';
-      primaryBtn.append(makeIconNode('download', 17), primaryLabel, primaryVer);
+      primaryVer.className = 'cta-ver-pill';
+      inner.append(
+        makeIconNode('download', 17),
+        primaryLabel,
+        primaryVer,
+        makeIconNode('arrow-right', 16, 'cta-arrow')
+      );
+      primaryBtn.append(inner);
 
       const releasesLink = document.createElement('a');
-      releasesLink.className = 'btn';
+      releasesLink.className = 'btn-pill-secondary';
       releasesLink.href = RELEASES_PAGE_URL;
       releasesLink.target = '_blank';
       releasesLink.rel = 'noopener noreferrer';
@@ -329,7 +342,7 @@
 
       for (const rel of this._releases) {
         const card = document.createElement('article');
-        card.className = 'surface-card release-card';
+        card.className = 'release-card';
 
         const head = document.createElement('div');
         head.className = 'release-head';
@@ -408,20 +421,31 @@
     };
   }
 
-  function applyLatestToHeaderAndHero(latest) {
+  function applyLatestToPage(latest) {
     if (!latest) return;
+    const dlUrl = latest.downloadUrl || LATEST_RELEASE_URL;
+
     const headerBtn = document.getElementById('header-download-btn');
-    if (headerBtn && latest.downloadUrl) {
-      headerBtn.href = latest.downloadUrl;
+    if (headerBtn) headerBtn.href = dlUrl;
+
+    const footerBtn = document.getElementById('footer-download-btn');
+    if (footerBtn) footerBtn.href = dlUrl;
+
+    const footerLabel = document.getElementById('footer-download-label');
+    if (footerLabel) {
+      footerLabel.textContent = latest.tag ? `Tải Bizora ${latest.tag} cho Windows` : 'Tải Bizora cho Windows';
     }
+
     const versionText = document.getElementById('hero-version-text');
     if (versionText) {
       versionText.textContent = `Phiên bản ${latest.tag} · Windows 64-bit`;
     }
-    const certSnippet = document.querySelector('#huong-dan .code-snippet code');
+
+    const certSnippet = document.querySelector('#main-content .code-snippet code');
     if (certSnippet && latest.assetName) {
       certSnippet.textContent = `certutil -hashfile ${latest.assetName} SHA256`;
     }
+
     document.getElementById('download-card')?.setRelease?.(latest);
   }
 
@@ -465,17 +489,17 @@
 
     try {
       const published = await fetchSameOriginReleases(signal);
-      applyLatestToHeaderAndHero(published[0]);
+      applyLatestToPage(published[0]);
       notesEl?.setReleases?.(published);
       return;
     } catch { /* fall through to GitHub API */ }
 
     try {
       const published = await fetchGitHubApiReleases(signal);
-      applyLatestToHeaderAndHero(published[0]);
+      applyLatestToPage(published[0]);
       notesEl?.setReleases?.(published);
     } catch {
-      applyLatestToHeaderAndHero(FALLBACK_RELEASE);
+      applyLatestToPage(FALLBACK_RELEASE);
       notesEl?.setReleases?.(
         [FALLBACK_RELEASE],
         'Đang hiển thị thông tin mặc định — bấm Trang phát hành để xem đầy đủ tất cả phiên bản mới nhất.'
