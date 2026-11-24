@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=20261125c">
+  <link rel="stylesheet" href="./styles.css?v=20261125d">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Chuyển tới nội dung chính</a>
@@ -57,7 +57,6 @@
       </div>
 
       <div class="pill-actions">
-        <a class="pill-ext-link" href="https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases" target="_blank" rel="noopener noreferrer">Releases</a>
         <a id="header-download-btn" class="btn-pill-rim" href="https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases/latest">
           <span class="pill-rim-ring" aria-hidden="true"></span>
           <span class="pill-rim-core" aria-hidden="true"></span>
@@ -356,7 +355,7 @@
           <article class="tier-card" data-reveal>
             <div class="tier-head">
               <h3>Tải bộ cài chính thức</h3>
-              <p>Lấy tệp cài đặt Windows NSIS trực tiếp từ kênh phát hành GitHub Releases.</p>
+              <p>Lấy tệp cài đặt Windows NSIS phiên bản mới nhất từ kênh phát hành chính thức.</p>
             </div>
             <div class="tier-metric">
               <span class="tier-num">01</span>
@@ -365,9 +364,9 @@
             <ul class="tier-list">
               <li><bizora-icon name="check" size="15"></bizora-icon><span>Tương thích Windows 10 &amp; 11 (64-bit)</span></li>
               <li><bizora-icon name="check" size="15"></bizora-icon><span>Định dạng chuẩn Bizora-Video-Studio-Setup.exe</span></li>
-              <li><bizora-icon name="check" size="15"></bizora-icon><span>Kèm lịch sử thay đổi cho từng phiên bản</span></li>
+              <li><bizora-icon name="check" size="15"></bizora-icon><span>Luôn cung cấp bộ cài mới nhất kèm ghi chú cập nhật</span></li>
             </ul>
-            <a class="tier-btn tier-btn-ghost" href="#phien-ban">Xem các bản phát hành</a>
+            <a class="tier-btn tier-btn-ghost" href="#phien-ban">Xem phiên bản mới nhất</a>
           </article>
 
           <article class="tier-card tier-card-featured" data-reveal>
@@ -455,8 +454,8 @@
     <section id="phien-ban" class="section section-bordered">
       <div class="container">
         <div class="section-head section-head-center" data-reveal>
-          <h2>Lịch sử phiên bản</h2>
-          <p>Đồng bộ tự động từ kênh phân phối chính thức trên GitHub Releases.</p>
+          <h2>Phiên bản phát hành</h2>
+          <p>Chỉ cho phép tải phiên bản mới nhất để đảm bảo an toàn; các phiên bản cũ chỉ lưu ghi chú thay đổi.</p>
         </div>
 
         <bizora-release-notes id="release-notes" data-reveal></bizora-release-notes>
@@ -480,9 +479,9 @@
             </span>
           </a>
 
-          <a class="btn-noir-secondary" href="https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases" target="_blank" rel="noopener noreferrer">
-            <bizora-icon name="github" size="16"></bizora-icon>
-            <span>GitHub Releases</span>
+          <a class="btn-noir-secondary" href="#kiem-tra-tep">
+            <bizora-icon name="shield-check" size="16"></bizora-icon>
+            <span>Đối chiếu SHA-256</span>
           </a>
         </div>
       </div>
@@ -514,8 +513,8 @@
       <div class="footer-col">
         <h4>Phân phối</h4>
         <ul>
-          <li><a href="https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases" target="_blank" rel="noopener noreferrer">GitHub Releases</a></li>
-          <li><a href="./releases.json" target="_blank" rel="noopener noreferrer">releases.json</a></li>
+          <li><a href="#phien-ban">Bản phát hành mới nhất</a></li>
+          <li><a href="#kiem-tra-tep">Đối chiếu SHA-256</a></li>
           <li><a href="#faq-heading">Hướng dẫn SmartScreen</a></li>
         </ul>
       </div>
@@ -530,12 +529,12 @@
       <p>&copy; 2026 Bizora Video Studio · Kênh phân phối chính thức cho Windows</p>
       <div class="footer-bottom-links">
         <a href="#top">Lên đầu trang</a>
-        <a href="https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases" target="_blank" rel="noopener noreferrer">Releases</a>
-        <a href="./releases.json" target="_blank" rel="noopener noreferrer">Feed JSON</a>
+        <a href="#phien-ban">Phiên bản</a>
+        <a href="#huong-dan">Cài đặt</a>
       </div>
     </div>
   </footer>
 
-  <script src="./app.js?v=20261125c" defer></script>
+  <script src="./app.js?v=20261125d" defer></script>
 </body>
 </html>

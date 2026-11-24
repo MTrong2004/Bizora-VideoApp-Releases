@@ -5,7 +5,6 @@
   const REPO_NAME = 'Bizora-VideoApp-Releases';
   const RELEASES_FEED_URL = './releases.json';
   const RELEASES_API_URL = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases?per_page=5`;
-  const RELEASES_PAGE_URL = `https://github.com/${REPO_OWNER}/${REPO_NAME}/releases`;
   const LATEST_RELEASE_URL = `https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/latest`;
 
   const FALLBACK_RELEASE = {
@@ -17,7 +16,8 @@
     downloadUrl: LATEST_RELEASE_URL,
     assetName: 'Bizora-Video-Studio-Setup-0.1.0.exe',
     sha256: '',
-    notes: 'Phiên bản phát hành đầu tiên có hỗ trợ tự động kiểm tra và cập nhật ngay trong ứng dụng.'
+    notes: 'Phiên bản phát hành đầu tiên có hỗ trợ tự động kiểm tra và cập nhật ngay trong ứng dụng.',
+    isLatest: true
   };
 
   const CINEMA_STAGE_META = Object.freeze({
@@ -56,7 +56,11 @@
     monitor: ['M2 5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2Z', 'M8 21h8', 'M12 17v4'],
     layers: ['m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z', 'm22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65', 'm22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65'],
     cpu: ['M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z', 'M9 9h6v6H9Z', 'M15 2v2', 'M15 20v2', 'M2 15h2', 'M2 9h2', 'M20 15h2', 'M20 9h2', 'M9 2v2', 'M9 20v2'],
-    github: ['M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4', 'M9 18c-4.51 2-5-2-7-2']
+    github: ['M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4', 'M9 18c-4.51 2-5-2-7-2'],
+    lock: [
+      'M7 11V7a5 5 0 0 1 10 0v4',
+      'M5 11h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Z'
+    ]
   });
 
   function createIconSvg(name, size = 16) {
@@ -441,12 +445,10 @@
       foot.className = 'spec-panel-foot';
       const releasePageLink = document.createElement('a');
       releasePageLink.className = 'ext-link';
-      releasePageLink.href = RELEASES_PAGE_URL;
-      releasePageLink.target = '_blank';
-      releasePageLink.rel = 'noopener noreferrer';
+      releasePageLink.href = '#phien-ban';
       const linkLabel = document.createElement('span');
-      linkLabel.textContent = 'Xem trên GitHub Releases';
-      releasePageLink.append(linkLabel, makeIconNode('external-link', 13));
+      linkLabel.textContent = 'Xem ghi chú phiên bản';
+      releasePageLink.append(linkLabel, makeIconNode('arrow-right', 13));
 
       const cardDownload = document.createElement('a');
       cardDownload.className = 'btn btn-accent-solid btn-sm';
@@ -486,6 +488,39 @@
     }
   }
 
+  function sanitizeReleases(list) {
+    if (!Array.isArray(list)) return [];
+    const valid = list.filter(item => item && typeof item === 'object' && typeof item.tag === 'string' && item.tag.trim());
+    return valid.map((item, idx) => {
+      const tag = item.tag.trim();
+      const base = {
+        tag,
+        version: typeof item.version === 'string' && item.version.trim() ? item.version.trim() : tag.replace(/^v/i, ''),
+        title: typeof item.title === 'string' && item.title.trim() ? item.title.trim() : `Bizora Video Studio ${tag}`,
+        publishedAt: typeof item.publishedAt === 'string' ? item.publishedAt : '',
+        notes: typeof item.notes === 'string' ? item.notes : ''
+      };
+      if (idx === 0) {
+        return {
+          ...base,
+          size: Number.isFinite(Number(item.size)) && Number(item.size) > 0 ? Number(item.size) : 0,
+          downloadUrl: typeof item.downloadUrl === 'string' && item.downloadUrl.trim() ? item.downloadUrl.trim() : LATEST_RELEASE_URL,
+          assetName: typeof item.assetName === 'string' ? item.assetName.trim() : '',
+          sha256: typeof item.sha256 === 'string' ? item.sha256.trim() : '',
+          isLatest: true
+        };
+      }
+      return {
+        ...base,
+        size: 0,
+        downloadUrl: '',
+        assetName: '',
+        sha256: '',
+        isLatest: false
+      };
+    });
+  }
+
   class BizoraReleaseNotes extends HTMLElement {
     constructor() {
       super();
@@ -498,8 +533,9 @@
     }
 
     setReleases(releases, fallbackNotice = '') {
-      if (Array.isArray(releases) && releases.length) {
-        this._releases = releases;
+      const sanitized = sanitizeReleases(releases);
+      if (sanitized.length) {
+        this._releases = sanitized;
       }
       this._fallbackNotice = typeof fallbackNotice === 'string' ? fallbackNotice : '';
       if (this.isConnected) {
@@ -548,9 +584,10 @@
         wrap.append(note);
       }
 
-      for (const rel of this._releases) {
+      this._releases.forEach((rel, idx) => {
+        const isLatest = idx === 0;
         const card = document.createElement('article');
-        card.className = 'release-card';
+        card.className = isLatest ? 'release-card release-card--latest' : 'release-card release-card--archived';
 
         const head = document.createElement('div');
         head.className = 'release-head';
@@ -563,12 +600,21 @@
         tagPill.textContent = rel.tag || `v${rel.version}`;
         titleGroup.append(tagPill);
 
+        if (isLatest) {
+          const latestBadge = document.createElement('span');
+          latestBadge.className = 'release-latest-badge';
+          latestBadge.textContent = 'Mới nhất';
+          titleGroup.append(latestBadge);
+        }
+
         const parts = [];
         const dateStr = formatDateVi(rel.publishedAt);
         if (dateStr) parts.push(`Phát hành ${dateStr}`);
-        const sizeStr = formatBytes(rel.size);
-        if (sizeStr) parts.push(sizeStr);
-        if (rel.assetName) parts.push(rel.assetName);
+        if (isLatest) {
+          const sizeStr = formatBytes(rel.size);
+          if (sizeStr) parts.push(sizeStr);
+          if (rel.assetName) parts.push(rel.assetName);
+        }
 
         if (parts.length) {
           const metaEl = document.createElement('span');
@@ -577,14 +623,22 @@
           titleGroup.append(metaEl);
         }
 
-        const dlBtn = document.createElement('a');
-        dlBtn.className = 'btn btn-ghost btn-sm';
-        dlBtn.href = rel.downloadUrl || LATEST_RELEASE_URL;
-        const dlSpan = document.createElement('span');
-        dlSpan.textContent = 'Tải bản này';
-        dlBtn.append(makeIconNode('download', 14), dlSpan);
-
-        head.append(titleGroup, dlBtn);
+        if (isLatest) {
+          const dlBtn = document.createElement('a');
+          dlBtn.className = 'btn btn-accent-solid btn-sm';
+          dlBtn.href = rel.downloadUrl || LATEST_RELEASE_URL;
+          const dlSpan = document.createElement('span');
+          dlSpan.textContent = 'Tải bản mới nhất';
+          dlBtn.append(makeIconNode('download', 14), dlSpan);
+          head.append(titleGroup, dlBtn);
+        } else {
+          const archivedPill = document.createElement('span');
+          archivedPill.className = 'release-archived-pill';
+          const archivedLabel = document.createElement('span');
+          archivedLabel.textContent = 'Chỉ lưu lịch sử';
+          archivedPill.append(makeIconNode('lock', 13), archivedLabel);
+          head.append(titleGroup, archivedPill);
+        }
 
         const notesScroll = document.createElement('div');
         notesScroll.className = 'notes-scroll';
@@ -592,7 +646,7 @@
 
         card.append(head, notesScroll);
         wrap.append(card);
-      }
+      });
 
       this.replaceChildren(wrap);
     }
@@ -675,8 +729,8 @@
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const payload = await res.json();
     const list = Array.isArray(payload?.releases) ? payload.releases : [];
-    const valid = list.filter(item => item && typeof item.tag === 'string' && typeof item.downloadUrl === 'string' && item.downloadUrl);
-    if (!valid.length) throw new Error('Empty releases feed');
+    const valid = sanitizeReleases(list);
+    if (!valid.length || !valid[0].downloadUrl) throw new Error('Empty releases feed');
     return valid;
   }
 
@@ -687,10 +741,12 @@
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const payload = await res.json();
-    const published = (Array.isArray(payload) ? payload : [])
-      .filter(item => item && !item.draft && !item.prerelease)
-      .map(mapReleaseItem)
-      .filter(Boolean);
+    const published = sanitizeReleases(
+      (Array.isArray(payload) ? payload : [])
+        .filter(item => item && !item.draft && !item.prerelease)
+        .map(mapReleaseItem)
+        .filter(Boolean)
+    );
     if (!published.length) throw new Error('No published releases');
     return published;
   }
@@ -720,7 +776,7 @@
       applyLatestToPage(FALLBACK_RELEASE);
       notesEl?.setReleases?.(
         [FALLBACK_RELEASE],
-        'Đang hiển thị thông tin mặc định — mở GitHub Releases để xem đầy đủ các bản phát hành mới nhất.'
+        'Đang hiển thị thông tin phiên bản mặc định — vui lòng tải lại trang sau ít phút để cập nhật bản mới nhất.'
       );
     }
   }

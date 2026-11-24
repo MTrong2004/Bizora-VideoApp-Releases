@@ -10,7 +10,8 @@
       "downloadUrl": "https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases/download/v0.1.0/Bizora-Video-Studio-Setup-0.1.0.exe",
       "assetName": "Bizora-Video-Studio-Setup-0.1.0.exe",
       "sha256": "ff87e313da12ecd6b37b28167bdea6929caf0289e2511170006574ece7a691e8",
-      "notes": "Phiên bản phát hành đầu tiên có hỗ trợ tự động kiểm tra và cập nhật ngay trong ứng dụng."
+      "notes": "Phiên bản phát hành đầu tiên có hỗ trợ tự động kiểm tra và cập nhật ngay trong ứng dụng.",
+      "isLatest": true
     }
   ]
 }

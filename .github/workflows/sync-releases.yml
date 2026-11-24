@@ -31,7 +31,21 @@ jobs:
           const raw = JSON.parse(fs.readFileSync('/tmp/releases-raw.json', 'utf8'));
           const releases = (Array.isArray(raw) ? raw : [])
             .filter(r => r && !r.draft && !r.prerelease)
-            .map(r => {
+            .map((r, idx) => {
+              const tag = String(r.tag_name || 'v0.1.0').trim();
+              const title = String(r.name || '').trim() || `Bizora Video Studio ${tag}`;
+              const publishedAt = r.published_at || '';
+              const notes = typeof r.body === 'string' ? r.body.trim() : '';
+              if (idx > 0) {
+                return {
+                  tag,
+                  version: tag.replace(/^v/i, ''),
+                  title,
+                  publishedAt,
+                  notes,
+                  isLatest: false
+                };
+              }
               const assets = Array.isArray(r.assets) ? r.assets : [];
               const exe =
                 assets.find(a => typeof a?.name === 'string' && /Setup.*\.exe$/i.test(a.name)) ||
@@ -39,17 +53,17 @@ jobs:
                 null;
               const rawDigest = typeof exe?.digest === 'string' ? exe.digest.trim() : '';
               const sha256 = rawDigest.startsWith('sha256:') ? rawDigest.slice(7) : rawDigest;
-              const tag = String(r.tag_name || 'v0.1.0').trim();
               return {
                 tag,
                 version: tag.replace(/^v/i, ''),
-                title: String(r.name || '').trim() || `Bizora Video Studio ${tag}`,
-                publishedAt: r.published_at || '',
+                title,
+                publishedAt,
                 size: exe?.size || 0,
                 downloadUrl: exe?.browser_download_url || r.html_url || '',
                 assetName: exe?.name || '',
                 sha256,
-                notes: typeof r.body === 'string' ? r.body.trim() : ''
+                notes,
+                isLatest: true
               };
             });
           fs.writeFileSync('releases.json', JSON.stringify({ generatedAt: new Date().toISOString(), releases }, null, 2) + '\n');
