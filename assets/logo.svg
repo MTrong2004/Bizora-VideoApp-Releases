@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
   <defs>
     <linearGradient id="bg" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#18080c"/>
-      <stop offset="100%" stop-color="#050507"/>
+      <stop offset="0%" stop-color="#0c1b36"/>
+      <stop offset="100%" stop-color="#040812"/>
     </linearGradient>
     <linearGradient id="ring" x1="4" y1="4" x2="60" y2="60" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ef233c"/>
-      <stop offset="55%" stop-color="#b91c2e"/>
-      <stop offset="100%" stop-color="#450a14"/>
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="55%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
     </linearGradient>
   </defs>
   <rect x="3" y="3" width="58" height="58" rx="15" fill="url(#bg)" stroke="url(#ring)" stroke-width="2.4"/>

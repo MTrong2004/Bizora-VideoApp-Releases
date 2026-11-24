@@ -318,7 +318,7 @@
       releasePageLink.append(linkLabel, makeIconNode('external-link', 13));
 
       const cardDownload = document.createElement('a');
-      cardDownload.className = 'btn btn-crimson-solid btn-sm';
+      cardDownload.className = 'btn btn-accent-solid btn-sm';
       const dlLabel = document.createElement('span');
       dlLabel.textContent = 'Tải .exe';
       cardDownload.append(makeIconNode('download', 14), dlLabel);
