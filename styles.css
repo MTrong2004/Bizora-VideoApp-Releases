@@ -51,7 +51,7 @@
     --border-hover: rgba(59, 130, 246, 0.48);
     --border-hairline: rgba(255, 255, 255, 0.06);
     --grid-line: rgba(148, 163, 184, 0.045);
-    --stroke-watermark: rgba(255, 255, 255, 0.14);
+    --stroke-watermark: rgba(148, 163, 184, 0.26);
 
     /* Semantic Status */
     --success: #10b981;
@@ -1377,7 +1377,7 @@
     padding: 28px 0 12px;
     pointer-events: none;
     user-select: none;
-    opacity: 0.24;
+    opacity: 0.55;
   }
 
   .footer-watermark {
