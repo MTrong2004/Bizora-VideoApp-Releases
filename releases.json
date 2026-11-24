@@ -1,17 +1,25 @@
 {
-  "generatedAt": "2026-11-24T08:21:21.193Z",
+  "generatedAt": "2026-11-24T19:05:41.165Z",
   "releases": [
+    {
+      "tag": "v0.2.0",
+      "version": "0.2.0",
+      "title": "0.2.0",
+      "publishedAt": "2026-11-24T19:05:28Z",
+      "size": 0,
+      "downloadUrl": "https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases/tag/v0.2.0",
+      "assetName": "",
+      "sha256": "",
+      "notes": "",
+      "isLatest": true
+    },
     {
       "tag": "v0.1.0",
       "version": "0.1.0",
       "title": "Bizora Video Studio v0.1.0",
       "publishedAt": "2026-11-24T08:08:48Z",
-      "size": 122348422,
-      "downloadUrl": "https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases/download/v0.1.0/Bizora-Video-Studio-Setup-0.1.0.exe",
-      "assetName": "Bizora-Video-Studio-Setup-0.1.0.exe",
-      "sha256": "ff87e313da12ecd6b37b28167bdea6929caf0289e2511170006574ece7a691e8",
       "notes": "Phiên bản phát hành đầu tiên có hỗ trợ tự động kiểm tra và cập nhật ngay trong ứng dụng.",
-      "isLatest": true
+      "isLatest": false
     }
   ]
 }
