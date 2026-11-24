@@ -1,0 +1,71 @@
+name: Sync Releases Feed
+
+on:
+  release:
+    types: [published, edited, deleted, released]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  sync-releases-json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout site repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Generate releases.json from GitHub Releases
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api "repos/${GITHUB_REPOSITORY}/releases?per_page=10" > /tmp/releases-raw.json
+          node - <<'EOF'
+          const fs = require('node:fs');
+          const raw = JSON.parse(fs.readFileSync('/tmp/releases-raw.json', 'utf8'));
+          const releases = (Array.isArray(raw) ? raw : [])
+            .filter(r => r && !r.draft && !r.prerelease)
+            .map(r => {
+              const assets = Array.isArray(r.assets) ? r.assets : [];
+              const exe =
+                assets.find(a => typeof a?.name === 'string' && /Setup.*\.exe$/i.test(a.name)) ||
+                assets.find(a => typeof a?.name === 'string' && /\.exe$/i.test(a.name)) ||
+                null;
+              const rawDigest = typeof exe?.digest === 'string' ? exe.digest.trim() : '';
+              const sha256 = rawDigest.startsWith('sha256:') ? rawDigest.slice(7) : rawDigest;
+              const tag = String(r.tag_name || 'v0.1.0').trim();
+              return {
+                tag,
+                version: tag.replace(/^v/i, ''),
+                title: String(r.name || '').trim() || `Bizora Video Studio ${tag}`,
+                publishedAt: r.published_at || '',
+                size: exe?.size || 0,
+                downloadUrl: exe?.browser_download_url || r.html_url || '',
+                assetName: exe?.name || '',
+                sha256,
+                notes: typeof r.body === 'string' ? r.body.trim() : ''
+              };
+            });
+          fs.writeFileSync('releases.json', JSON.stringify({ generatedAt: new Date().toISOString(), releases }, null, 2) + '\n');
+          EOF
+
+      - name: Commit releases.json and rebuild Pages if changed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet releases.json; then
+            echo "releases.json is already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add releases.json
+          git commit -m "chore(site): sync releases.json"
+          git push origin HEAD:main
+          gh api -X POST "repos/${GITHUB_REPOSITORY}/pages/builds" || true

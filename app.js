@@ -3,6 +3,7 @@
 
   const REPO_OWNER = 'MTrong2004';
   const REPO_NAME = 'Bizora-VideoApp-Releases';
+  const RELEASES_FEED_URL = './releases.json';
   const RELEASES_API_URL = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases?per_page=5`;
   const RELEASES_PAGE_URL = `https://github.com/${REPO_OWNER}/${REPO_NAME}/releases`;
   const LATEST_RELEASE_URL = `https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/latest`;
@@ -424,31 +425,53 @@
     document.getElementById('download-card')?.setRelease?.(latest);
   }
 
+  async function fetchSameOriginReleases(signal) {
+    const res = await fetch(RELEASES_FEED_URL, {
+      cache: 'no-cache',
+      signal
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const payload = await res.json();
+    const list = Array.isArray(payload?.releases) ? payload.releases : [];
+    const valid = list.filter(item => item && typeof item.tag === 'string' && typeof item.downloadUrl === 'string' && item.downloadUrl);
+    if (!valid.length) throw new Error('Empty releases feed');
+    return valid;
+  }
+
+  async function fetchGitHubApiReleases(signal) {
+    const res = await fetch(RELEASES_API_URL, {
+      headers: { Accept: 'application/vnd.github+json' },
+      signal
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const payload = await res.json();
+    const published = (Array.isArray(payload) ? payload : [])
+      .filter(item => item && !item.draft && !item.prerelease)
+      .map(mapReleaseItem)
+      .filter(Boolean);
+    if (!published.length) throw new Error('No published releases');
+    return published;
+  }
+
   async function syncReleases() {
     const card = document.getElementById('download-card');
     const notesEl = document.getElementById('release-notes');
     card?.setRelease?.(FALLBACK_RELEASE);
     notesEl?.setReleases?.([FALLBACK_RELEASE]);
 
+    const signal = typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function'
+      ? AbortSignal.timeout(8000)
+      : undefined;
+
     try {
-      const signal = typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function'
-        ? AbortSignal.timeout(8000)
-        : undefined;
-      const res = await fetch(RELEASES_API_URL, {
-        headers: { Accept: 'application/vnd.github+json' },
-        signal
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const payload = await res.json();
-      const published = (Array.isArray(payload) ? payload : [])
-        .filter(item => item && !item.draft && !item.prerelease)
-        .map(mapReleaseItem)
-        .filter(Boolean);
+      const published = await fetchSameOriginReleases(signal);
+      applyLatestToHeaderAndHero(published[0]);
+      notesEl?.setReleases?.(published);
+      return;
+    } catch { /* fall through to GitHub API */ }
 
-      if (!published.length) {
-        throw new Error('No published releases');
-      }
-
+    try {
+      const published = await fetchGitHubApiReleases(signal);
       applyLatestToHeaderAndHero(published[0]);
       notesEl?.setReleases?.(published);
     } catch {

@@ -348,6 +348,7 @@
     font-size: 12.5px;
     font-weight: 600;
     color: var(--text);
+    white-space: nowrap;
   }
 
   .preview-update-pill {
@@ -361,6 +362,7 @@
     color: var(--success);
     font-size: 12px;
     font-weight: 600;
+    white-space: nowrap;
   }
 
   .preview-shell {
@@ -966,6 +968,14 @@
     .copy-btn,
     .footer-links a {
       min-height: 44px;
+    }
+
+    .preview-dots {
+      display: none;
+    }
+
+    .preview-titlebar {
+      padding: 10px 12px;
     }
 
     .header-nav {
