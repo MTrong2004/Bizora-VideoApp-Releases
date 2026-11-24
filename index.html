@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=20261125d">
+  <link rel="stylesheet" href="./styles.css?v=20261125e">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Chuyển tới nội dung chính</a>
@@ -50,8 +50,8 @@
       </a>
 
       <div class="pill-links">
-        <a href="#tinh-nang">Tính năng</a>
-        <a href="#giao-dien">Demo</a>
+        <a href="#giao-dien">Giao diện</a>
+        <a href="#thanh-pham">Thành phẩm</a>
         <a href="#huong-dan">Cài đặt</a>
         <a href="#phien-ban">Phiên bản</a>
       </div>
@@ -144,8 +144,22 @@
       </div>
     </section>
 
+    <!-- Live Auto-Synced Desktop UI Showcase -->
+    <section id="giao-dien" class="section section-bordered">
+      <div class="container">
+        <div class="section-head section-head-center" data-reveal>
+          <h2>
+            Giao diện thực tế, đồng bộ <span class="text-accent">từng bản dựng</span>
+          </h2>
+          <p>Khám phá 6 không gian làm việc cốt lõi của Bizora Video Studio — ảnh chụp thực tế được cập nhật tự động mỗi khi ứng dụng nâng cấp.</p>
+        </div>
+
+        <bizora-ui-showcase id="ui-showcase" data-reveal></bizora-ui-showcase>
+      </div>
+    </section>
+
     <!-- Option A: Full-Width Cinema Stage Showcase with Live Video Demos -->
-    <section id="tinh-nang" class="section">
+    <section id="thanh-pham" class="section">
       <div class="container">
         <div class="section-head section-head-center" data-reveal>
           <h2>
@@ -154,7 +168,7 @@
           <p>Từ cảnh phim, trang truyện đến tệp MP4 đúng tỷ lệ từng kênh — xem trực tiếp quy trình vận hành của Bizora.</p>
         </div>
 
-        <bizora-cinema-stage id="giao-dien" class="cinema-stage" data-reveal>
+        <bizora-cinema-stage class="cinema-stage" data-reveal>
           <div class="cinema-tabs-wrap">
             <div
               class="cinema-tablist"
@@ -503,8 +517,8 @@
       <div class="footer-col">
         <h4>Sản phẩm</h4>
         <ul>
-          <li><a href="#tinh-nang">Tính năng</a></li>
-          <li><a href="#giao-dien">Demo</a></li>
+          <li><a href="#giao-dien">Giao diện thực tế</a></li>
+          <li><a href="#thanh-pham">Video thành phẩm</a></li>
           <li><a href="#huong-dan">Cài đặt &amp; SHA-256</a></li>
           <li><a href="#phien-ban">Phiên bản</a></li>
         </ul>
@@ -535,6 +549,6 @@
     </div>
   </footer>
 
-  <script src="./app.js?v=20261125d" defer></script>
+  <script src="./app.js?v=20261125e" defer></script>
 </body>
 </html>

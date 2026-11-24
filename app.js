@@ -5,6 +5,7 @@
   const REPO_NAME = 'Bizora-VideoApp-Releases';
   const RELEASES_FEED_URL = './releases.json';
   const RELEASES_API_URL = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases?per_page=5`;
+  const PREVIEWS_FEED_URL = './previews.json';
   const LATEST_RELEASE_URL = `https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/latest`;
 
   const FALLBACK_RELEASE = {
@@ -60,7 +61,28 @@
     lock: [
       'M7 11V7a5 5 0 0 1 10 0v4',
       'M5 11h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Z'
-    ]
+    ],
+    'maximize-2': ['M15 3h6v6', 'M9 21H3v-6', 'M21 3l-7 7', 'M3 21l7-7'],
+    x: ['M18 6 6 18', 'm6 6 12 12'],
+    'chevron-left': ['m15 18-6-6 6-6'],
+    'chevron-right': ['m9 18 6-6-6-6'],
+    sparkles: [
+      'M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z',
+      'M20 3v4',
+      'M22 5h-4',
+      'M4 17v2',
+      'M5 18H3'
+    ],
+    languages: ['m5 8 6 6', 'm4 14 6-6 2-3', 'M2 5h12', 'M7 2h1', 'm22 22-5-10-5 10', 'M14 18h6'],
+    'book-open': [
+      'M12 7v14',
+      'M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z'
+    ],
+    send: [
+      'M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z',
+      'm21.854 2.147-10.94 10.939'
+    ],
+    'layout-grid': ['M3 3h7v7H3z', 'M14 3h7v7h-7z', 'M14 14h7v7h-7z', 'M3 14h7v7H3z']
   });
 
   function createIconSvg(name, size = 16) {
@@ -652,8 +674,488 @@
     }
   }
 
+  function buildPreviewAssetUrl(rawPath, hash = '') {
+    if (typeof rawPath !== 'string' || !rawPath.trim()) return '';
+    const clean = rawPath.trim();
+    if (!hash) return clean;
+    return `${clean}${clean.includes('?') ? '&' : '?'}h=${encodeURIComponent(hash)}`;
+  }
+
+  function sanitizePreviewManifest(raw) {
+    if (!raw || typeof raw !== 'object') return null;
+    const screens = Array.isArray(raw.screens) ? raw.screens : [];
+    const valid = screens
+      .filter(item => item && typeof item === 'object' && typeof item.id === 'string' && item.id.trim() && typeof item.image === 'string' && item.image.trim())
+      .map((item, index) => ({
+        id: item.id.trim(),
+        order: Number(item.order) || (index + 1),
+        badge: typeof item.badge === 'string' && item.badge.trim() ? item.badge.trim() : `Màn ${index + 1}`,
+        icon: typeof item.icon === 'string' && item.icon.trim() ? item.icon.trim() : 'monitor',
+        title: typeof item.title === 'string' && item.title.trim() ? item.title.trim() : item.badge || item.id,
+        subtitle: typeof item.subtitle === 'string' ? item.subtitle.trim() : '',
+        highlights: Array.isArray(item.highlights) ? item.highlights.filter(h => typeof h === 'string' && h.trim()).slice(0, 4) : [],
+        image: item.image.trim(),
+        thumb: typeof item.thumb === 'string' && item.thumb.trim() ? item.thumb.trim() : item.image.trim(),
+        hash: typeof item.hash === 'string' ? item.hash.trim() : '',
+        width: Number(item.width) || 1440,
+        height: Number(item.height) || 900
+      }))
+      .sort((a, b) => a.order - b.order);
+
+    if (!valid.length) return null;
+    return {
+      appVersion: typeof raw.appVersion === 'string' && raw.appVersion.trim() ? raw.appVersion.trim() : '0.2.0',
+      capturedAt: typeof raw.capturedAt === 'string' ? raw.capturedAt : '',
+      screens: valid
+    };
+  }
+
+  class BizoraUiShowcase extends HTMLElement {
+    constructor() {
+      super();
+      this._manifest = null;
+      this._activeId = '';
+      this._dom = null;
+      this._loadStarted = false;
+    }
+
+    connectedCallback() {
+      this._ensureDom();
+      if (!this._loadStarted) {
+        this._loadStarted = true;
+        void this.loadManifest();
+      }
+    }
+
+    setManifest(raw) {
+      const parsed = sanitizePreviewManifest(raw);
+      if (!parsed) return;
+      this._manifest = parsed;
+      if (!parsed.screens.some(s => s.id === this._activeId)) {
+        this._activeId = parsed.screens[0].id;
+      }
+      if (this.isConnected) {
+        this._ensureDom();
+        this._renderAll();
+      }
+    }
+
+    async loadManifest() {
+      const signal = typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function'
+        ? AbortSignal.timeout(8000)
+        : undefined;
+      try {
+        const res = await fetch(PREVIEWS_FEED_URL, { cache: 'no-cache', signal });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const payload = await res.json();
+        const parsed = sanitizePreviewManifest(payload);
+        if (!parsed) throw new Error('Invalid previews manifest');
+        this.setManifest(parsed);
+      } catch {
+        this._renderUnavailable();
+      }
+    }
+
+    _ensureDom() {
+      if (this._dom) return;
+
+      const wrap = document.createElement('div');
+      wrap.className = 'ui-showcase-shell';
+
+      const tabsWrap = document.createElement('div');
+      tabsWrap.className = 'ui-showcase-tabs-wrap';
+      const tablist = document.createElement('div');
+      tablist.className = 'ui-showcase-tablist';
+      tablist.setAttribute('role', 'tablist');
+      tablist.setAttribute('focusgroup', 'tablist nomemory');
+      tablist.setAttribute('aria-label', 'Chọn màn hình giao diện Bizora Video Studio');
+      tabsWrap.append(tablist);
+
+      const frame = document.createElement('div');
+      frame.className = 'ui-stage-frame';
+
+      const chrome = document.createElement('div');
+      chrome.className = 'ui-stage-chrome';
+
+      const chromeLeft = document.createElement('div');
+      chromeLeft.className = 'ui-stage-chrome-left';
+      const windowDots = document.createElement('span');
+      windowDots.className = 'ui-window-dots';
+      windowDots.setAttribute('aria-hidden', 'true');
+      for (let i = 0; i < 3; i++) {
+        windowDots.append(document.createElement('span'));
+      }
+      const stageTitle = document.createElement('strong');
+      stageTitle.className = 'ui-stage-title';
+      chromeLeft.append(windowDots, stageTitle);
+
+      const chromeRight = document.createElement('div');
+      chromeRight.className = 'ui-stage-chrome-right';
+      const syncPill = document.createElement('span');
+      syncPill.className = 'ui-sync-pill';
+      const zoomBtn = document.createElement('button');
+      zoomBtn.type = 'button';
+      zoomBtn.className = 'ui-zoom-btn';
+      zoomBtn.setAttribute('aria-label', 'Phóng to ảnh giao diện');
+      const zoomText = document.createElement('span');
+      zoomText.textContent = 'Phóng to';
+      zoomBtn.append(makeIconNode('maximize-2', 14), zoomText);
+      chromeRight.append(syncPill, zoomBtn);
+      chrome.append(chromeLeft, chromeRight);
+
+      const viewport = document.createElement('div');
+      viewport.className = 'ui-stage-viewport';
+      viewport.setAttribute('role', 'tabpanel');
+      viewport.tabIndex = 0;
+
+      const stageTrigger = document.createElement('button');
+      stageTrigger.type = 'button';
+      stageTrigger.className = 'ui-stage-image-btn';
+      stageTrigger.setAttribute('aria-label', 'Mở ảnh xem chi tiết toàn màn hình');
+
+      const mainImg = document.createElement('img');
+      mainImg.className = 'ui-stage-image';
+      mainImg.width = 1440;
+      mainImg.height = 900;
+      mainImg.decoding = 'async';
+      mainImg.alt = '';
+      stageTrigger.append(mainImg);
+      viewport.append(stageTrigger);
+
+      const hud = document.createElement('div');
+      hud.className = 'ui-stage-hud';
+      const hudSub = document.createElement('p');
+      hudSub.className = 'ui-stage-subtitle';
+      const hudTags = document.createElement('ul');
+      hudTags.className = 'ui-stage-highlights';
+      hud.append(hudSub, hudTags);
+
+      frame.append(chrome, viewport, hud);
+
+      const strip = document.createElement('div');
+      strip.className = 'ui-showcase-strip';
+      strip.setAttribute('aria-label', 'Danh sách ảnh thu nhỏ các màn hình chính');
+
+      const emptyMsg = document.createElement('p');
+      emptyMsg.className = 'ui-showcase-status';
+      emptyMsg.hidden = true;
+
+      const dialog = document.createElement('dialog');
+      dialog.className = 'ui-lightbox-dialog';
+      dialog.setAttribute('closedby', 'any');
+      dialog.setAttribute('aria-labelledby', 'ui-lightbox-title');
+
+      const dlgShell = document.createElement('div');
+      dlgShell.className = 'ui-lightbox-shell';
+
+      const dlgHead = document.createElement('header');
+      dlgHead.className = 'ui-lightbox-head';
+      const dlgTitleWrap = document.createElement('div');
+      dlgTitleWrap.className = 'ui-lightbox-title-wrap';
+      const dlgBadge = document.createElement('span');
+      dlgBadge.className = 'ui-lightbox-badge';
+      const dlgTitle = document.createElement('h3');
+      dlgTitle.id = 'ui-lightbox-title';
+      dlgTitle.className = 'ui-lightbox-title';
+      dlgTitleWrap.append(dlgBadge, dlgTitle);
+
+      const dlgActions = document.createElement('div');
+      dlgActions.className = 'ui-lightbox-actions';
+      const dlgCounter = document.createElement('span');
+      dlgCounter.className = 'ui-lightbox-counter mono';
+      const prevBtn = document.createElement('button');
+      prevBtn.type = 'button';
+      prevBtn.className = 'ui-lightbox-nav-btn';
+      prevBtn.setAttribute('aria-label', 'Màn hình trước');
+      prevBtn.append(makeIconNode('chevron-left', 16));
+      const nextBtn = document.createElement('button');
+      nextBtn.type = 'button';
+      nextBtn.className = 'ui-lightbox-nav-btn';
+      nextBtn.setAttribute('aria-label', 'Màn hình tiếp theo');
+      nextBtn.append(makeIconNode('chevron-right', 16));
+      const closeBtn = document.createElement('button');
+      closeBtn.type = 'button';
+      closeBtn.className = 'ui-lightbox-close-btn';
+      closeBtn.setAttribute('aria-label', 'Đóng xem lớn');
+      closeBtn.append(makeIconNode('x', 16));
+      dlgActions.append(dlgCounter, prevBtn, nextBtn, closeBtn);
+      dlgHead.append(dlgTitleWrap, dlgActions);
+
+      const dlgBody = document.createElement('div');
+      dlgBody.className = 'ui-lightbox-body';
+      const dlgImg = document.createElement('img');
+      dlgImg.className = 'ui-lightbox-img';
+      dlgImg.width = 1440;
+      dlgImg.height = 900;
+      dlgImg.decoding = 'async';
+      dlgImg.alt = '';
+      dlgBody.append(dlgImg);
+
+      const dlgFoot = document.createElement('div');
+      dlgFoot.className = 'ui-lightbox-foot';
+      const dlgDesc = document.createElement('p');
+      dlgDesc.className = 'ui-lightbox-desc';
+      const dlgTags = document.createElement('ul');
+      dlgTags.className = 'ui-stage-highlights';
+      dlgFoot.append(dlgDesc, dlgTags);
+
+      dlgShell.append(dlgHead, dlgBody, dlgFoot);
+      dialog.append(dlgShell);
+
+      wrap.append(tabsWrap, frame, strip, emptyMsg, dialog);
+      this.replaceChildren(wrap);
+
+      const selectById = (id, shouldFocus = false) => {
+        if (!this._manifest?.screens?.length) return;
+        const next = this._manifest.screens.find(s => s.id === id);
+        if (!next) return;
+        this._activeId = next.id;
+        this._renderActiveState();
+        if (shouldFocus) {
+          const btn = tablist.querySelector(`[data-screen-id="${CSS.escape(next.id)}"]`);
+          btn?.focus({ preventScroll: true });
+        }
+      };
+
+      const stepScreen = delta => {
+        const screens = this._manifest?.screens || [];
+        if (!screens.length) return;
+        const curIdx = Math.max(0, screens.findIndex(s => s.id === this._activeId));
+        const nextIdx = (curIdx + delta + screens.length) % screens.length;
+        this._activeId = screens[nextIdx].id;
+        this._renderActiveState();
+      };
+
+      const openLightbox = () => {
+        if (!this._manifest?.screens?.length) return;
+        this._renderLightbox();
+        if (!dialog.open) dialog.showModal();
+      };
+
+      const hasNativeFocusgroup = Object.hasOwn(HTMLElement.prototype, 'focusGroup');
+      tablist.addEventListener('click', event => {
+        const btn = event.target.closest('[role="tab"]');
+        if (btn?.dataset.screenId) selectById(btn.dataset.screenId, false);
+      });
+
+      tablist.addEventListener('keydown', event => {
+        const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+        const cur = event.target.closest('[role="tab"]');
+        if (!cur || !tabs.length) return;
+        const idx = tabs.indexOf(cur);
+        let nextIdx = -1;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIdx = (idx + 1) % tabs.length;
+        else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIdx = (idx - 1 + tabs.length) % tabs.length;
+        else if (event.key === 'Home') nextIdx = 0;
+        else if (event.key === 'End') nextIdx = tabs.length - 1;
+        if (nextIdx >= 0) {
+          event.preventDefault();
+          const targetId = tabs[nextIdx]?.dataset.screenId;
+          if (targetId) selectById(targetId, true);
+        }
+      });
+
+      strip.addEventListener('click', event => {
+        const card = event.target.closest('[data-screen-id]');
+        if (card?.dataset.screenId) selectById(card.dataset.screenId, false);
+      });
+
+      zoomBtn.addEventListener('click', openLightbox);
+      stageTrigger.addEventListener('click', openLightbox);
+      closeBtn.addEventListener('click', () => dialog.close());
+      prevBtn.addEventListener('click', () => stepScreen(-1));
+      nextBtn.addEventListener('click', () => stepScreen(1));
+
+      dialog.addEventListener('keydown', event => {
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          stepScreen(-1);
+        } else if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          stepScreen(1);
+        }
+      });
+
+      if (!('closedBy' in HTMLDialogElement.prototype)) {
+        dialog.addEventListener('click', event => {
+          if (event.target !== dialog) return;
+          const rect = dialog.getBoundingClientRect();
+          const isDialogContent = (
+            rect.top <= event.clientY &&
+            event.clientY <= rect.top + rect.height &&
+            rect.left <= event.clientX &&
+            event.clientX <= rect.left + rect.width
+          );
+          if (isDialogContent) return;
+          dialog.close();
+        });
+      }
+
+      this._dom = {
+        hasNativeFocusgroup,
+        tablist,
+        viewport,
+        stageTitle,
+        syncPill,
+        mainImg,
+        hudSub,
+        hudTags,
+        strip,
+        emptyMsg,
+        dialog,
+        dlgBadge,
+        dlgTitle,
+        dlgCounter,
+        dlgImg,
+        dlgDesc,
+        dlgTags
+      };
+    }
+
+    _renderUnavailable() {
+      if (!this._dom) return;
+      this._dom.emptyMsg.textContent = 'Đang đồng bộ ảnh chụp giao diện mới nhất — vui lòng tải lại trang sau ít phút.';
+      this._dom.emptyMsg.hidden = false;
+    }
+
+    _renderAll() {
+      const d = this._dom;
+      const m = this._manifest;
+      if (!d || !m) return;
+      d.emptyMsg.hidden = true;
+
+      const tabNodes = m.screens.map(screen => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'ui-showcase-tab';
+        btn.id = `ui-tab-${screen.id}`;
+        btn.dataset.screenId = screen.id;
+        btn.setAttribute('role', 'tab');
+        const label = document.createElement('span');
+        label.textContent = screen.badge;
+        btn.append(makeIconNode(screen.icon, 14), label);
+        return btn;
+      });
+      d.tablist.replaceChildren(...tabNodes);
+
+      const stripNodes = m.screens.map((screen, idx) => {
+        const card = document.createElement('button');
+        card.type = 'button';
+        card.className = 'ui-thumb-card';
+        card.dataset.screenId = screen.id;
+        card.setAttribute('aria-label', `Xem màn hình ${screen.title}`);
+
+        const thumbWrap = document.createElement('span');
+        thumbWrap.className = 'ui-thumb-media';
+        const thumbImg = document.createElement('img');
+        thumbImg.width = 480;
+        thumbImg.height = 300;
+        thumbImg.loading = 'lazy';
+        thumbImg.decoding = 'async';
+        thumbImg.alt = screen.title;
+        thumbImg.src = buildPreviewAssetUrl(screen.thumb, screen.hash);
+        thumbWrap.append(thumbImg);
+
+        const caption = document.createElement('span');
+        caption.className = 'ui-thumb-caption';
+        const idxEl = document.createElement('span');
+        idxEl.className = 'ui-thumb-idx mono';
+        idxEl.textContent = String(idx + 1).padStart(2, '0');
+        const nameEl = document.createElement('span');
+        nameEl.className = 'ui-thumb-name';
+        nameEl.textContent = screen.badge;
+        caption.append(idxEl, nameEl);
+
+        card.append(thumbWrap, caption);
+        return card;
+      });
+      d.strip.replaceChildren(...stripNodes);
+
+      this._renderActiveState();
+    }
+
+    _renderActiveState() {
+      const d = this._dom;
+      const m = this._manifest;
+      if (!d || !m) return;
+      const active = m.screens.find(s => s.id === this._activeId) || m.screens[0];
+      if (!active) return;
+
+      for (const tab of d.tablist.querySelectorAll('[role="tab"]')) {
+        const isSelected = tab.dataset.screenId === active.id;
+        tab.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+        tab.toggleAttribute('focusgroupstart', isSelected);
+        if (!d.hasNativeFocusgroup) {
+          tab.tabIndex = isSelected ? 0 : -1;
+        }
+        if (isSelected) {
+          tab.scrollIntoView({ block: 'nearest', inline: 'nearest', container: 'nearest' });
+        }
+      }
+
+      for (const card of d.strip.querySelectorAll('.ui-thumb-card')) {
+        const isSelected = card.dataset.screenId === active.id;
+        card.classList.toggle('is-active', isSelected);
+        card.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
+      }
+
+      d.viewport.setAttribute('aria-labelledby', `ui-tab-${active.id}`);
+      d.stageTitle.textContent = active.title;
+
+      const dateStr = formatDateVi(m.capturedAt);
+      d.syncPill.textContent = dateStr
+        ? `v${m.appVersion} · Đồng bộ ${dateStr}`
+        : `v${m.appVersion} · Đồng bộ tự động`;
+
+      d.mainImg.src = buildPreviewAssetUrl(active.image, active.hash);
+      d.mainImg.alt = `Giao diện ${active.title} của Bizora Video Studio`;
+      d.hudSub.textContent = active.subtitle;
+
+      const tags = active.highlights.map(text => {
+        const li = document.createElement('li');
+        li.append(makeIconNode('check', 13));
+        const span = document.createElement('span');
+        span.textContent = text;
+        li.append(span);
+        return li;
+      });
+      d.hudTags.replaceChildren(...tags);
+
+      if (d.dialog.open) {
+        this._renderLightbox();
+      }
+    }
+
+    _renderLightbox() {
+      const d = this._dom;
+      const m = this._manifest;
+      if (!d || !m) return;
+      const idx = Math.max(0, m.screens.findIndex(s => s.id === this._activeId));
+      const active = m.screens[idx] || m.screens[0];
+      if (!active) return;
+
+      d.dlgBadge.textContent = active.badge;
+      d.dlgTitle.textContent = active.title;
+      d.dlgCounter.textContent = `${String(idx + 1).padStart(2, '0')} / ${String(m.screens.length).padStart(2, '0')}`;
+      d.dlgImg.src = buildPreviewAssetUrl(active.image, active.hash);
+      d.dlgImg.alt = `Xem chi tiết giao diện ${active.title}`;
+      d.dlgDesc.textContent = active.subtitle;
+
+      const tags = active.highlights.map(text => {
+        const li = document.createElement('li');
+        li.append(makeIconNode('check', 13));
+        const span = document.createElement('span');
+        span.textContent = text;
+        li.append(span);
+        return li;
+      });
+      d.dlgTags.replaceChildren(...tags);
+    }
+  }
+
   customElements.define('bizora-icon', BizoraIcon);
   customElements.define('bizora-hero-ambient', BizoraHeroAmbient);
+  customElements.define('bizora-ui-showcase', BizoraUiShowcase);
   customElements.define('bizora-cinema-stage', BizoraCinemaStage);
   customElements.define('bizora-checksum-card', BizoraChecksumCard);
   customElements.define('bizora-release-notes', BizoraReleaseNotes);

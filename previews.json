@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "appVersion": "0.2.0",
+  "buildHash": "5f7d2e08",
+  "uiFingerprint": "a953f99ee6d030de",
+  "capturedAt": "2026-11-24T23:40:14.343Z",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "screens": [
+    {
+      "id": "film-translate",
+      "order": 1,
+      "badge": "Dịch phim AI",
+      "icon": "languages",
+      "title": "Dịch & Lồng tiếng Phim AI",
+      "subtitle": "Tự tách thoại, làm mờ phụ đề gốc và căn dòng cân bằng không rơi chữ đơn lẻ.",
+      "highlights": [
+        "Xóa & làm mờ phụ đề gốc thông minh",
+        "Ngắt dòng cân bằng chuẩn điện ảnh",
+        "Xem trước song ngữ & lồng tiếng Việt"
+      ],
+      "image": "./assets/previews/film-translate.webp",
+      "thumb": "./assets/previews/film-translate-thumb.webp",
+      "hash": "cc0010523a9f",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "film",
+      "order": 2,
+      "badge": "Review phim",
+      "icon": "film",
+      "title": "Review Phim tự động 1 chạm",
+      "subtitle": "Chọn khoảng tập, tóm tắt diễn biến bằng AI và xuất MP4 kèm giọng đọc tự nhiên.",
+      "highlights": [
+        "Gom khung hình & tóm tắt từng tập",
+        "Kể sâu, kể chi tiết hoặc tóm gọn",
+        "Xuất 16:9 & 9:16 kèm nhạc nền auto-ducking"
+      ],
+      "image": "./assets/previews/film.webp",
+      "thumb": "./assets/previews/film-thumb.webp",
+      "hash": "394f398ff1b9",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "comic",
+      "order": 3,
+      "badge": "Review truyện",
+      "icon": "book-open",
+      "title": "Review Truyện tranh & Tiểu thuyết",
+      "subtitle": "Đọc mượt nhiều nguồn truyện, AI phân tích khung tranh và dựng video cuộn dọc 1 chạm.",
+      "highlights": [
+        "Tích hợp MangaDex & 7 kho tiểu thuyết",
+        "AI đọc thoại bong bóng & viết kịch bản",
+        "Hiệu ứng Ken Burns & phụ đề khớp nhịp"
+      ],
+      "image": "./assets/previews/comic.webp",
+      "thumb": "./assets/previews/comic-thumb.webp",
+      "hash": "b50d2d83d6b2",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "generate",
+      "order": 4,
+      "badge": "Tạo video AI",
+      "icon": "sparkles",
+      "title": "Xưởng Tạo Video AI đa cảnh",
+      "subtitle": "Quản lý kịch bản nhiều cảnh quay, ảnh tham chiếu, xóa watermark và ghép thành phẩm.",
+      "highlights": [
+        "Điều phối đa cảnh & ảnh tham chiếu",
+        "Hàng đợi song song & tự xóa logo góc",
+        "Ghép MP4 kèm giọng đọc & nhạc nền"
+      ],
+      "image": "./assets/previews/generate.webp",
+      "thumb": "./assets/previews/generate-thumb.webp",
+      "hash": "e8a5615c8808",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "publishing",
+      "order": 5,
+      "badge": "Kênh đăng",
+      "icon": "send",
+      "title": "Kênh đăng & Lịch xuất bản",
+      "subtitle": "Chọn video trực quan, AI viết tiêu đề & hashtag chuẩn từng nền tảng ngay trước khi đăng.",
+      "highlights": [
+        "Liên kết YouTube, TikTok & Facebook",
+        "AI tạo tiêu đề, mô tả & hashtag",
+        "Lịch đăng bài trực quan theo tháng"
+      ],
+      "image": "./assets/previews/publishing.webp",
+      "thumb": "./assets/previews/publishing-thumb.webp",
+      "hash": "a06124850b3a",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "home",
+      "order": 6,
+      "badge": "Tổng quan",
+      "icon": "layout-grid",
+      "title": "Không gian làm việc hợp nhất",
+      "subtitle": "Truy cập nhanh mọi xưởng sản xuất, dự án gần đây, hàng chờ toàn cục và thư viện.",
+      "highlights": [
+        "Thanh khởi chạy nhanh 5 xưởng chính",
+        "Theo dõi dự án & lịch sắp đăng",
+        "Lưu cục bộ an toàn, không mất dữ liệu"
+      ],
+      "image": "./assets/previews/home.webp",
+      "thumb": "./assets/previews/home-thumb.webp",
+      "hash": "93e0e8a78680",
+      "width": 1440,
+      "height": 900
+    }
+  ]
+}
