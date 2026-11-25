@@ -686,9 +686,6 @@
       if (changed) d.progressFill.style.width = '0%';
       this._syncSoundUi();
       this._syncActivePlayback(userSwitch);
-
-      const activeCard = this._cards.get(sample.id);
-      activeCard?.scrollIntoView?.({ block: 'nearest', inline: 'nearest', container: 'nearest' });
     }
 
     _syncActivePlayback(resetTime = false) {
