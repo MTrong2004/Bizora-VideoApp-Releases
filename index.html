@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=20261125g">
+  <link rel="stylesheet" href="./styles.css?v=20261125h">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Chuyển tới nội dung chính</a>
@@ -159,130 +159,18 @@
       </div>
     </section>
 
-    <!-- Option A: Full-Width Cinema Stage Showcase with Live Video Demos -->
+    <!-- Option A+: Multi-Format Cinema Stage Showcase with Real Rendered Outputs -->
     <section id="thanh-pham" class="section">
-      <div class="container">
+      <div class="container container-wide">
         <div class="section-head section-head-center" data-reveal>
           <h2>
-            Thành phẩm thực tế, dựng trọn <span class="text-accent">trong một không gian</span>
+            Thành phẩm thực tế, dựng trọn <span class="text-accent">từ ứng dụng</span>
           </h2>
-          <p>Từ cảnh phim, trang truyện đến tệp MP4 đúng tỷ lệ từng kênh — xem trực tiếp quy trình vận hành của Bizora.</p>
+          <p>Từ lồng tiếng phim, review truyện màu, manga đến video AI 9:16 kèm giọng đọc — tất cả đều xuất trực tiếp từ Bizora Video Studio.</p>
         </div>
 
-        <bizora-cinema-stage class="cinema-stage" data-reveal>
-          <div class="cinema-tabs-wrap">
-            <div
-              class="cinema-tablist"
-              focusgroup="tablist nomemory"
-              role="tablist"
-              aria-label="Chọn chế độ trình diễn video Bizora"
-            >
-              <button
-                type="button"
-                class="cinema-tab"
-                role="tab"
-                id="stage-tab-film"
-                aria-selected="true"
-                focusgroupstart
-              >
-                <span class="cinema-tab-idx">01</span>
-                <span>Review phim</span>
-              </button>
-
-              <button
-                type="button"
-                class="cinema-tab"
-                role="tab"
-                id="stage-tab-manga"
-                aria-selected="false"
-              >
-                <span class="cinema-tab-idx">02</span>
-                <span>Review truyện tranh</span>
-              </button>
-
-              <button
-                type="button"
-                class="cinema-tab"
-                role="tab"
-                id="stage-tab-ratio"
-                aria-selected="false"
-              >
-                <span class="cinema-tab-idx">03</span>
-                <span>Xuất đa khung hình</span>
-              </button>
-            </div>
-          </div>
-
-          <div class="cinema-frame">
-            <div class="cinema-panels">
-              <div role="tabpanel" aria-labelledby="stage-tab-film" tabindex="0">
-                <div class="cinema-panel-inner">
-                  <video
-                    class="cinema-video"
-                    width="1280"
-                    height="720"
-                    poster="./assets/videos/demo-film-review-poster.webp?v=20261125c"
-                    preload="metadata"
-                    autoplay
-                    muted
-                    loop
-                    playsinline
-                  >
-                    <source src="./assets/videos/demo-film-review.webm?v=20261125c" type="video/webm">
-                    <source src="./assets/videos/demo-film-review.mp4?v=20261125c" type="video/mp4">
-                  </video>
-                </div>
-              </div>
-
-              <div role="tabpanel" aria-labelledby="stage-tab-manga" hidden="until-found">
-                <div class="cinema-panel-inner">
-                  <video
-                    class="cinema-video"
-                    width="960"
-                    height="540"
-                    poster="./assets/videos/demo-manga-review-poster.webp?v=20261125c"
-                    preload="none"
-                    muted
-                    loop
-                    playsinline
-                  >
-                    <source src="./assets/videos/demo-manga-review.webm?v=20261125c" type="video/webm">
-                    <source src="./assets/videos/demo-manga-review.mp4?v=20261125c" type="video/mp4">
-                  </video>
-                </div>
-              </div>
-
-              <div role="tabpanel" aria-labelledby="stage-tab-ratio" hidden="until-found">
-                <div class="cinema-panel-inner">
-                  <video
-                    class="cinema-video"
-                    width="1280"
-                    height="720"
-                    poster="./assets/videos/demo-multiratio-poster.webp?v=20261125c"
-                    preload="none"
-                    muted
-                    loop
-                    playsinline
-                  >
-                    <source src="./assets/videos/demo-multiratio.webm?v=20261125c" type="video/webm">
-                    <source src="./assets/videos/demo-multiratio.mp4?v=20261125c" type="video/mp4">
-                  </video>
-                </div>
-              </div>
-            </div>
-
-            <div class="cinema-hud">
-              <div class="cinema-hud-left">
-                <span class="eq-bars" aria-hidden="true">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </span>
-                <span id="cinema-hud-title">Review phim điện ảnh · Phụ đề khớp nhịp</span>
-              </div>
-              <p id="cinema-hud-spec" class="cinema-hud-spec">16:9 · Giọng Việt tự nhiên · Xuất MP4 cục bộ</p>
-            </div>
-          </div>
+        <bizora-cinema-stage class="cinema-stage" id="cinema-stage" data-reveal>
+          <div class="cinema-stage-mount"></div>
 
           <div class="cinema-highlights">
             <div class="highlight-col">
@@ -550,6 +438,6 @@
     </div>
   </footer>
 
-  <script src="./app.js?v=20261125g" defer></script>
+  <script src="./app.js?v=20261125h" defer></script>
 </body>
 </html>

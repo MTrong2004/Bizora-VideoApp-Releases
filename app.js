@@ -6,6 +6,7 @@
   const RELEASES_FEED_URL = './releases.json';
   const RELEASES_API_URL = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases?per_page=5`;
   const PREVIEWS_FEED_URL = './previews.json';
+  const SAMPLES_FEED_URL = './samples.json';
   const LATEST_RELEASE_URL = `https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/latest`;
 
   const FALLBACK_RELEASE = {
@@ -21,20 +22,65 @@
     isLatest: true
   };
 
-  const CINEMA_STAGE_META = Object.freeze({
-    'stage-tab-film': {
-      title: 'Review phim điện ảnh · Phụ đề khớp nhịp',
-      spec: '16:9 · Giọng Việt tự nhiên · Xuất MP4 cục bộ'
+  const FALLBACK_SAMPLES = [
+    {
+      id: 'film-review',
+      order: 1,
+      badge: 'Review phim',
+      title: 'Review Phim điện ảnh · Phụ đề khớp nhịp',
+      subtitle: 'Gom cảnh đắt giá theo mạch kể cao trào kèm phụ đề căn dòng chuẩn điện ảnh.',
+      spec: '16:9 · Giọng Việt tự nhiên · Xuất MP4 cục bộ',
+      ratio: '16:9',
+      portrait: false,
+      hasAudio: false,
+      durationLabel: '0:08',
+      highlights: ['Chuyển cảnh mượt', 'Phụ đề sạch chữ', 'Xuất MP4 cục bộ'],
+      videoWebm: './assets/videos/demo-film-review.webm?v=20261125c',
+      videoMp4: './assets/videos/demo-film-review.mp4?v=20261125c',
+      poster: './assets/videos/demo-film-review-poster.webp?v=20261125c',
+      width: 1280,
+      height: 720,
+      hash: ''
     },
-    'stage-tab-manga': {
-      title: 'Review truyện tranh · Tách khung tự động',
-      spec: '16:9 · Cuộn dọc mượt mà · Đồng bộ từng câu'
+    {
+      id: 'manga-review',
+      order: 2,
+      badge: 'Review truyện',
+      title: 'Review Truyện tranh · Tách khung tự động',
+      subtitle: 'Đọc truyện cuộn dọc mượt mà và đồng bộ phụ đề từng câu.',
+      spec: '16:9 · Cuộn dọc mượt mà · Đồng bộ từng câu',
+      ratio: '16:9',
+      portrait: false,
+      hasAudio: false,
+      durationLabel: '0:08',
+      highlights: ['Tách khung rõ nét', 'Cuộn mượt', 'Phụ đề chuẩn nhịp'],
+      videoWebm: './assets/videos/demo-manga-review.webm?v=20261125c',
+      videoMp4: './assets/videos/demo-manga-review.mp4?v=20261125c',
+      poster: './assets/videos/demo-manga-review-poster.webp?v=20261125c',
+      width: 960,
+      height: 540,
+      hash: ''
     },
-    'stage-tab-ratio': {
+    {
+      id: 'multiratio',
+      order: 3,
+      badge: 'Đa khung hình',
       title: 'Xuất đồng bộ đa khung hình từng kênh',
-      spec: '16:9 YouTube · 9:16 Shorts & Reels · 1:1 Bảng tin'
+      subtitle: 'Một lần dựng ra trọn bộ 16:9, 9:16 và 1:1.',
+      spec: '16:9 YouTube · 9:16 Shorts & Reels · 1:1 Bảng tin',
+      ratio: '16:9',
+      portrait: false,
+      hasAudio: false,
+      durationLabel: '0:08',
+      highlights: ['Chuẩn 16:9', 'Chuẩn 9:16', 'Chuẩn 1:1'],
+      videoWebm: './assets/videos/demo-multiratio.webm?v=20261125c',
+      videoMp4: './assets/videos/demo-multiratio.mp4?v=20261125c',
+      poster: './assets/videos/demo-multiratio-poster.webp?v=20261125c',
+      width: 1280,
+      height: 720,
+      hash: ''
     }
-  });
+  ];
 
   const SVG_NS = 'http://www.w3.org/2000/svg';
   const ICON_PATHS = Object.freeze({
@@ -82,7 +128,17 @@
       'M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z',
       'm21.854 2.147-10.94 10.939'
     ],
-    'layout-grid': ['M3 3h7v7H3z', 'M14 3h7v7h-7z', 'M14 14h7v7h-7z', 'M3 14h7v7H3z']
+    'layout-grid': ['M3 3h7v7H3z', 'M14 3h7v7h-7z', 'M14 14h7v7h-7z', 'M3 14h7v7H3z'],
+    'volume-2': [
+      'M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z',
+      'M16 9a5 5 0 0 1 0 6',
+      'M19.364 18.364a9 9 0 0 0 0-12.728'
+    ],
+    'volume-x': [
+      'M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z',
+      'm22 9-6 6',
+      'm16 9 6 6'
+    ]
   });
 
   function createIconSvg(name, size = 16) {
@@ -210,147 +266,467 @@
     }
   }
 
+  function sanitizeSamplesManifest(raw) {
+    if (!raw || typeof raw !== 'object' || !Array.isArray(raw.samples)) return null;
+    const valid = raw.samples
+      .filter(s => s && typeof s === 'object' && typeof s.id === 'string' && s.id.trim() && (typeof s.videoWebm === 'string' || typeof s.videoMp4 === 'string'))
+      .map((s, idx) => ({
+        id: s.id.trim(),
+        order: Number(s.order) || (idx + 1),
+        badge: typeof s.badge === 'string' && s.badge.trim() ? s.badge.trim() : `Mẫu ${idx + 1}`,
+        title: typeof s.title === 'string' && s.title.trim() ? s.title.trim() : s.id,
+        subtitle: typeof s.subtitle === 'string' ? s.subtitle.trim() : '',
+        spec: typeof s.spec === 'string' ? s.spec.trim() : '',
+        ratio: typeof s.ratio === 'string' && s.ratio.trim() ? s.ratio.trim() : '16:9',
+        portrait: Boolean(s.portrait),
+        hasAudio: Boolean(s.hasAudio),
+        durationLabel: typeof s.durationLabel === 'string' ? s.durationLabel.trim() : '',
+        highlights: Array.isArray(s.highlights) ? s.highlights.filter(h => typeof h === 'string' && h.trim()).slice(0, 3) : [],
+        videoWebm: typeof s.videoWebm === 'string' ? s.videoWebm.trim() : '',
+        videoMp4: typeof s.videoMp4 === 'string' ? s.videoMp4.trim() : '',
+        poster: typeof s.poster === 'string' ? s.poster.trim() : '',
+        width: Number(s.width) || (s.portrait ? 540 : 1280),
+        height: Number(s.height) || (s.portrait ? 960 : 720),
+        hash: typeof s.hash === 'string' ? s.hash.trim() : ''
+      }))
+      .sort((a, b) => a.order - b.order);
+    return valid.length ? valid : null;
+  }
+
   class BizoraCinemaStage extends HTMLElement {
     constructor() {
       super();
       this._bound = false;
+      this._samples = FALLBACK_SAMPLES;
+      this._activeId = FALLBACK_SAMPLES[0].id;
       this._inView = false;
-      this._activeVideo = null;
+      this._isMuted = true;
+      this._videos = new Map();
+      this._panels = new Map();
+      this._cards = new Map();
       this._observer = null;
+      this._lazyObserver = null;
       this._reducedQuery = null;
+      this._onVisibilityChange = null;
+      this._dom = null;
     }
 
     connectedCallback() {
       if (this._bound) return;
       this._bound = true;
+      this._ensureDom();
+      this._renderStage();
+      void this._loadSamples();
+    }
 
-      const tablist = this.querySelector('[role="tablist"]');
-      const tabs = Array.from(this.querySelectorAll('[role="tab"]'));
-      const panels = Array.from(this.querySelectorAll('[role="tabpanel"]'));
-      const hudTitle = this.querySelector('#cinema-hud-title');
-      const hudSpec = this.querySelector('#cinema-hud-spec');
-      if (!tablist || !tabs.length || !panels.length) return;
+    disconnectedCallback() {
+      this._observer?.disconnect();
+      this._lazyObserver?.disconnect();
+      if (this._onVisibilityChange) {
+        document.removeEventListener('visibilitychange', this._onVisibilityChange);
+      }
+    }
+
+    async _loadSamples() {
+      const signal = typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function'
+        ? AbortSignal.timeout(8000)
+        : undefined;
+      try {
+        const res = await fetch(SAMPLES_FEED_URL, { cache: 'no-cache', signal });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        const parsed = sanitizeSamplesManifest(data);
+        if (parsed) {
+          this._samples = parsed;
+          this._activeId = parsed[0].id;
+          this._renderStage();
+        }
+      } catch {
+        // Keep FALLBACK_SAMPLES when manifest is unavailable
+      }
+    }
+
+    _ensureDom() {
+      if (this._dom) return;
+      const mount = this.querySelector('.cinema-stage-mount') || this;
+
+      const frame = document.createElement('div');
+      frame.className = 'cinema-frame';
+
+      const panelsWrap = document.createElement('div');
+      panelsWrap.className = 'cinema-panels';
+
+      const progressTrack = document.createElement('div');
+      progressTrack.className = 'cinema-progress-track';
+      progressTrack.setAttribute('aria-hidden', 'true');
+      const progressFill = document.createElement('div');
+      progressFill.className = 'cinema-progress-fill';
+      progressTrack.append(progressFill);
+
+      const hud = document.createElement('div');
+      hud.className = 'cinema-hud';
+
+      const hudLeft = document.createElement('div');
+      hudLeft.className = 'cinema-hud-left';
+      const eq = document.createElement('span');
+      eq.className = 'eq-bars';
+      eq.setAttribute('aria-hidden', 'true');
+      eq.append(document.createElement('span'), document.createElement('span'), document.createElement('span'));
+      const hudTitle = document.createElement('span');
+      hudTitle.id = 'cinema-hud-title';
+      hudLeft.append(eq, hudTitle);
+
+      const hudRight = document.createElement('div');
+      hudRight.className = 'cinema-hud-right';
+      const hudSpec = document.createElement('p');
+      hudSpec.id = 'cinema-hud-spec';
+      hudSpec.className = 'cinema-hud-spec';
+
+      const soundBtn = document.createElement('button');
+      soundBtn.type = 'button';
+      soundBtn.className = 'cinema-sound-btn';
+      soundBtn.setAttribute('aria-pressed', 'false');
+      soundBtn.hidden = true;
+      soundBtn.addEventListener('click', () => {
+        this._isMuted = !this._isMuted;
+        this._syncSoundUi();
+        this._syncActivePlayback(false);
+      });
+
+      hudRight.append(hudSpec, soundBtn);
+      hud.append(hudLeft, hudRight);
+      frame.append(panelsWrap, progressTrack, hud);
+
+      const reel = document.createElement('div');
+      reel.className = 'cinema-reel';
+      reel.setAttribute('role', 'tablist');
+      reel.setAttribute('aria-label', 'Chọn thành phẩm thực tế của Bizora');
+      reel.setAttribute('focusgroup', 'tablist nomemory');
+
+      mount.replaceChildren(frame, reel);
 
       this._reducedQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+      this._reducedQuery?.addEventListener?.('change', () => this._syncActivePlayback(false));
+
+      this._onVisibilityChange = () => {
+        if (document.hidden && !this._isMuted) {
+          this._isMuted = true;
+          this._syncSoundUi();
+        }
+        this._syncActivePlayback(false);
+      };
+      document.addEventListener('visibilitychange', this._onVisibilityChange);
+
+      reel.addEventListener('click', event => {
+        const card = event.target.closest('.cinema-reel-card');
+        if (card?.dataset.sampleId) {
+          this._selectSample(card.dataset.sampleId, { focusTab: false, userSwitch: true });
+        }
+      });
+
       const hasNativeFocusgroup = Object.hasOwn(HTMLElement.prototype, 'focusGroup');
-
-      const syncActivePlayback = (resetTime = false) => {
-        if (!this._activeVideo) return;
-        if (this._reducedQuery?.matches) {
-          this._activeVideo.removeAttribute('autoplay');
-          this._activeVideo.pause();
-          return;
-        }
-        if (this._inView) {
-          if (this._activeVideo.preload === 'none') {
-            this._activeVideo.preload = 'auto';
-          }
-          if (resetTime && Number.isFinite(this._activeVideo.duration)) {
-            this._activeVideo.currentTime = 0;
-          }
-          this._activeVideo.play().catch(() => {});
-        } else {
-          this._activeVideo.pause();
-        }
-      };
-
-      const selectTab = (targetTab, shouldFocus = false, isUserSwitch = false) => {
-        if (!targetTab) return;
-        for (const tab of tabs) {
-          const isSelected = tab === targetTab;
-          tab.ariaSelected = isSelected ? 'true' : 'false';
-          tab.toggleAttribute('focusgroupstart', isSelected);
-          if (!hasNativeFocusgroup) {
-            tab.tabIndex = isSelected ? 0 : -1;
-          }
-        }
-        let nextVideo = null;
-        for (const panel of panels) {
-          const matches = panel.getAttribute('aria-labelledby') === targetTab.id;
-          const panelVideo = panel.querySelector('video');
-          if (matches) {
-            panel.hidden = false;
-            panel.tabIndex = 0;
-            nextVideo = panelVideo;
-          } else {
-            panel.hidden = 'until-found';
-            panel.removeAttribute('tabindex');
-            if (panelVideo) panelVideo.pause();
-          }
-        }
-        this._activeVideo = nextVideo;
-
-        const meta = CINEMA_STAGE_META[targetTab.id];
-        if (meta) {
-          if (hudTitle) hudTitle.textContent = meta.title;
-          if (hudSpec) hudSpec.textContent = meta.spec;
-        }
-
-        syncActivePlayback(isUserSwitch);
-        targetTab.scrollIntoView({ block: 'nearest', inline: 'nearest', container: 'nearest' });
-
-        if (shouldFocus) {
-          targetTab.focus({ preventScroll: true });
-        }
-      };
-
-      const initialSelected = tabs.find(t => t.getAttribute('aria-selected') === 'true') || tabs[0];
-      selectTab(initialSelected, false, false);
-
-      tablist.addEventListener('click', event => {
-        const tab = event.target.closest('[role="tab"]');
-        if (tab) selectTab(tab, false, true);
-      });
-
-      tablist.addEventListener('keydown', event => {
-        const current = event.target.closest('[role="tab"]');
+      reel.addEventListener('keydown', event => {
+        const current = event.target.closest('.cinema-reel-card');
         if (!current) return;
-        const idx = tabs.indexOf(current);
+        const cards = Array.from(reel.querySelectorAll('.cinema-reel-card'));
+        const idx = cards.indexOf(current);
         let nextIdx = -1;
-        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
-          nextIdx = (idx + 1) % tabs.length;
-        } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
-          nextIdx = (idx - 1 + tabs.length) % tabs.length;
-        } else if (event.key === 'Home') {
-          nextIdx = 0;
-        } else if (event.key === 'End') {
-          nextIdx = tabs.length - 1;
-        }
-        if (nextIdx >= 0) {
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIdx = (idx + 1) % cards.length;
+        else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIdx = (idx - 1 + cards.length) % cards.length;
+        else if (event.key === 'Home') nextIdx = 0;
+        else if (event.key === 'End') nextIdx = cards.length - 1;
+        if (nextIdx >= 0 && cards[nextIdx]?.dataset.sampleId) {
           event.preventDefault();
-          selectTab(tabs[nextIdx], true, true);
+          this._selectSample(cards[nextIdx].dataset.sampleId, {
+            focusTab: !hasNativeFocusgroup || true,
+            userSwitch: true
+          });
         }
       });
-
-      this.addEventListener('beforematch', event => {
-        const panel = event.target.closest('[role="tabpanel"]');
-        if (!panel) return;
-        const tabId = panel.getAttribute('aria-labelledby');
-        const tab = tabs.find(t => t.id === tabId);
-        if (tab) selectTab(tab, false, false);
-      });
-
-      this._reducedQuery?.addEventListener?.('change', () => syncActivePlayback(false));
 
       if (typeof IntersectionObserver !== 'undefined') {
         this._observer = new IntersectionObserver(
           entries => {
             for (const entry of entries) {
               this._inView = entry.isIntersecting;
-              syncActivePlayback(false);
+              if (!this._inView && !this._isMuted) {
+                this._isMuted = true;
+                this._syncSoundUi();
+              }
+              this._syncActivePlayback(false);
             }
           },
-          { threshold: 0.2 }
+          { threshold: 0.15 }
         );
         this._observer.observe(this);
       } else {
         this._inView = true;
-        syncActivePlayback(false);
       }
+
+      this._dom = { panelsWrap, progressFill, hudTitle, hudSpec, soundBtn, reel };
     }
 
-    disconnectedCallback() {
-      this._observer?.disconnect();
+    _syncSoundUi() {
+      const btn = this._dom?.soundBtn;
+      if (!btn) return;
+      const sample = this._samples.find(s => s.id === this._activeId);
+      const canAudio = Boolean(sample?.hasAudio);
+      btn.hidden = !canAudio;
+      if (!canAudio) {
+        this._isMuted = true;
+      }
+      const unmuted = canAudio && !this._isMuted;
+      btn.classList.toggle('is-unmuted', unmuted);
+      btn.setAttribute('aria-pressed', String(unmuted));
+      const label = document.createElement('span');
+      label.textContent = unmuted ? 'Đang bật tiếng' : 'Bật tiếng';
+      btn.replaceChildren(makeIconNode(unmuted ? 'volume-2' : 'volume-x', 14), label);
+    }
+
+    _renderStage() {
+      const d = this._dom;
+      if (!d) return;
+      this._videos.clear();
+      this._panels.clear();
+      this._cards.clear();
+      this._lazyObserver?.disconnect();
+
+      const hasNativeFocusgroup = Object.hasOwn(HTMLElement.prototype, 'focusGroup');
+      const lazyVideos = [];
+
+      const panelNodes = this._samples.map((sample, idx) => {
+        const panel = document.createElement('div');
+        panel.setAttribute('role', 'tabpanel');
+        panel.id = `sample-panel-${sample.id}`;
+        panel.setAttribute('aria-labelledby', `sample-tab-${sample.id}`);
+
+        const inner = document.createElement('div');
+        inner.className = sample.portrait
+          ? 'cinema-panel-inner cinema-panel-inner--portrait'
+          : 'cinema-panel-inner';
+
+        const video = createWalkthroughVideoElement(sample, {
+          lazy: idx > 0,
+          preload: idx === 0 ? 'metadata' : 'none',
+          className: sample.portrait ? 'cinema-portrait-video' : 'cinema-video'
+        });
+        video.dataset.sampleId = sample.id;
+        video.addEventListener('timeupdate', () => {
+          if (sample.id !== this._activeId || !Number.isFinite(video.duration) || video.duration <= 0) return;
+          const pct = Math.min(100, Math.max(0, (video.currentTime / video.duration) * 100));
+          d.progressFill.style.width = `${pct.toFixed(1)}%`;
+        });
+        if (idx > 0) lazyVideos.push(video);
+
+        if (sample.portrait) {
+          const stage = document.createElement('div');
+          stage.className = 'cinema-portrait-stage';
+
+          const leftCard = document.createElement('div');
+          leftCard.className = 'cinema-portrait-callout';
+          const leftLabel = document.createElement('span');
+          leftLabel.className = 'cinema-callout-label mono';
+          leftLabel.textContent = sample.badge;
+          const leftTitle = document.createElement('h3');
+          leftTitle.textContent = sample.title;
+          const leftDesc = document.createElement('p');
+          leftDesc.textContent = sample.subtitle;
+          leftCard.append(leftLabel, leftTitle, leftDesc);
+
+          const bezel = document.createElement('div');
+          bezel.className = 'cinema-portrait-bezel';
+          bezel.append(video);
+
+          const rightCard = document.createElement('div');
+          rightCard.className = 'cinema-portrait-callout';
+          const rightLabel = document.createElement('span');
+          rightLabel.className = 'cinema-callout-label mono';
+          rightLabel.textContent = 'Điểm nổi bật 9:16';
+          const ul = document.createElement('ul');
+          ul.className = 'cinema-callout-list';
+          for (const h of sample.highlights) {
+            const li = document.createElement('li');
+            li.append(makeIconNode('check', 13));
+            const s = document.createElement('span');
+            s.textContent = h;
+            li.append(s);
+            ul.append(li);
+          }
+          rightCard.append(rightLabel, ul);
+
+          stage.append(leftCard, bezel, rightCard);
+          inner.append(stage);
+        } else {
+          inner.append(video);
+        }
+
+        panel.append(inner);
+        this._panels.set(sample.id, panel);
+        this._videos.set(sample.id, video);
+        return panel;
+      });
+      d.panelsWrap.replaceChildren(...panelNodes);
+
+      const cardNodes = this._samples.map((sample, idx) => {
+        const card = document.createElement('button');
+        card.type = 'button';
+        card.className = 'cinema-reel-card';
+        card.id = `sample-tab-${sample.id}`;
+        card.dataset.sampleId = sample.id;
+        card.setAttribute('role', 'tab');
+        card.setAttribute('aria-controls', `sample-panel-${sample.id}`);
+
+        const thumb = document.createElement('div');
+        thumb.className = sample.portrait
+          ? 'cinema-reel-thumb cinema-reel-thumb--portrait'
+          : 'cinema-reel-thumb';
+        const img = document.createElement('img');
+        img.src = buildPreviewAssetUrl(sample.poster, sample.hash);
+        img.alt = sample.title;
+        img.width = 320;
+        img.height = 180;
+        img.loading = 'lazy';
+        img.decoding = 'async';
+
+        const ratioPill = document.createElement('span');
+        ratioPill.className = 'cinema-reel-ratio mono';
+        ratioPill.textContent = sample.ratio;
+        thumb.append(img, ratioPill);
+
+        if (sample.hasAudio) {
+          const audioBadge = document.createElement('span');
+          audioBadge.className = 'cinema-reel-audio-badge';
+          audioBadge.setAttribute('aria-label', 'Video có giọng đọc tiếng Việt');
+          audioBadge.append(makeIconNode('volume-2', 11));
+          thumb.append(audioBadge);
+        }
+
+        const meta = document.createElement('div');
+        meta.className = 'cinema-reel-meta';
+        const num = document.createElement('span');
+        num.className = 'cinema-reel-num mono';
+        num.textContent = String(idx + 1).padStart(2, '0');
+        const badge = document.createElement('span');
+        badge.className = 'cinema-reel-badge';
+        badge.textContent = sample.badge;
+        meta.append(num, badge);
+
+        const title = document.createElement('span');
+        title.className = 'cinema-reel-title';
+        title.textContent = sample.title;
+
+        card.append(thumb, meta, title);
+        if (!hasNativeFocusgroup) {
+          card.tabIndex = idx === 0 ? 0 : -1;
+        }
+        this._cards.set(sample.id, card);
+        return card;
+      });
+      d.reel.replaceChildren(...cardNodes);
+
+      const supportsNativeLazy = typeof HTMLMediaElement !== 'undefined' && Object.hasOwn(HTMLMediaElement.prototype, 'loading');
+      if (!supportsNativeLazy && typeof IntersectionObserver !== 'undefined' && lazyVideos.length) {
+        this._lazyObserver = new IntersectionObserver(
+          (entries, obs) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              ensureVideoSourcesLoaded(entry.target);
+              obs.unobserve(entry.target);
+            }
+          },
+          { rootMargin: '200px 0px' }
+        );
+        for (const v of lazyVideos) this._lazyObserver.observe(v);
+      }
+
+      this._selectSample(this._activeId || this._samples[0].id, { focusTab: false, userSwitch: false });
+    }
+
+    _selectSample(id, { focusTab = false, userSwitch = false } = {}) {
+      const d = this._dom;
+      if (!d || !this._samples.length) return;
+      const sample = this._samples.find(s => s.id === id) || this._samples[0];
+      const changed = this._activeId !== sample.id;
+      this._activeId = sample.id;
+
+      if (changed && !sample.hasAudio) {
+        this._isMuted = true;
+      }
+
+      const hasNativeFocusgroup = Object.hasOwn(HTMLElement.prototype, 'focusGroup');
+      for (const [sid, card] of this._cards.entries()) {
+        const isCurrent = sid === sample.id;
+        card.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+        card.toggleAttribute('focusgroupstart', isCurrent);
+        if (!hasNativeFocusgroup) {
+          card.tabIndex = isCurrent ? 0 : -1;
+        }
+        if (isCurrent && focusTab) {
+          card.focus({ preventScroll: true });
+        }
+      }
+
+      for (const [sid, panel] of this._panels.entries()) {
+        const vid = this._videos.get(sid);
+        if (sid === sample.id) {
+          panel.hidden = false;
+          panel.tabIndex = 0;
+        } else {
+          panel.hidden = 'until-found';
+          panel.removeAttribute('tabindex');
+          if (vid) {
+            vid.muted = true;
+            vid.pause();
+          }
+        }
+      }
+
+      d.hudTitle.textContent = sample.title;
+      d.hudSpec.textContent = sample.spec;
+      if (changed) d.progressFill.style.width = '0%';
+      this._syncSoundUi();
+      this._syncActivePlayback(userSwitch);
+
+      const activeCard = this._cards.get(sample.id);
+      activeCard?.scrollIntoView?.({ block: 'nearest', inline: 'nearest', container: 'nearest' });
+    }
+
+    _syncActivePlayback(resetTime = false) {
+      const vid = this._videos.get(this._activeId);
+      const sample = this._samples.find(s => s.id === this._activeId);
+      if (!vid || !sample) return;
+
+      const reduced = Boolean(this._reducedQuery?.matches);
+      const hiddenDoc = typeof document !== 'undefined' && document.hidden;
+      if (reduced || hiddenDoc || !this._inView) {
+        vid.muted = true;
+        vid.removeAttribute('autoplay');
+        if (!vid.paused) vid.pause();
+        return;
+      }
+
+      ensureVideoSourcesLoaded(vid);
+      if (vid.preload === 'none' || vid.preload === 'metadata') vid.preload = 'auto';
+      const wantUnmuted = Boolean(sample.hasAudio && !this._isMuted);
+      vid.muted = !wantUnmuted;
+      if (wantUnmuted) vid.volume = 0.85;
+
+      if (resetTime && Number.isFinite(vid.duration)) {
+        try { vid.currentTime = 0; } catch {}
+      }
+
+      const p = vid.play();
+      if (p && typeof p.catch === 'function') {
+        p.catch(() => {
+          // If browser blocks unmuted autoplay on scroll, degrade gracefully back to muted playback
+          if (!vid.muted) {
+            this._isMuted = true;
+            vid.muted = true;
+            this._syncSoundUi();
+            vid.play().catch(() => {});
+          }
+        });
+      }
     }
   }
 
