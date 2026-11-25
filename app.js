@@ -801,6 +801,7 @@
       this._stageVideos = new Map();
       this._inlineVideos = new Map();
       this._stepEls = new Map();
+      this._dotEls = new Map();
     }
 
     connectedCallback() {
@@ -865,6 +866,10 @@
       const sticky = document.createElement('div');
       sticky.className = 'ui-story-stage-sticky';
 
+      const stageGlow = document.createElement('div');
+      stageGlow.className = 'ui-story-stage-glow';
+      stageGlow.setAttribute('aria-hidden', 'true');
+
       const frame = document.createElement('div');
       frame.className = 'ui-story-stage-frame';
 
@@ -876,9 +881,6 @@
       stageOpenBtn.className = 'ui-story-stage-trigger';
       stageOpenBtn.setAttribute('aria-label', 'Mở rộng video thao tác toàn màn hình');
 
-      const hud = document.createElement('div');
-      hud.className = 'ui-story-stage-hud';
-
       const progressTrack = document.createElement('div');
       progressTrack.className = 'ui-story-progress-track';
       progressTrack.setAttribute('aria-hidden', 'true');
@@ -886,8 +888,18 @@
       progressFill.className = 'ui-story-progress-fill';
       progressTrack.append(progressFill);
 
-      const hudRow = document.createElement('div');
-      hudRow.className = 'ui-story-hud-row';
+      const zoomBtn = document.createElement('button');
+      zoomBtn.type = 'button';
+      zoomBtn.className = 'ui-zoom-btn';
+      zoomBtn.setAttribute('aria-label', 'Phóng to xem chi tiết thao tác');
+      const zoomText = document.createElement('span');
+      zoomText.textContent = 'Phóng to';
+      zoomBtn.append(makeIconNode('maximize-2', 14), zoomText);
+
+      frame.append(mediaStack, stageOpenBtn, zoomBtn, progressTrack);
+
+      const stageNav = document.createElement('div');
+      stageNav.className = 'ui-story-stage-nav';
 
       const hudLeft = document.createElement('div');
       hudLeft.className = 'ui-story-hud-left';
@@ -897,25 +909,15 @@
       hudTitle.className = 'ui-story-hud-title';
       hudLeft.append(stepCounter, hudTitle);
 
-      const hudRight = document.createElement('div');
-      hudRight.className = 'ui-story-hud-right';
-      const syncPill = document.createElement('span');
-      syncPill.className = 'ui-sync-pill';
-      const zoomBtn = document.createElement('button');
-      zoomBtn.type = 'button';
-      zoomBtn.className = 'ui-zoom-btn';
-      zoomBtn.setAttribute('aria-label', 'Phóng to xem chi tiết thao tác');
-      const zoomText = document.createElement('span');
-      zoomText.textContent = 'Phóng to';
-      zoomBtn.append(makeIconNode('maximize-2', 14), zoomText);
-      hudRight.append(syncPill, zoomBtn);
+      const dotsNav = document.createElement('nav');
+      dotsNav.className = 'ui-story-dots';
+      dotsNav.setAttribute('aria-label', 'Chọn bước tính năng');
 
-      hudRow.append(hudLeft, hudRight);
-      hud.append(progressTrack, hudRow);
-
-      frame.append(mediaStack, stageOpenBtn, hud);
-      sticky.append(frame);
+      stageNav.append(hudLeft, dotsNav);
+      sticky.append(stageGlow, frame, stageNav);
       stageCol.append(sticky);
+
+      const syncMeta = document.getElementById('ui-sync-meta');
 
       const emptyMsg = document.createElement('p');
       emptyMsg.className = 'ui-showcase-status';
@@ -1057,11 +1059,13 @@
 
       this._dom = {
         rail,
+        sticky,
         mediaStack,
         progressFill,
         stepCounter,
         hudTitle,
-        syncPill,
+        dotsNav,
+        syncMeta,
         emptyMsg,
         dialog,
         dlgBadge,
@@ -1109,6 +1113,7 @@
       this._stageVideos.clear();
       this._inlineVideos.clear();
       this._stepEls.clear();
+      this._dotEls.clear();
 
       const allLazyVideos = [];
       const railNodes = m.screens.map((screen, idx) => {
@@ -1208,6 +1213,20 @@
 
       this._attachLazyFallbackObserver(allLazyVideos);
 
+      const dotNodes = m.screens.map((screen, idx) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'ui-story-dot';
+        dot.dataset.screenId = screen.id;
+        dot.setAttribute('aria-label', `Chuyển tới bước ${String(idx + 1).padStart(2, '0')}: ${screen.title}`);
+        dot.addEventListener('click', () => {
+          this._setActiveScreen(screen.id, { scrollStep: true });
+        });
+        this._dotEls.set(screen.id, dot);
+        return dot;
+      });
+      d.dotsNav.replaceChildren(...dotNodes);
+
       if (typeof IntersectionObserver !== 'undefined') {
         this._stepObserver = new IntersectionObserver(
           entries => {
@@ -1221,7 +1240,7 @@
               }
             }
           },
-          { rootMargin: '-36% 0px -44% 0px', threshold: 0 }
+          { rootMargin: '-38% 0px -38% 0px', threshold: 0 }
         );
         for (const el of this._stepEls.values()) {
           this._stepObserver.observe(el);
@@ -1242,11 +1261,18 @@
 
       const changed = this._activeId !== active.id;
       this._activeId = active.id;
+      d.sticky.dataset.activeScreen = active.id;
 
       for (const [sid, el] of this._stepEls.entries()) {
         const isCurrent = sid === active.id;
         el.classList.toggle('is-active', isCurrent);
         el.setAttribute('aria-current', isCurrent ? 'step' : 'false');
+      }
+
+      for (const [sid, dot] of this._dotEls.entries()) {
+        const isCurrent = sid === active.id;
+        dot.classList.toggle('is-active', isCurrent);
+        dot.setAttribute('aria-current', isCurrent ? 'step' : 'false');
       }
 
       for (const [sid, vid] of this._stageVideos.entries()) {
@@ -1264,10 +1290,13 @@
 
       d.stepCounter.textContent = `${String(activeIdx + 1).padStart(2, '0')} / ${String(m.screens.length).padStart(2, '0')}`;
       d.hudTitle.textContent = active.title;
-      const dateStr = formatDateVi(m.capturedAt);
-      d.syncPill.textContent = dateStr
-        ? `v${m.appVersion} · Đồng bộ ${dateStr}`
-        : `v${m.appVersion} · Đồng bộ tự động`;
+      if (d.syncMeta) {
+        const dateStr = formatDateVi(m.capturedAt);
+        d.syncMeta.textContent = dateStr
+          ? `Tự động đồng bộ v${m.appVersion} · Cập nhật ${dateStr}`
+          : `Tự động đồng bộ v${m.appVersion}`;
+        d.syncMeta.hidden = false;
+      }
 
       if (scrollStep) {
         this._stepEls.get(active.id)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
