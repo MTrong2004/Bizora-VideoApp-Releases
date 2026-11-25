@@ -4,7 +4,7 @@
   const REPO_OWNER = 'MTrong2004';
   const REPO_NAME = 'Bizora-VideoApp-Releases';
   const RELEASES_FEED_URL = './releases.json';
-  const RELEASES_API_URL = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases?per_page=5`;
+  const RELEASES_API_URL = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases?per_page=10`;
   const PREVIEWS_FEED_URL = './previews.json';
   const SAMPLES_FEED_URL = './samples.json';
   const LATEST_RELEASE_URL = `https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/latest`;
@@ -1927,6 +1927,7 @@
   async function fetchGitHubApiReleases(signal) {
     const res = await fetch(RELEASES_API_URL, {
       headers: { Accept: 'application/vnd.github+json' },
+      cache: 'no-store',
       signal
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -1941,6 +1942,33 @@
     return published;
   }
 
+  function compareSemver(a, b) {
+    const parse = v => String(v || '').trim().replace(/^v/i, '').split('.').map(n => parseInt(n, 10) || 0);
+    const pa = parse(a);
+    const pb = parse(b);
+    const len = Math.max(pa.length, pb.length, 3);
+    for (let i = 0; i < len; i++) {
+      const da = pa[i] || 0;
+      const db = pb[i] || 0;
+      if (da !== db) return da > db ? 1 : -1;
+    }
+    return 0;
+  }
+
+  function isLiveReleaseBetter(liveList, feedList) {
+    if (!Array.isArray(liveList) || !liveList.length) return false;
+    if (!Array.isArray(feedList) || !feedList.length) return true;
+    const liveTop = liveList[0];
+    const feedTop = feedList[0];
+    const cmp = compareSemver(liveTop.version, feedTop.version);
+    if (cmp !== 0) return cmp > 0;
+    const liveHasExe = Boolean(liveTop.assetName || (liveTop.size && liveTop.size > 0));
+    const feedMissingExe = !feedTop.size || /\/releases\/tag\//i.test(feedTop.downloadUrl || '');
+    if (liveHasExe && feedMissingExe) return true;
+    if (liveTop.sha256 && !feedTop.sha256) return true;
+    return false;
+  }
+
   async function syncReleases() {
     const checksumCard = document.getElementById('checksum-card');
     const notesEl = document.getElementById('release-notes');
@@ -1951,18 +1979,26 @@
       ? AbortSignal.timeout(8000)
       : undefined;
 
-    try {
-      const published = await fetchSameOriginReleases(signal);
-      applyLatestToPage(published[0]);
-      notesEl?.setReleases?.(published);
-      return;
-    } catch { /* fall through to GitHub API */ }
+    let feedReleases = null;
+    const feedPromise = fetchSameOriginReleases(signal)
+      .then(list => {
+        feedReleases = list;
+        applyLatestToPage(list[0]);
+        notesEl?.setReleases?.(list);
+        return list;
+      })
+      .catch(() => null);
 
-    try {
-      const published = await fetchGitHubApiReleases(signal);
-      applyLatestToPage(published[0]);
-      notesEl?.setReleases?.(published);
-    } catch {
+    const livePromise = fetchGitHubApiReleases(signal).catch(() => null);
+    const [, liveReleases] = await Promise.all([feedPromise, livePromise]);
+
+    if (isLiveReleaseBetter(liveReleases, feedReleases)) {
+      applyLatestToPage(liveReleases[0]);
+      notesEl?.setReleases?.(liveReleases);
+      return;
+    }
+
+    if (!feedReleases && !liveReleases) {
       applyLatestToPage(FALLBACK_RELEASE);
       notesEl?.setReleases?.(
         [FALLBACK_RELEASE],
