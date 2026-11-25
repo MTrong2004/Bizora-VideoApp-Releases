@@ -988,14 +988,14 @@
     display: flex;
     flex-direction: column;
     gap: 0;
-    padding-block: 4vh 14vh;
+    padding-block: 4vh 24vh;
     padding-inline-start: 1.75rem;
   }
 
   .ui-story-rail::before {
     content: "";
     position: absolute;
-    inset-block: 4vh 14vh;
+    inset-block: 4vh 24vh;
     inset-inline-start: 0;
     inline-size: 1px;
     background: var(--border-hairline);
@@ -1008,7 +1008,8 @@
     flex-direction: column;
     justify-content: center;
     padding: 2.25rem 0;
-    opacity: 0.34;
+    opacity: 0.48;
+    cursor: pointer;
     transition: opacity 0.35s var(--ease-editorial);
   }
 
@@ -1027,7 +1028,7 @@
   }
 
   .ui-story-step:hover {
-    opacity: 0.72;
+    opacity: 0.8;
   }
 
   .ui-story-step.is-active {

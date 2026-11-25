@@ -1166,7 +1166,9 @@
       this._dom = null;
       this._loadStarted = false;
       this._inView = false;
-      this._stepObserver = null;
+      this._scrollRaf = 0;
+      this._scrollLockUntil = 0;
+      this._onScrollStepSync = null;
       this._stageObserver = null;
       this._lazyMediaObserver = null;
       this._reducedQuery = null;
@@ -1186,9 +1188,16 @@
     }
 
     disconnectedCallback() {
-      this._stepObserver?.disconnect();
       this._stageObserver?.disconnect();
       this._lazyMediaObserver?.disconnect();
+      if (this._scrollRaf) {
+        cancelAnimationFrame(this._scrollRaf);
+        this._scrollRaf = 0;
+      }
+      if (this._onScrollStepSync) {
+        window.removeEventListener('scroll', this._onScrollStepSync);
+        window.removeEventListener('resize', this._onScrollStepSync);
+      }
       if (this._onVisibilityChange) {
         document.removeEventListener('visibilitychange', this._onVisibilityChange);
       }
@@ -1415,11 +1424,25 @@
       this._onVisibilityChange = () => this._syncPlayback();
       document.addEventListener('visibilitychange', this._onVisibilityChange);
 
+      this._onScrollStepSync = () => {
+        if (this._scrollRaf) return;
+        this._scrollRaf = requestAnimationFrame(() => {
+          this._scrollRaf = 0;
+          this._updateActiveStepFromScroll();
+        });
+      };
+      window.addEventListener('scroll', this._onScrollStepSync, { passive: true });
+      window.addEventListener('resize', this._onScrollStepSync, { passive: true });
+
       if (typeof IntersectionObserver !== 'undefined') {
         this._stageObserver = new IntersectionObserver(
           entries => {
             for (const entry of entries) {
+              const wasInView = this._inView;
               this._inView = entry.isIntersecting;
+              if (!wasInView && this._inView) {
+                this._updateActiveStepFromScroll();
+              }
               this._syncPlayback();
             }
           },
@@ -1482,7 +1505,6 @@
       const m = this._manifest;
       if (!d || !m) return;
       d.emptyMsg.hidden = true;
-      this._stepObserver?.disconnect();
       this._stageVideos.clear();
       this._inlineVideos.clear();
       this._stepEls.clear();
@@ -1558,6 +1580,10 @@
         inlineZoom.addEventListener('click', () => d.openLightbox(screen.id));
         inlineWrap.append(inlineVideo, inlineZoom);
 
+        card.addEventListener('click', event => {
+          if (event.target.closest('.ui-story-inline-zoom, .ui-story-step-trigger')) return;
+          this._setActiveScreen(screen.id, { scrollStep: false });
+        });
         card.append(head, titleBtn, desc, actionHint, list, inlineWrap);
         this._stepEls.set(screen.id, card);
         this._inlineVideos.set(screen.id, inlineVideo);
@@ -1600,27 +1626,33 @@
       });
       d.dotsNav.replaceChildren(...dotNodes);
 
-      if (typeof IntersectionObserver !== 'undefined') {
-        this._stepObserver = new IntersectionObserver(
-          entries => {
-            if (this._dom?.dialog?.open) return;
-            for (const entry of entries) {
-              if (entry.isIntersecting) {
-                const sid = entry.target.dataset.screenId;
-                if (sid && sid !== this._activeId) {
-                  this._setActiveScreen(sid, { scrollStep: false });
-                }
-              }
-            }
-          },
-          { rootMargin: '-38% 0px -38% 0px', threshold: 0 }
-        );
-        for (const el of this._stepEls.values()) {
-          this._stepObserver.observe(el);
+      this._setActiveScreen(this._activeId || m.screens[0].id, { scrollStep: false });
+      this._updateActiveStepFromScroll();
+    }
+
+    _updateActiveStepFromScroll() {
+      if (this._dom?.dialog?.open || !this._stepEls.size) return;
+      if (typeof performance !== 'undefined' && performance.now() < this._scrollLockUntil) return;
+      const vh = window.innerHeight || 900;
+      const focalY = vh * 0.45;
+      let bestId = '';
+      let bestDist = Infinity;
+
+      for (const [sid, el] of this._stepEls.entries()) {
+        const rect = el.getBoundingClientRect();
+        // Skip off-screen steps far away while ensuring first/last steps still win cleanly at edges
+        if (rect.height <= 0) continue;
+        const mid = (rect.top + rect.bottom) * 0.5;
+        const dist = Math.abs(mid - focalY);
+        if (dist < bestDist) {
+          bestDist = dist;
+          bestId = sid;
         }
       }
 
-      this._setActiveScreen(this._activeId || m.screens[0].id, { scrollStep: false });
+      if (bestId && bestId !== this._activeId) {
+        this._setActiveScreen(bestId, { scrollStep: false });
+      }
     }
 
     _setActiveScreen(id, { scrollStep = false } = {}) {
@@ -1672,6 +1704,7 @@
       }
 
       if (scrollStep) {
+        this._scrollLockUntil = (typeof performance !== 'undefined' ? performance.now() : 0) + 650;
         this._stepEls.get(active.id)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
 
