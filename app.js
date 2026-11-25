@@ -1339,15 +1339,7 @@
       progressFill.className = 'ui-story-progress-fill';
       progressTrack.append(progressFill);
 
-      const zoomBtn = document.createElement('button');
-      zoomBtn.type = 'button';
-      zoomBtn.className = 'ui-zoom-btn';
-      zoomBtn.setAttribute('aria-label', 'Phóng to xem chi tiết thao tác');
-      const zoomText = document.createElement('span');
-      zoomText.textContent = 'Phóng to';
-      zoomBtn.append(makeIconNode('maximize-2', 14), zoomText);
-
-      frame.append(mediaStack, stageOpenBtn, zoomBtn, progressTrack);
+      frame.append(mediaStack, stageOpenBtn, progressTrack);
 
       const stageNav = document.createElement('div');
       stageNav.className = 'ui-story-stage-nav';
@@ -1449,7 +1441,6 @@
         this._syncPlayback();
       };
 
-      zoomBtn.addEventListener('click', () => openLightbox());
       stageOpenBtn.addEventListener('click', () => openLightbox());
       closeBtn.addEventListener('click', () => dialog.close());
       prevBtn.addEventListener('click', () => stepScreen(-1));
@@ -1642,16 +1633,11 @@
           preload: 'none',
           className: 'ui-story-inline-video'
         });
-        const inlineZoom = document.createElement('button');
-        inlineZoom.type = 'button';
-        inlineZoom.className = 'ui-story-inline-zoom';
-        inlineZoom.setAttribute('aria-label', `Phóng to ${screen.title}`);
-        inlineZoom.append(makeIconNode('maximize-2', 14));
-        inlineZoom.addEventListener('click', () => d.openLightbox(screen.id));
-        inlineWrap.append(inlineVideo, inlineZoom);
+        inlineWrap.addEventListener('click', () => d.openLightbox(screen.id));
+        inlineWrap.append(inlineVideo);
 
         card.addEventListener('click', event => {
-          if (event.target.closest('.ui-story-inline-zoom, .ui-story-step-trigger')) return;
+          if (event.target.closest('.ui-story-inline-media, .ui-story-step-trigger')) return;
           this._setActiveScreen(screen.id, { scrollStep: false });
         });
         card.append(head, titleBtn, desc, actionHint, list, inlineWrap);
