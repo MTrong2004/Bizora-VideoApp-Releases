@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-25T01:03:25.968Z",
+  "generatedAt": "2026-11-25T01:29:59.721Z",
   "samples": [
     {
       "id": "comic-color",
@@ -52,24 +52,24 @@
       "id": "ai-affiliate",
       "order": 3,
       "badge": "Video AI 9:16",
-      "title": "Video AI Review Sản phẩm · Chuẩn Reels & TikTok",
-      "subtitle": "Ghép nhiều cảnh người mẫu AI từ ảnh tham chiếu, lồng giọng đọc Việt, phụ đề nổi bật và nhạc nền.",
-      "spec": "9:16 Dọc · Ghép đa cảnh AI · Giọng Hoài My & Phụ đề",
+      "title": "Video AI Giới thiệu Sản phẩm · Chuẩn Reels & TikTok",
+      "subtitle": "Ghép nhiều cảnh người mẫu mặc đúng mẫu áo tham chiếu từ nhiều góc quay, đồng bộ nhạc nền sôi động.",
+      "spec": "9:16 Dọc · Nhất quán ảnh tham chiếu · Nhạc nền AI",
       "ratio": "9:16",
       "portrait": true,
       "hasAudio": true,
       "durationLabel": "0:16",
       "highlights": [
-        "Nhất quán trang phục & mẫu AI qua nhiều cảnh",
-        "Chèn phụ đề vàng nổi bật chuẩn short-form",
-        "Tự phối giọng Việt cùng nhạc nền sôi động"
+        "Nhất quán từng chi tiết áo qua nhiều góc quay",
+        "Chuyển mượt từ ảnh sản phẩm sang người mẫu thật",
+        "Tự ghép MP4 9:16 kèm nhạc nền cân bằng âm lượng"
       ],
       "videoWebm": "./assets/videos/sample-ai-affiliate.webm",
       "videoMp4": "./assets/videos/sample-ai-affiliate.mp4",
       "poster": "./assets/videos/sample-ai-affiliate-poster.webp",
       "width": 540,
       "height": 960,
-      "hash": "5be334c53e65"
+      "hash": "c83df8793583"
     },
     {
       "id": "film-review",
