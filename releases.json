@@ -1,17 +1,25 @@
 {
-  "generatedAt": "2026-11-25T02:07:10.505Z",
+  "generatedAt": "2026-11-25T02:36:11.874Z",
   "releases": [
+    {
+      "tag": "v0.3.6",
+      "version": "0.3.6",
+      "title": "0.3.6",
+      "publishedAt": "2026-11-25T02:36:02Z",
+      "size": 0,
+      "downloadUrl": "https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases/tag/v0.3.6",
+      "assetName": "",
+      "sha256": "",
+      "notes": "",
+      "isLatest": true
+    },
     {
       "tag": "v0.3.5",
       "version": "0.3.5",
       "title": "0.3.5",
       "publishedAt": "2026-11-25T02:07:02Z",
-      "size": 0,
-      "downloadUrl": "https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases/tag/v0.3.5",
-      "assetName": "",
-      "sha256": "",
       "notes": "",
-      "isLatest": true
+      "isLatest": false
     },
     {
       "tag": "v0.3.4",
