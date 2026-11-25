@@ -1,17 +1,25 @@
 {
-  "generatedAt": "2026-11-25T03:44:22.718Z",
+  "generatedAt": "2026-11-25T06:54:46.427Z",
   "releases": [
+    {
+      "tag": "v0.3.8",
+      "version": "0.3.8",
+      "title": "0.3.8",
+      "publishedAt": "2026-11-25T06:54:37Z",
+      "size": 0,
+      "downloadUrl": "https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases/tag/v0.3.8",
+      "assetName": "",
+      "sha256": "",
+      "notes": "",
+      "isLatest": true
+    },
     {
       "tag": "v0.3.7",
       "version": "0.3.7",
       "title": "0.3.7",
       "publishedAt": "2026-11-25T03:42:27Z",
-      "size": 124720942,
-      "downloadUrl": "https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases/download/v0.3.7/Bizora-Video-Studio-Setup-0.3.7.exe",
-      "assetName": "Bizora-Video-Studio-Setup-0.3.7.exe",
-      "sha256": "730ec4fbaafcf9e8e7abc26a2efd7218c8257c04a6ec40169165251b951b61d1",
       "notes": "",
-      "isLatest": true
+      "isLatest": false
     },
     {
       "tag": "v0.3.6",
@@ -75,14 +83,6 @@
       "title": "Bizora Video Studio v0.2.0",
       "publishedAt": "2026-11-24T19:05:28Z",
       "notes": "- Giao diện tối giản mới, giảm chói mắt kèm thanh tiêu đề tích hợp, Hàng đợi toàn cục và Thư viện thành phẩm đồng bộ bên thanh trái.\n- Nâng cấp Dịch & Lồng tiếng phim: xem trước trực tiếp, tự nhận diện và làm mờ phụ đề gốc, ngắt dòng cân bằng không rơi chữ đơn lẻ, tối ưu giọng đọc tiếng Việt và bộ nhớ đệm tìm kiếm.\n- Thêm tính năng Review phim tự động 1 chạm từ chọn tập đến xuất video.\n- Hỗ trợ đăng nhập Google / tài khoản Bizora (tùy chọn cho chế độ cục bộ, dùng cho ví Credit và dịch vụ đám mây).\n- Hỗ trợ tự động kiểm tra và cập nhật trực tiếp ngay trong ứng dụng từ phiên bản v0.1.0.",
-      "isLatest": false
-    },
-    {
-      "tag": "v0.1.0",
-      "version": "0.1.0",
-      "title": "Bizora Video Studio v0.1.0",
-      "publishedAt": "2026-11-24T08:08:48Z",
-      "notes": "Phiên bản phát hành đầu tiên có hỗ trợ tự động kiểm tra và cập nhật ngay trong ứng dụng.",
       "isLatest": false
     }
   ]
