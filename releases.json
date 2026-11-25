@@ -1,17 +1,25 @@
 {
-  "generatedAt": "2026-11-24T19:07:55.480Z",
+  "generatedAt": "2026-11-25T00:28:49.556Z",
   "releases": [
+    {
+      "tag": "v0.3.0",
+      "version": "0.3.0",
+      "title": "0.3.0",
+      "publishedAt": "2026-11-25T00:28:38Z",
+      "size": 123967918,
+      "downloadUrl": "https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases/download/v0.3.0/Bizora-Video-Studio-Setup-0.3.0.exe",
+      "assetName": "Bizora-Video-Studio-Setup-0.3.0.exe",
+      "sha256": "dc4623d4404122d96142c51d36f3319c9325b2ac43d932c07acb275bb76cd3b7",
+      "notes": "",
+      "isLatest": true
+    },
     {
       "tag": "v0.2.0",
       "version": "0.2.0",
       "title": "Bizora Video Studio v0.2.0",
       "publishedAt": "2026-11-24T19:05:28Z",
-      "size": 123189215,
-      "downloadUrl": "https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases/download/v0.2.0/Bizora-Video-Studio-Setup-0.2.0.exe",
-      "assetName": "Bizora-Video-Studio-Setup-0.2.0.exe",
-      "sha256": "978d85ea3a8770d04ab38f64549cd51860b79fa1ee87a4154dc9e155aee08b9d",
       "notes": "- Giao diện tối giản mới, giảm chói mắt kèm thanh tiêu đề tích hợp, Hàng đợi toàn cục và Thư viện thành phẩm đồng bộ bên thanh trái.\n- Nâng cấp Dịch & Lồng tiếng phim: xem trước trực tiếp, tự nhận diện và làm mờ phụ đề gốc, ngắt dòng cân bằng không rơi chữ đơn lẻ, tối ưu giọng đọc tiếng Việt và bộ nhớ đệm tìm kiếm.\n- Thêm tính năng Review phim tự động 1 chạm từ chọn tập đến xuất video.\n- Hỗ trợ đăng nhập Google / tài khoản Bizora (tùy chọn cho chế độ cục bộ, dùng cho ví Credit và dịch vụ đám mây).\n- Hỗ trợ tự động kiểm tra và cập nhật trực tiếp ngay trong ứng dụng từ phiên bản v0.1.0.",
-      "isLatest": true
+      "isLatest": false
     },
     {
       "tag": "v0.1.0",
