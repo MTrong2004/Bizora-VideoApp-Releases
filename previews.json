@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
-  "appVersion": "0.2.0",
-  "buildHash": "4e1937a7",
-  "uiFingerprint": "3f8c6ff72ecd3100",
-  "capturedAt": "2026-11-25T00:21:12.503Z",
+  "appVersion": "0.3.0",
+  "buildHash": "5e13c250",
+  "uiFingerprint": "7afde23263928e18",
+  "capturedAt": "2026-11-25T00:27:55.757Z",
   "viewport": {
     "width": 1280,
     "height": 800
@@ -25,7 +25,7 @@
       "videoWebm": "./assets/previews/film-translate.webm",
       "videoMp4": "./assets/previews/film-translate.mp4",
       "poster": "./assets/previews/film-translate-poster.webp",
-      "hash": "95c0937836bc",
+      "hash": "66ab9012eec0",
       "width": 1280,
       "height": 800
     },
@@ -45,7 +45,7 @@
       "videoWebm": "./assets/previews/film.webm",
       "videoMp4": "./assets/previews/film.mp4",
       "poster": "./assets/previews/film-poster.webp",
-      "hash": "d9d3744367d9",
+      "hash": "8bdd44fdd4fc",
       "width": 1280,
       "height": 800
     },
@@ -65,7 +65,7 @@
       "videoWebm": "./assets/previews/comic.webm",
       "videoMp4": "./assets/previews/comic.mp4",
       "poster": "./assets/previews/comic-poster.webp",
-      "hash": "5065820ae31b",
+      "hash": "f39e3a14cdcd",
       "width": 1280,
       "height": 800
     },
@@ -85,7 +85,7 @@
       "videoWebm": "./assets/previews/generate.webm",
       "videoMp4": "./assets/previews/generate.mp4",
       "poster": "./assets/previews/generate-poster.webp",
-      "hash": "3e331e6882e0",
+      "hash": "a44a4314c9df",
       "width": 1280,
       "height": 800
     },
@@ -105,7 +105,7 @@
       "videoWebm": "./assets/previews/publishing.webm",
       "videoMp4": "./assets/previews/publishing.mp4",
       "poster": "./assets/previews/publishing-poster.webp",
-      "hash": "a961840a2fcf",
+      "hash": "d4d3457090ef",
       "width": 1280,
       "height": 800
     },
@@ -125,7 +125,7 @@
       "videoWebm": "./assets/previews/home.webm",
       "videoMp4": "./assets/previews/home.mp4",
       "poster": "./assets/previews/home-poster.webp",
-      "hash": "bb39e92bb1ac",
+      "hash": "fdc6476b1407",
       "width": 1280,
       "height": 800
     }
