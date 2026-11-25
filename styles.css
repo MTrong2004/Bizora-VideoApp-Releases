@@ -728,15 +728,15 @@
     font-family: var(--font-display);
     font-size: clamp(2.15rem, 1.3rem + 3.5vw, 4.35rem);
     font-weight: 700;
-    line-height: 1.18;
+    line-height: 1.1;
     letter-spacing: -0.035em;
     text-wrap: balance;
   }
 
   .hero-grad-line {
     display: block;
-    padding-block: 0.08em 0.16em;
-    margin-block: -0.08em -0.16em;
+    padding-block: 0.08em 0.18em;
+    margin-block: -0.08em -0.18em;
     background: linear-gradient(to bottom var(--in-oklab), var(--text-primary) 35%, var(--hero-grad-end));
     -webkit-background-clip: text;
     background-clip: text;
