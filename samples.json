@@ -1,33 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-25T00:33:51.352Z",
+  "generatedAt": "2026-11-25T01:03:25.968Z",
   "samples": [
     {
-      "id": "film-translate",
-      "order": 1,
-      "badge": "Dịch & Lồng tiếng",
-      "title": "Dịch phim Trung · Lồng tiếng Việt song ngữ",
-      "subtitle": "Tự làm mờ chữ gốc dưới chân khung hình, khớp phụ đề tiếng Việt gọn gàng kèm giọng đọc tự nhiên.",
-      "spec": "16:9 · Giọng Việt AI · Làm mờ phụ đề gốc",
-      "ratio": "16:9",
-      "portrait": false,
-      "hasAudio": true,
-      "durationLabel": "0:15",
-      "highlights": [
-        "Tự nhận diện và làm mờ chữ gốc",
-        "Phụ đề tiếng Việt ngắt dòng cân bằng",
-        "Lồng tiếng Việt khớp nhịp từng câu thoại"
-      ],
-      "videoWebm": "./assets/videos/sample-film-translate.webm",
-      "videoMp4": "./assets/videos/sample-film-translate.mp4",
-      "poster": "./assets/videos/sample-film-translate-poster.webp",
-      "width": 1280,
-      "height": 720,
-      "hash": "a4a2d05d214d"
-    },
-    {
       "id": "comic-color",
-      "order": 2,
+      "order": 1,
       "badge": "Review truyện màu",
       "title": "Review Truyện tranh màu · Dựng 1 chạm",
       "subtitle": "Tách từng khung tranh màu sắc nét trên nền mờ đồng điệu, chèn lời bình và phụ đề tự động.",
@@ -50,7 +27,7 @@
     },
     {
       "id": "comic-manga",
-      "order": 3,
+      "order": 2,
       "badge": "Review Manga",
       "title": "Review Manga Nhất Quyền Nhân · Nhịp hành động",
       "subtitle": "Chuyển khung cảnh chiến đấu đen trắng với hiệu ứng cuộn nhịp, cắt gọn cảnh thừa và khớp giọng đọc.",
@@ -73,7 +50,7 @@
     },
     {
       "id": "ai-affiliate",
-      "order": 4,
+      "order": 3,
       "badge": "Video AI 9:16",
       "title": "Video AI Review Sản phẩm · Chuẩn Reels & TikTok",
       "subtitle": "Ghép nhiều cảnh người mẫu AI từ ảnh tham chiếu, lồng giọng đọc Việt, phụ đề nổi bật và nhạc nền.",
@@ -96,7 +73,7 @@
     },
     {
       "id": "film-review",
-      "order": 5,
+      "order": 4,
       "badge": "Review phim",
       "title": "Review Phim điện ảnh · Phụ đề khớp nhịp",
       "subtitle": "Gom cảnh đắt giá theo mạch kể cao trào kèm phụ đề căn dòng chuẩn điện ảnh.",
@@ -119,7 +96,7 @@
     },
     {
       "id": "multiratio",
-      "order": 6,
+      "order": 5,
       "badge": "Đa khung hình",
       "title": "Xuất đồng bộ đa khung hình từng kênh",
       "subtitle": "Một lần dựng ra trọn bộ 16:9 YouTube, 9:16 Shorts/Reels và 1:1 Bảng tin.",
