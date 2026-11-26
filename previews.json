@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
-  "appVersion": "0.3.4",
-  "buildHash": "6d391357",
-  "uiFingerprint": "cff4b49d3df5d68c",
-  "capturedAt": "2026-11-25T01:57:05.266Z",
+  "appVersion": "0.3.9",
+  "buildHash": "a7cf3abf",
+  "uiFingerprint": "1053aee9049ab264",
+  "capturedAt": "2026-11-26T09:05:10.937Z",
   "viewport": {
     "width": 1280,
     "height": 800
@@ -25,7 +25,7 @@
       "videoWebm": "./assets/previews/film-translate.webm",
       "videoMp4": "./assets/previews/film-translate.mp4",
       "poster": "./assets/previews/film-translate-poster.webp",
-      "hash": "8b859031e1aa",
+      "hash": "d3e29ce02366",
       "width": 1280,
       "height": 800
     },
@@ -45,7 +45,7 @@
       "videoWebm": "./assets/previews/film.webm",
       "videoMp4": "./assets/previews/film.mp4",
       "poster": "./assets/previews/film-poster.webp",
-      "hash": "274f77aec17a",
+      "hash": "45420ff421b7",
       "width": 1280,
       "height": 800
     },
@@ -65,18 +65,18 @@
       "videoWebm": "./assets/previews/comic.webm",
       "videoMp4": "./assets/previews/comic.mp4",
       "poster": "./assets/previews/comic-poster.webp",
-      "hash": "dbd807b229b2",
+      "hash": "a94610aca05d",
       "width": 1280,
       "height": 800
     },
     {
       "id": "generate",
       "order": 4,
-      "badge": "Tạo video AI",
+      "badge": "Video Affiliate",
       "icon": "sparkles",
-      "title": "Xưởng Tạo Video AI đa cảnh",
+      "title": "Xưởng Video Affiliate đa cảnh",
       "subtitle": "Quản lý kịch bản nhiều cảnh quay, ảnh tham chiếu, xóa watermark và ghép thành phẩm.",
-      "actionHint": "Xem thành phẩm AI vừa dựng · Mở nhanh xưởng tạo mới",
+      "actionHint": "Xem thành phẩm vừa dựng · Mở nhanh xưởng tạo mới",
       "highlights": [
         "Điều phối đa cảnh & ảnh tham chiếu",
         "Hàng đợi song song & tự xóa logo góc",
@@ -85,13 +85,33 @@
       "videoWebm": "./assets/previews/generate.webm",
       "videoMp4": "./assets/previews/generate.mp4",
       "poster": "./assets/previews/generate-poster.webp",
-      "hash": "4aa154324c76",
+      "hash": "6a7d1ff0f600",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "id": "ai-movie",
+      "order": 5,
+      "badge": "Tạo phim AI",
+      "icon": "clapperboard",
+      "title": "Xưởng Tạo Phim AI theo lộ trình Lego",
+      "subtitle": "Ghép khối nhịp kịch bản, chọn phong cách 3D/Anime, dự toán chi phí API và dựng phim liền mạch.",
+      "actionHint": "Chọn phong cách hình ảnh · Ghép khối kịch bản Lego & xem dự toán",
+      "highlights": [
+        "Lộ trình kịch bản Lego kéo-thả & đổi nhịp từng cảnh",
+        "Nhiều phong cách 3D, Anime & ước tính chi phí API tức thì",
+        "Khóa bối cảnh, nối cảnh mượt & xuất 1080p sắc nét"
+      ],
+      "videoWebm": "./assets/previews/ai-movie.webm",
+      "videoMp4": "./assets/previews/ai-movie.mp4",
+      "poster": "./assets/previews/ai-movie-poster.webp",
+      "hash": "1bf899522241",
       "width": 1280,
       "height": 800
     },
     {
       "id": "publishing",
-      "order": 5,
+      "order": 6,
       "badge": "Kênh đăng",
       "icon": "send",
       "title": "Kênh đăng & Lịch xuất bản",
@@ -105,27 +125,27 @@
       "videoWebm": "./assets/previews/publishing.webm",
       "videoMp4": "./assets/previews/publishing.mp4",
       "poster": "./assets/previews/publishing-poster.webp",
-      "hash": "43b088610845",
+      "hash": "f14e7c1997d6",
       "width": 1280,
       "height": 800
     },
     {
       "id": "home",
-      "order": 6,
+      "order": 7,
       "badge": "Tổng quan",
       "icon": "layout-grid",
       "title": "Không gian làm việc hợp nhất",
       "subtitle": "Truy cập nhanh mọi xưởng sản xuất, dự án gần đây, hàng chờ toàn cục và thư viện.",
       "actionHint": "Lọc nhanh dự án theo xưởng · Theo dõi lịch sắp đăng",
       "highlights": [
-        "Thanh khởi chạy nhanh 5 xưởng chính",
+        "Thanh khởi chạy nhanh 6 xưởng chính",
         "Theo dõi dự án & lịch sắp đăng",
         "Lưu cục bộ an toàn, không mất dữ liệu"
       ],
       "videoWebm": "./assets/previews/home.webm",
       "videoMp4": "./assets/previews/home.mp4",
       "poster": "./assets/previews/home-poster.webp",
-      "hash": "c5c42e49c9ca",
+      "hash": "0413e9835df0",
       "width": 1280,
       "height": 800
     }
