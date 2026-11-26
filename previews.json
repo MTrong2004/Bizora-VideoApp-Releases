@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
-  "appVersion": "0.3.12",
-  "buildHash": "03b811fd",
-  "uiFingerprint": "81d67f675be3aea8",
-  "capturedAt": "2026-11-26T17:09:01.495Z",
+  "appVersion": "0.3.13",
+  "buildHash": "23d05b46",
+  "uiFingerprint": "20c05d3495b37661",
+  "capturedAt": "2026-11-26T18:00:44.341Z",
   "viewport": {
     "width": 1280,
     "height": 800
@@ -25,7 +25,7 @@
       "videoWebm": "./assets/previews/film-translate.webm",
       "videoMp4": "./assets/previews/film-translate.mp4",
       "poster": "./assets/previews/film-translate-poster.webp",
-      "hash": "04fdb6460d40",
+      "hash": "3b69aee6c48f",
       "width": 1280,
       "height": 800
     },
@@ -45,7 +45,7 @@
       "videoWebm": "./assets/previews/film.webm",
       "videoMp4": "./assets/previews/film.mp4",
       "poster": "./assets/previews/film-poster.webp",
-      "hash": "3529eb853e48",
+      "hash": "06d5aa962dea",
       "width": 1280,
       "height": 800
     },
@@ -65,7 +65,7 @@
       "videoWebm": "./assets/previews/comic.webm",
       "videoMp4": "./assets/previews/comic.mp4",
       "poster": "./assets/previews/comic-poster.webp",
-      "hash": "79ecd998c034",
+      "hash": "22a63f78082d",
       "width": 1280,
       "height": 800
     },
@@ -85,7 +85,7 @@
       "videoWebm": "./assets/previews/generate.webm",
       "videoMp4": "./assets/previews/generate.mp4",
       "poster": "./assets/previews/generate-poster.webp",
-      "hash": "13e1ffdfe7f8",
+      "hash": "935b1b224934",
       "width": 1280,
       "height": 800
     },
@@ -105,7 +105,7 @@
       "videoWebm": "./assets/previews/ai-movie.webm",
       "videoMp4": "./assets/previews/ai-movie.mp4",
       "poster": "./assets/previews/ai-movie-poster.webp",
-      "hash": "f72347c97724",
+      "hash": "d1d837fe4bab",
       "width": 1280,
       "height": 800
     },
@@ -125,7 +125,7 @@
       "videoWebm": "./assets/previews/ai-music.webm",
       "videoMp4": "./assets/previews/ai-music.mp4",
       "poster": "./assets/previews/ai-music-poster.webp",
-      "hash": "b7b3e9ca08b5",
+      "hash": "56958dc6304b",
       "width": 1280,
       "height": 800
     },
@@ -145,7 +145,7 @@
       "videoWebm": "./assets/previews/publishing.webm",
       "videoMp4": "./assets/previews/publishing.mp4",
       "poster": "./assets/previews/publishing-poster.webp",
-      "hash": "c5badf6e40d9",
+      "hash": "11ab4bc15e2c",
       "width": 1280,
       "height": 800
     },
@@ -165,7 +165,7 @@
       "videoWebm": "./assets/previews/home.webm",
       "videoMp4": "./assets/previews/home.mp4",
       "poster": "./assets/previews/home-poster.webp",
-      "hash": "e27d42c5877d",
+      "hash": "7493c7f9023c",
       "width": 1280,
       "height": 800
     }
