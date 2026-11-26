@@ -947,6 +947,69 @@
       container.append(p);
     }
 
+    _buildReleaseCard(rel, isLatest) {
+      const card = document.createElement('article');
+      card.className = isLatest ? 'release-card release-card--latest' : 'release-card release-card--archived';
+
+      const head = document.createElement('div');
+      head.className = 'release-head';
+
+      const titleGroup = document.createElement('div');
+      titleGroup.className = 'release-title-group';
+
+      const tagPill = document.createElement('span');
+      tagPill.className = 'release-tag';
+      tagPill.textContent = rel.tag || `v${rel.version}`;
+      titleGroup.append(tagPill);
+
+      if (isLatest) {
+        const latestBadge = document.createElement('span');
+        latestBadge.className = 'release-latest-badge';
+        latestBadge.textContent = 'Mới nhất';
+        titleGroup.append(latestBadge);
+      }
+
+      const parts = [];
+      const dateStr = formatDateVi(rel.publishedAt);
+      if (dateStr) parts.push(`Phát hành ${dateStr}`);
+      if (isLatest) {
+        const sizeStr = formatBytes(rel.size);
+        if (sizeStr) parts.push(sizeStr);
+        if (rel.assetName) parts.push(rel.assetName);
+      }
+
+      if (parts.length) {
+        const metaEl = document.createElement('span');
+        metaEl.className = 'release-meta';
+        metaEl.textContent = parts.join(' · ');
+        titleGroup.append(metaEl);
+      }
+
+      if (isLatest) {
+        const dlBtn = document.createElement('a');
+        dlBtn.className = 'btn btn-accent-solid btn-sm';
+        dlBtn.href = rel.downloadUrl || LATEST_RELEASE_URL;
+        const dlSpan = document.createElement('span');
+        dlSpan.textContent = 'Tải bản mới nhất';
+        dlBtn.append(makeIconNode('download', 14), dlSpan);
+        head.append(titleGroup, dlBtn);
+      } else {
+        const archivedPill = document.createElement('span');
+        archivedPill.className = 'release-archived-pill';
+        const archivedLabel = document.createElement('span');
+        archivedLabel.textContent = 'Chỉ lưu lịch sử';
+        archivedPill.append(makeIconNode('lock', 13), archivedLabel);
+        head.append(titleGroup, archivedPill);
+      }
+
+      const notesScroll = document.createElement('div');
+      notesScroll.className = 'notes-scroll';
+      this._renderNotesContent(notesScroll, rel.notes);
+
+      card.append(head, notesScroll);
+      return card;
+    }
+
     _render() {
       const wrap = document.createElement('div');
       wrap.className = 'release-list';
@@ -958,69 +1021,50 @@
         wrap.append(note);
       }
 
-      this._releases.forEach((rel, idx) => {
-        const isLatest = idx === 0;
-        const card = document.createElement('article');
-        card.className = isLatest ? 'release-card release-card--latest' : 'release-card release-card--archived';
-
-        const head = document.createElement('div');
-        head.className = 'release-head';
-
-        const titleGroup = document.createElement('div');
-        titleGroup.className = 'release-title-group';
-
-        const tagPill = document.createElement('span');
-        tagPill.className = 'release-tag';
-        tagPill.textContent = rel.tag || `v${rel.version}`;
-        titleGroup.append(tagPill);
-
-        if (isLatest) {
-          const latestBadge = document.createElement('span');
-          latestBadge.className = 'release-latest-badge';
-          latestBadge.textContent = 'Mới nhất';
-          titleGroup.append(latestBadge);
-        }
-
-        const parts = [];
-        const dateStr = formatDateVi(rel.publishedAt);
-        if (dateStr) parts.push(`Phát hành ${dateStr}`);
-        if (isLatest) {
-          const sizeStr = formatBytes(rel.size);
-          if (sizeStr) parts.push(sizeStr);
-          if (rel.assetName) parts.push(rel.assetName);
-        }
-
-        if (parts.length) {
-          const metaEl = document.createElement('span');
-          metaEl.className = 'release-meta';
-          metaEl.textContent = parts.join(' · ');
-          titleGroup.append(metaEl);
-        }
-
-        if (isLatest) {
-          const dlBtn = document.createElement('a');
-          dlBtn.className = 'btn btn-accent-solid btn-sm';
-          dlBtn.href = rel.downloadUrl || LATEST_RELEASE_URL;
-          const dlSpan = document.createElement('span');
-          dlSpan.textContent = 'Tải bản mới nhất';
-          dlBtn.append(makeIconNode('download', 14), dlSpan);
-          head.append(titleGroup, dlBtn);
+      const visibleIdx = new Set([0]);
+      const olderWithNotes = [];
+      const olderOther = [];
+      for (let i = 1; i < this._releases.length; i++) {
+        if (String(this._releases[i]?.notes || '').trim()) {
+          olderWithNotes.push(i);
         } else {
-          const archivedPill = document.createElement('span');
-          archivedPill.className = 'release-archived-pill';
-          const archivedLabel = document.createElement('span');
-          archivedLabel.textContent = 'Chỉ lưu lịch sử';
-          archivedPill.append(makeIconNode('lock', 13), archivedLabel);
-          head.append(titleGroup, archivedPill);
+          olderOther.push(i);
+        }
+      }
+      for (const idx of [...olderWithNotes, ...olderOther]) {
+        if (visibleIdx.size >= 3) break;
+        visibleIdx.add(idx);
+      }
+
+      const hiddenReleases = [];
+      this._releases.forEach((rel, idx) => {
+        if (visibleIdx.has(idx)) {
+          wrap.append(this._buildReleaseCard(rel, idx === 0));
+        } else {
+          hiddenReleases.push(rel);
+        }
+      });
+
+      if (hiddenReleases.length) {
+        const drawer = document.createElement('details');
+        drawer.className = 'release-archive-drawer';
+        const firstTag = hiddenReleases[0].tag || `v${hiddenReleases[0].version}`;
+        const lastTag = hiddenReleases[hiddenReleases.length - 1].tag || `v${hiddenReleases[hiddenReleases.length - 1].version}`;
+        const summary = document.createElement('summary');
+        summary.className = 'release-archive-summary';
+        summary.textContent = hiddenReleases.length > 1
+          ? `Xem thêm ${hiddenReleases.length} phiên bản trước (${firstTag} – ${lastTag})`
+          : `Xem thêm phiên bản trước (${firstTag})`;
+
+        const archiveList = document.createElement('div');
+        archiveList.className = 'release-archive-list';
+        for (const rel of hiddenReleases) {
+          archiveList.append(this._buildReleaseCard(rel, false));
         }
 
-        const notesScroll = document.createElement('div');
-        notesScroll.className = 'notes-scroll';
-        this._renderNotesContent(notesScroll, rel.notes);
-
-        card.append(head, notesScroll);
-        wrap.append(card);
-      });
+        drawer.append(summary, archiveList);
+        wrap.append(drawer);
+      }
 
       this.replaceChildren(wrap);
     }
@@ -1246,6 +1290,7 @@
       this._inlineVideos = new Map();
       this._stepEls = new Map();
       this._dotEls = new Map();
+      this._pillEls = new Map();
     }
 
     connectedCallback() {
@@ -1303,6 +1348,10 @@
 
     _ensureDom() {
       if (this._dom) return;
+
+      const pillsNav = document.createElement('nav');
+      pillsNav.className = 'ui-story-pills';
+      pillsNav.setAttribute('aria-label', 'Chuyển nhanh xưởng sản xuất');
 
       const wrap = document.createElement('div');
       wrap.className = 'ui-story-layout';
@@ -1423,7 +1472,7 @@
       dialog.append(dlgShell);
 
       wrap.append(rail, stageCol, emptyMsg, dialog);
-      this.replaceChildren(wrap);
+      this.replaceChildren(pillsNav, wrap);
 
       const stepScreen = delta => {
         const screens = this._manifest?.screens || [];
@@ -1514,6 +1563,7 @@
       }
 
       this._dom = {
+        pillsNav,
         rail,
         sticky,
         mediaStack,
@@ -1569,6 +1619,23 @@
       this._inlineVideos.clear();
       this._stepEls.clear();
       this._dotEls.clear();
+      this._pillEls.clear();
+
+      const pillNodes = m.screens.map(screen => {
+        const pill = document.createElement('button');
+        pill.type = 'button';
+        pill.className = 'ui-story-pill';
+        pill.dataset.screenId = screen.id;
+        const label = document.createElement('span');
+        label.textContent = screen.badge;
+        pill.append(makeIconNode(screen.icon, 14), label);
+        pill.addEventListener('click', () => {
+          this._setActiveScreen(screen.id, { scrollStep: true });
+        });
+        this._pillEls.set(screen.id, pill);
+        return pill;
+      });
+      d.pillsNav?.replaceChildren(...pillNodes);
 
       const allLazyVideos = [];
       const railNodes = m.screens.map((screen, idx) => {
@@ -1732,6 +1799,12 @@
         const isCurrent = sid === active.id;
         dot.classList.toggle('is-active', isCurrent);
         dot.setAttribute('aria-current', isCurrent ? 'step' : 'false');
+      }
+
+      for (const [sid, pill] of this._pillEls.entries()) {
+        const isCurrent = sid === active.id;
+        pill.classList.toggle('is-active', isCurrent);
+        pill.setAttribute('aria-current', isCurrent ? 'step' : 'false');
       }
 
       for (const [sid, vid] of this._stageVideos.entries()) {

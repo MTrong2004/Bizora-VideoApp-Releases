@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
   "appVersion": "0.3.9",
-  "buildHash": "a7cf3abf",
-  "uiFingerprint": "1053aee9049ab264",
-  "capturedAt": "2026-11-26T09:05:10.937Z",
+  "buildHash": "4bc7b0f1",
+  "uiFingerprint": "1854bc34444fb90f",
+  "capturedAt": "2026-11-26T09:25:47.829Z",
   "viewport": {
     "width": 1280,
     "height": 800
@@ -25,7 +25,7 @@
       "videoWebm": "./assets/previews/film-translate.webm",
       "videoMp4": "./assets/previews/film-translate.mp4",
       "poster": "./assets/previews/film-translate-poster.webp",
-      "hash": "d3e29ce02366",
+      "hash": "a3eaca7920ff",
       "width": 1280,
       "height": 800
     },
@@ -45,7 +45,7 @@
       "videoWebm": "./assets/previews/film.webm",
       "videoMp4": "./assets/previews/film.mp4",
       "poster": "./assets/previews/film-poster.webp",
-      "hash": "45420ff421b7",
+      "hash": "b171c1a00aea",
       "width": 1280,
       "height": 800
     },
@@ -65,7 +65,7 @@
       "videoWebm": "./assets/previews/comic.webm",
       "videoMp4": "./assets/previews/comic.mp4",
       "poster": "./assets/previews/comic-poster.webp",
-      "hash": "a94610aca05d",
+      "hash": "ecd0484f5063",
       "width": 1280,
       "height": 800
     },
@@ -85,7 +85,7 @@
       "videoWebm": "./assets/previews/generate.webm",
       "videoMp4": "./assets/previews/generate.mp4",
       "poster": "./assets/previews/generate-poster.webp",
-      "hash": "6a7d1ff0f600",
+      "hash": "97de7b8d5023",
       "width": 1280,
       "height": 800
     },
@@ -105,7 +105,7 @@
       "videoWebm": "./assets/previews/ai-movie.webm",
       "videoMp4": "./assets/previews/ai-movie.mp4",
       "poster": "./assets/previews/ai-movie-poster.webp",
-      "hash": "1bf899522241",
+      "hash": "0a28e553c65d",
       "width": 1280,
       "height": 800
     },
@@ -125,7 +125,7 @@
       "videoWebm": "./assets/previews/publishing.webm",
       "videoMp4": "./assets/previews/publishing.mp4",
       "poster": "./assets/previews/publishing-poster.webp",
-      "hash": "f14e7c1997d6",
+      "hash": "49e7d7f85d64",
       "width": 1280,
       "height": 800
     },
@@ -145,7 +145,7 @@
       "videoWebm": "./assets/previews/home.webm",
       "videoMp4": "./assets/previews/home.mp4",
       "poster": "./assets/previews/home-poster.webp",
-      "hash": "0413e9835df0",
+      "hash": "fffa822e5aa7",
       "width": 1280,
       "height": 800
     }
