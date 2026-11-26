@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
-  "appVersion": "0.3.9",
-  "buildHash": "4bc7b0f1",
-  "uiFingerprint": "1854bc34444fb90f",
-  "capturedAt": "2026-11-26T09:25:47.829Z",
+  "appVersion": "0.3.12",
+  "buildHash": "03b811fd",
+  "uiFingerprint": "81d67f675be3aea8",
+  "capturedAt": "2026-11-26T17:09:01.495Z",
   "viewport": {
     "width": 1280,
     "height": 800
@@ -25,7 +25,7 @@
       "videoWebm": "./assets/previews/film-translate.webm",
       "videoMp4": "./assets/previews/film-translate.mp4",
       "poster": "./assets/previews/film-translate-poster.webp",
-      "hash": "a3eaca7920ff",
+      "hash": "04fdb6460d40",
       "width": 1280,
       "height": 800
     },
@@ -45,7 +45,7 @@
       "videoWebm": "./assets/previews/film.webm",
       "videoMp4": "./assets/previews/film.mp4",
       "poster": "./assets/previews/film-poster.webp",
-      "hash": "b171c1a00aea",
+      "hash": "3529eb853e48",
       "width": 1280,
       "height": 800
     },
@@ -65,7 +65,7 @@
       "videoWebm": "./assets/previews/comic.webm",
       "videoMp4": "./assets/previews/comic.mp4",
       "poster": "./assets/previews/comic-poster.webp",
-      "hash": "ecd0484f5063",
+      "hash": "79ecd998c034",
       "width": 1280,
       "height": 800
     },
@@ -85,7 +85,7 @@
       "videoWebm": "./assets/previews/generate.webm",
       "videoMp4": "./assets/previews/generate.mp4",
       "poster": "./assets/previews/generate-poster.webp",
-      "hash": "97de7b8d5023",
+      "hash": "13e1ffdfe7f8",
       "width": 1280,
       "height": 800
     },
@@ -105,13 +105,33 @@
       "videoWebm": "./assets/previews/ai-movie.webm",
       "videoMp4": "./assets/previews/ai-movie.mp4",
       "poster": "./assets/previews/ai-movie-poster.webp",
-      "hash": "0a28e553c65d",
+      "hash": "f72347c97724",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "id": "ai-music",
+      "order": 6,
+      "badge": "Tạo nhạc AI",
+      "icon": "volume-2",
+      "title": "Xưởng Tạo Nhạc AI & Xuất MV",
+      "subtitle": "Tìm nguồn nhạc, viết lời Việt chuẩn nhịp, tạo bài hát AI và xuất MV hoàn chỉnh.",
+      "actionHint": "Chọn nguồn nhạc · Soạn lời Việt & xuất MV sắc nét",
+      "highlights": [
+        "Kho gợi ý nhạc & viết lời Việt khớp giai điệu",
+        "Tạo nhạc AI chất lượng cao trực tiếp trong ứng dụng",
+        "Xuất MV kèm ảnh bìa, phụ đề karaoke & lưu thư viện"
+      ],
+      "videoWebm": "./assets/previews/ai-music.webm",
+      "videoMp4": "./assets/previews/ai-music.mp4",
+      "poster": "./assets/previews/ai-music-poster.webp",
+      "hash": "b7b3e9ca08b5",
       "width": 1280,
       "height": 800
     },
     {
       "id": "publishing",
-      "order": 6,
+      "order": 7,
       "badge": "Kênh đăng",
       "icon": "send",
       "title": "Kênh đăng & Lịch xuất bản",
@@ -125,13 +145,13 @@
       "videoWebm": "./assets/previews/publishing.webm",
       "videoMp4": "./assets/previews/publishing.mp4",
       "poster": "./assets/previews/publishing-poster.webp",
-      "hash": "49e7d7f85d64",
+      "hash": "c5badf6e40d9",
       "width": 1280,
       "height": 800
     },
     {
       "id": "home",
-      "order": 7,
+      "order": 8,
       "badge": "Tổng quan",
       "icon": "layout-grid",
       "title": "Không gian làm việc hợp nhất",
@@ -145,7 +165,7 @@
       "videoWebm": "./assets/previews/home.webm",
       "videoMp4": "./assets/previews/home.mp4",
       "poster": "./assets/previews/home-poster.webp",
-      "hash": "fffa822e5aa7",
+      "hash": "e27d42c5877d",
       "width": 1280,
       "height": 800
     }
