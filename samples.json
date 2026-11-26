@@ -1,33 +1,56 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-26T09:22:12.179Z",
+  "generatedAt": "2026-11-26T11:21:25.834Z",
   "samples": [
     {
-      "id": "ai-movie",
+      "id": "ai-movie-rainbow",
       "order": 1,
       "badge": "Tạo phim AI 3D",
-      "title": "Phim Hoạt hình Dạy học 3D · Khớp thoại & bối cảnh",
-      "subtitle": "Dựng liền mạch nhiều cảnh hoạt hình 3D Pixar, khóa nhân vật, lồng tiếng Việt và phụ đề cân dòng.",
-      "spec": "16:9 · Hoạt hình 3D Pixar · Lồng tiếng & phụ đề chuẩn",
+      "title": "Hoạt hình 3D · Vì sao cầu vồng có 7 màu?",
+      "subtitle": "Phim giáo dục 3D Pixar nối cảnh mượt, giữ nhất quán nhân vật & sân vườn qua từng góc máy.",
+      "spec": "16:9 · Hoạt hình 3D Pixar · Lồng tiếng Việt chuẩn",
       "ratio": "16:9",
       "portrait": false,
       "hasAudio": true,
       "durationLabel": "0:16",
       "highlights": [
-        "Khóa nhất quán nhân vật & gian bếp qua từng cảnh",
-        "Giọng thoại tiếng Việt tự nhiên, phụ đề không rơi từ",
+        "Khóa nhất quán nhân vật & bối cảnh sân nhà",
+        "Giọng thoại tiếng Việt tự nhiên, biểu cảm sống động",
         "Xuất 1080p sắc nét sẵn sàng đăng YouTube"
       ],
-      "videoWebm": "./assets/videos/sample-ai-movie.webm",
-      "videoMp4": "./assets/videos/sample-ai-movie.mp4",
-      "poster": "./assets/videos/sample-ai-movie-poster.webp",
+      "videoWebm": "./assets/videos/sample-ai-movie-rainbow.webm",
+      "videoMp4": "./assets/videos/sample-ai-movie-rainbow.mp4",
+      "poster": "./assets/videos/sample-ai-movie-rainbow-poster.webp",
       "width": 1280,
       "height": 720,
-      "hash": "a0d9acae6513"
+      "hash": "7dd797bc8900"
+    },
+    {
+      "id": "ai-movie-kitchen",
+      "order": 2,
+      "badge": "Tạo phim AI 3D",
+      "title": "Hoạt hình 3D · Mẹ ơi, \"kho\" nào ạ?",
+      "subtitle": "Bài học từ đồng âm trong căn bếp Việt Nam với chuyển động nhân vật tự nhiên và thoại khớp khẩu hình.",
+      "spec": "16:9 · Hoạt hình 3D Pixar · Khớp thoại & ánh sáng",
+      "ratio": "16:9",
+      "portrait": false,
+      "hasAudio": true,
+      "durationLabel": "0:16",
+      "highlights": [
+        "Giữ trọn chi tiết căn bếp & nhân vật qua từng cảnh",
+        "Ánh sáng 3D ấm áp, chuyển cảnh mượt mà",
+        "Dựng trọn bộ 16:9 kèm âm thanh & nhạc nền"
+      ],
+      "videoWebm": "./assets/videos/sample-ai-movie-kitchen.webm",
+      "videoMp4": "./assets/videos/sample-ai-movie-kitchen.mp4",
+      "poster": "./assets/videos/sample-ai-movie-kitchen-poster.webp",
+      "width": 1280,
+      "height": 720,
+      "hash": "d5f1aa193bb2"
     },
     {
       "id": "comic-color",
-      "order": 2,
+      "order": 3,
       "badge": "Review truyện màu",
       "title": "Review Truyện tranh màu · Dựng 1 chạm",
       "subtitle": "Tách từng khung tranh màu sắc nét trên nền mờ đồng điệu, chèn lời bình và phụ đề tự động.",
@@ -50,7 +73,7 @@
     },
     {
       "id": "comic-manga",
-      "order": 3,
+      "order": 4,
       "badge": "Review Manga",
       "title": "Review Manga Nhất Quyền Nhân · Nhịp hành động",
       "subtitle": "Chuyển khung cảnh chiến đấu đen trắng với hiệu ứng cuộn nhịp, cắt gọn cảnh thừa và khớp giọng đọc.",
@@ -73,7 +96,7 @@
     },
     {
       "id": "ai-affiliate",
-      "order": 4,
+      "order": 5,
       "badge": "Video Affiliate 9:16",
       "title": "Video Affiliate Sản phẩm · Chuẩn Reels & TikTok",
       "subtitle": "Ghép nhiều cảnh người mẫu mặc đúng mẫu áo tham chiếu từ nhiều góc quay, đồng bộ nhạc nền sôi động.",
@@ -96,7 +119,7 @@
     },
     {
       "id": "film-review",
-      "order": 5,
+      "order": 6,
       "badge": "Review phim",
       "title": "Review Phim điện ảnh · Phụ đề khớp nhịp",
       "subtitle": "Gom cảnh đắt giá theo mạch kể cao trào kèm phụ đề căn dòng chuẩn điện ảnh.",
@@ -116,29 +139,6 @@
       "width": 1280,
       "height": 720,
       "hash": "7f968be05d77"
-    },
-    {
-      "id": "multiratio",
-      "order": 6,
-      "badge": "Đa khung hình",
-      "title": "Xuất đồng bộ đa khung hình từng kênh",
-      "subtitle": "Một lần dựng ra trọn bộ 16:9 YouTube, 9:16 Shorts/Reels và 1:1 Bảng tin.",
-      "spec": "16:9 YouTube · 9:16 Shorts & Reels · 1:1 Bảng tin",
-      "ratio": "16:9",
-      "portrait": false,
-      "hasAudio": false,
-      "durationLabel": "0:08",
-      "highlights": [
-        "Tối ưu bố cục riêng cho từng nền tảng",
-        "Không cắt mất nhân vật chính khi đổi tỷ lệ",
-        "Tiết kiệm thời gian dựng lại từng bản"
-      ],
-      "videoWebm": "./assets/videos/demo-multiratio.webm",
-      "videoMp4": "./assets/videos/demo-multiratio.mp4",
-      "poster": "./assets/videos/demo-multiratio-poster.webp",
-      "width": 1280,
-      "height": 720,
-      "hash": "8995804611ac"
     }
   ]
 }
