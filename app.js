@@ -18,7 +18,7 @@
     downloadUrl: LATEST_RELEASE_URL,
     assetName: 'Bizora-Video-Studio-Setup-0.1.0.exe',
     sha256: '',
-    notes: 'Phiên bản phát hành đầu tiên có hỗ trợ tự động kiểm tra và cập nhật ngay trong ứng dụng.',
+    notes: 'Initial public release featuring built-in auto-update support inside Settings.',
     isLatest: true
   };
 
@@ -26,15 +26,15 @@
     {
       id: 'film-review',
       order: 1,
-      badge: 'Review phim',
-      title: 'Review Phim điện ảnh · Phụ đề khớp nhịp',
-      subtitle: 'Gom cảnh đắt giá theo mạch kể cao trào kèm phụ đề căn dòng chuẩn điện ảnh.',
-      spec: '16:9 · Giọng Việt tự nhiên · Xuất MP4 cục bộ',
+      badge: 'Film Review',
+      title: 'Cinematic Film Review · Beat-Synced Subtitles',
+      subtitle: 'Curate key scenes along a dramatic narrative arc with balanced cinematic captions.',
+      spec: '16:9 · Natural AI Voiceover · Local MP4 Export',
       ratio: '16:9',
       portrait: false,
       hasAudio: false,
       durationLabel: '0:08',
-      highlights: ['Chuyển cảnh mượt', 'Phụ đề sạch chữ', 'Xuất MP4 cục bộ'],
+      highlights: ['Smooth scene pacing', 'Balanced subtitles', 'Local MP4 export'],
       videoWebm: './assets/videos/demo-film-review.webm?v=20261125c',
       videoMp4: './assets/videos/demo-film-review.mp4?v=20261125c',
       poster: './assets/videos/demo-film-review-poster.webp?v=20261125c',
@@ -45,15 +45,15 @@
     {
       id: 'manga-review',
       order: 2,
-      badge: 'Review truyện',
-      title: 'Review Truyện tranh · Tách khung tự động',
-      subtitle: 'Đọc truyện cuộn dọc mượt mà và đồng bộ phụ đề từng câu.',
-      spec: '16:9 · Cuộn dọc mượt mà · Đồng bộ từng câu',
+      badge: 'Story Review',
+      title: 'Comic & Manga Review · Auto Panel Splitting',
+      subtitle: 'Smooth vertical panel reading synchronized automatically with line-by-line captions.',
+      spec: '16:9 · Smooth Vertical Scroll · Synced Captions',
       ratio: '16:9',
       portrait: false,
       hasAudio: false,
       durationLabel: '0:08',
-      highlights: ['Tách khung rõ nét', 'Cuộn mượt', 'Phụ đề chuẩn nhịp'],
+      highlights: ['Crisp panel crops', 'Fluid scroll motion', 'Beat-matched captions'],
       videoWebm: './assets/videos/demo-manga-review.webm?v=20261125c',
       videoMp4: './assets/videos/demo-manga-review.mp4?v=20261125c',
       poster: './assets/videos/demo-manga-review-poster.webp?v=20261125c',
@@ -64,15 +64,15 @@
     {
       id: 'multiratio',
       order: 3,
-      badge: 'Đa khung hình',
-      title: 'Xuất đồng bộ đa khung hình từng kênh',
-      subtitle: 'Một lần dựng ra trọn bộ 16:9, 9:16 và 1:1.',
-      spec: '16:9 YouTube · 9:16 Shorts & Reels · 1:1 Bảng tin',
+      badge: 'Multi-Ratio',
+      title: 'Multi-Format Export for Every Social Channel',
+      subtitle: 'Build once and export ready-to-post 16:9, 9:16, and 1:1 outputs.',
+      spec: '16:9 YouTube · 9:16 Shorts & Reels · 1:1 Feed',
       ratio: '16:9',
       portrait: false,
       hasAudio: false,
       durationLabel: '0:08',
-      highlights: ['Chuẩn 16:9', 'Chuẩn 9:16', 'Chuẩn 1:1'],
+      highlights: ['16:9 Widescreen', '9:16 Vertical', '1:1 Square'],
       videoWebm: './assets/videos/demo-multiratio.webm?v=20261125c',
       videoMp4: './assets/videos/demo-multiratio.mp4?v=20261125c',
       poster: './assets/videos/demo-multiratio-poster.webp?v=20261125c',
@@ -81,6 +81,166 @@
       hash: ''
     }
   ];
+
+  const SAMPLE_EN_OVERRIDES = Object.freeze({
+    'ai-movie-rainbow': {
+      badge: '3D AI Movie',
+      title: '3D Animation · Why Does a Rainbow Have 7 Colors?',
+      subtitle: 'Pixar-style educational 3D animation with seamless scene transitions and consistent character & garden framing.',
+      spec: '16:9 · 3D Pixar Style · Natural AI Narration',
+      highlights: [
+        'Consistent characters and backyard environment across cuts',
+        'Expressive natural voiceover with clear dialogue pacing',
+        'Crisp 1080p MP4 export ready for YouTube'
+      ]
+    },
+    'ai-movie-kitchen': {
+      badge: '3D AI Movie',
+      title: '3D Animation · Sunny Kitchen Language Lesson',
+      subtitle: 'Interactive family storytelling inside a warm 3D kitchen with natural character motion and synced lip-movement.',
+      spec: '16:9 · 3D Pixar Style · Synced Voice & Lighting',
+      highlights: [
+        'Preserves kitchen props and character design across scenes',
+        'Warm 3D lighting and smooth camera transitions',
+        'Full 16:9 assembly with narration and background score'
+      ]
+    },
+    'comic-color': {
+      badge: 'Color Comic',
+      title: 'Full-Color Comic Review · 1-Click Assembly',
+      subtitle: 'Extracts sharp color panels over a harmonious blurred backdrop with automatic narration and synced captions.',
+      spec: '16:9 · Panel-by-Panel · Natural Voiceover',
+      highlights: [
+        'Sharp automatic panel framing without distortion',
+        'Ambient blurred backdrop tailored for 16:9 screens',
+        'Cohesive storytelling paced to each chapter page'
+      ]
+    },
+    'comic-manga': {
+      badge: 'Manga Recap',
+      title: 'Action Manga Review · Dynamic Panel Rhythm',
+      subtitle: 'Transitions monochrome action spreads with rhythmic zoom pans, clean panel filtering, and narration sync.',
+      spec: '16:9 · Smart Manga Crops · Fast-Paced Recap',
+      highlights: [
+        'Preserves crisp monochrome ink contrast',
+        'Automatically filters filler frames to keep climax beats',
+        'Auto-ducking background music under narration'
+      ]
+    },
+    'ai-affiliate': {
+      badge: '9:16 Affiliate',
+      title: 'Affiliate Product Showcase · Reels & TikTok Ready',
+      subtitle: 'Combines multi-angle reference product shots with lifelike model motion and upbeat background audio.',
+      spec: '9:16 Vertical · Reference Consistency · AI Music',
+      highlights: [
+        'Consistent apparel details across every camera angle',
+        'Smooth transition from product shot to model showcase',
+        'Auto-assembled 9:16 MP4 with balanced background audio'
+      ]
+    },
+    'film-review': {
+      badge: 'Film Review',
+      title: 'Cinematic Film Review · Beat-Synced Subtitles',
+      subtitle: 'Curates dramatic highlight moments into a tight recap with clean, balanced dual-line subtitles.',
+      spec: '16:9 · Cinematic Recap · Bilingual Subtitles',
+      highlights: [
+        'Paced transitions following narrative peaks',
+        'Balanced subtitle wrapping without orphan words',
+        'Fast local MP4 export right on your PC'
+      ]
+    }
+  });
+
+  const SCREEN_EN_OVERRIDES = Object.freeze({
+    'film-translate': {
+      badge: 'AI Film Dubbing',
+      title: 'AI Film Subtitle Translation & Dubbing',
+      subtitle: 'Auto-extract dialogue, blur hardcoded source subtitles, and wrap balanced lines without orphan words.',
+      actionHint: 'Play dubbed audio live · Jump directly to any dialogue cue',
+      highlights: [
+        'Smart original subtitle masking & blur',
+        'Balanced cinematic subtitle line wrapping',
+        'Instant bilingual preview & dubbed MP4 export'
+      ]
+    },
+    film: {
+      badge: 'Film Review',
+      title: '1-Click Automated Film Reviews',
+      subtitle: 'Pick episode ranges, summarize plot arcs with AI, and export MP4s with natural narration.',
+      actionHint: 'Switch episodes live · Pick episode range & preview credit cost',
+      highlights: [
+        'Scene clustering & per-episode plot summaries',
+        'Deep dive, detailed recap, or concise summary modes',
+        '16:9 & 9:16 export with auto-ducking background music'
+      ]
+    },
+    comic: {
+      badge: 'Story Review',
+      title: 'Comic, Manga & Novel Review Studio',
+      subtitle: 'Read multiple sources smoothly, analyze speech bubbles with AI, and build vertical recap videos in 1 click.',
+      actionHint: 'Scroll chapters smoothly · Select chapter range for MP4 export',
+      highlights: [
+        'Built-in MangaDex & multi-source novel reader',
+        'AI bubble reading & automated recap scriptwriting',
+        'Ken Burns motion & beat-synced subtitles'
+      ]
+    },
+    generate: {
+      badge: 'Affiliate Video',
+      title: 'Multi-Scene Affiliate Video Studio',
+      subtitle: 'Orchestrate multi-shot product scripts, reference images, watermark removal, and final MP4 assembly.',
+      actionHint: 'Preview finished 9:16 clip · Launch new multi-scene run',
+      highlights: [
+        'Multi-scene coordination & reference image locking',
+        'Parallel queue & automatic corner logo removal',
+        'Assemble MP4 with voiceover and background music'
+      ]
+    },
+    'ai-movie': {
+      badge: 'AI Movie',
+      title: 'Lego-Style 3D & Anime AI Movie Studio',
+      subtitle: 'Snap together narrative beats, choose 3D/Anime styles, estimate API credits, and chain scenes seamlessly.',
+      actionHint: 'Choose visual style · Arrange Lego story beats & preview estimate',
+      highlights: [
+        'Modular Lego beat roadmap with customizable pacing',
+        '3D Pixar, 2D, Anime styles & upfront credit estimation',
+        'Environment locking & crisp 1080p scene chaining'
+      ]
+    },
+    'ai-music': {
+      badge: 'AI Music',
+      title: 'AI Songwriting & MV Export Studio',
+      subtitle: 'Discover musical themes, compose rhythmic lyrics, generate AI tracks, and export complete music videos.',
+      actionHint: 'Pick song inspiration · Edit lyrics & export full MV',
+      highlights: [
+        'Curated inspiration board & melody-matched lyrics',
+        'Direct AI vocal & instrumental generation in-app',
+        'Export MV with cover art & synced karaoke captions'
+      ]
+    },
+    publishing: {
+      badge: 'Publishing',
+      title: 'Multi-Channel Publishing & Calendar',
+      subtitle: 'Pick exported videos visually and let AI draft platform-ready titles, captions, and hashtags before scheduling.',
+      actionHint: 'Prepare social post · Switch to monthly publishing calendar',
+      highlights: [
+        'Connect YouTube, TikTok & Facebook channels',
+        'AI-generated titles, descriptions & hashtags',
+        'Visual monthly content scheduling calendar'
+      ]
+    },
+    home: {
+      badge: 'Overview',
+      title: 'Unified Production Workspace',
+      subtitle: 'Jump straight into any production module, resume recent projects, monitor the global queue, and manage exports.',
+      actionHint: 'Filter recent projects by studio · Track upcoming schedule',
+      highlights: [
+        'Quick launcher across all core video studios',
+        'Live project overview & 7-day publishing timeline',
+        'Safe local storage so you never lose work'
+      ]
+    }
+  });
 
   const SVG_NS = 'http://www.w3.org/2000/svg';
   const ICON_PATHS = Object.freeze({
@@ -199,9 +359,9 @@
     try {
       const d = new Date(iso);
       if (Number.isNaN(d.getTime())) return '';
-      return new Intl.DateTimeFormat('vi-VN', {
+      return new Intl.DateTimeFormat('en-US', {
+        month: 'short',
         day: '2-digit',
-        month: '2-digit',
         year: 'numeric'
       }).format(d);
     } catch {
@@ -270,25 +430,29 @@
     if (!raw || typeof raw !== 'object' || !Array.isArray(raw.samples)) return null;
     const valid = raw.samples
       .filter(s => s && typeof s === 'object' && typeof s.id === 'string' && s.id.trim() && (typeof s.videoWebm === 'string' || typeof s.videoMp4 === 'string'))
-      .map((s, idx) => ({
-        id: s.id.trim(),
-        order: Number(s.order) || (idx + 1),
-        badge: typeof s.badge === 'string' && s.badge.trim() ? s.badge.trim() : `Mẫu ${idx + 1}`,
-        title: typeof s.title === 'string' && s.title.trim() ? s.title.trim() : s.id,
-        subtitle: typeof s.subtitle === 'string' ? s.subtitle.trim() : '',
-        spec: typeof s.spec === 'string' ? s.spec.trim() : '',
-        ratio: typeof s.ratio === 'string' && s.ratio.trim() ? s.ratio.trim() : '16:9',
-        portrait: Boolean(s.portrait),
-        hasAudio: Boolean(s.hasAudio),
-        durationLabel: typeof s.durationLabel === 'string' ? s.durationLabel.trim() : '',
-        highlights: Array.isArray(s.highlights) ? s.highlights.filter(h => typeof h === 'string' && h.trim()).slice(0, 3) : [],
-        videoWebm: typeof s.videoWebm === 'string' ? s.videoWebm.trim() : '',
-        videoMp4: typeof s.videoMp4 === 'string' ? s.videoMp4.trim() : '',
-        poster: typeof s.poster === 'string' ? s.poster.trim() : '',
-        width: Number(s.width) || (s.portrait ? 540 : 1280),
-        height: Number(s.height) || (s.portrait ? 960 : 720),
-        hash: typeof s.hash === 'string' ? s.hash.trim() : ''
-      }))
+      .map((s, idx) => {
+        const id = s.id.trim();
+        const en = SAMPLE_EN_OVERRIDES[id];
+        return {
+          id,
+          order: Number(s.order) || (idx + 1),
+          badge: en?.badge || (typeof s.badge === 'string' && s.badge.trim() ? s.badge.trim() : `Sample ${idx + 1}`),
+          title: en?.title || (typeof s.title === 'string' && s.title.trim() ? s.title.trim() : id),
+          subtitle: en?.subtitle ?? (typeof s.subtitle === 'string' ? s.subtitle.trim() : ''),
+          spec: en?.spec ?? (typeof s.spec === 'string' ? s.spec.trim() : ''),
+          ratio: typeof s.ratio === 'string' && s.ratio.trim() ? s.ratio.trim() : '16:9',
+          portrait: Boolean(s.portrait),
+          hasAudio: Boolean(s.hasAudio),
+          durationLabel: typeof s.durationLabel === 'string' ? s.durationLabel.trim() : '',
+          highlights: en?.highlights || (Array.isArray(s.highlights) ? s.highlights.filter(h => typeof h === 'string' && h.trim()).slice(0, 3) : []),
+          videoWebm: typeof s.videoWebm === 'string' ? s.videoWebm.trim() : '',
+          videoMp4: typeof s.videoMp4 === 'string' ? s.videoMp4.trim() : '',
+          poster: typeof s.poster === 'string' ? s.poster.trim() : '',
+          width: Number(s.width) || (s.portrait ? 540 : 1280),
+          height: Number(s.height) || (s.portrait ? 960 : 720),
+          hash: typeof s.hash === 'string' ? s.hash.trim() : ''
+        };
+      })
       .sort((a, b) => a.order - b.order);
     return valid.length ? valid : null;
   }
@@ -400,7 +564,7 @@
       const reel = document.createElement('div');
       reel.className = 'cinema-reel';
       reel.setAttribute('role', 'tablist');
-      reel.setAttribute('aria-label', 'Chọn thành phẩm thực tế của Bizora');
+      reel.setAttribute('aria-label', 'Select a rendered Bizora Video Studio sample');
       reel.setAttribute('focusgroup', 'tablist nomemory');
 
       mount.replaceChildren(frame, reel);
@@ -479,7 +643,7 @@
       btn.classList.toggle('is-unmuted', unmuted);
       btn.setAttribute('aria-pressed', String(unmuted));
       const label = document.createElement('span');
-      label.textContent = unmuted ? 'Đang bật tiếng' : 'Bật tiếng';
+      label.textContent = unmuted ? 'Sound on' : 'Enable sound';
       btn.replaceChildren(makeIconNode(unmuted ? 'volume-2' : 'volume-x', 14), label);
     }
 
@@ -542,7 +706,7 @@
           rightCard.className = 'cinema-portrait-callout';
           const rightLabel = document.createElement('span');
           rightLabel.className = 'cinema-callout-label mono';
-          rightLabel.textContent = 'Điểm nổi bật 9:16';
+          rightLabel.textContent = '9:16 Highlights';
           const ul = document.createElement('ul');
           ul.className = 'cinema-callout-list';
           for (const h of sample.highlights) {
@@ -597,7 +761,7 @@
         if (sample.hasAudio) {
           const audioBadge = document.createElement('span');
           audioBadge.className = 'cinema-reel-audio-badge';
-          audioBadge.setAttribute('aria-label', 'Video có giọng đọc tiếng Việt');
+          audioBadge.setAttribute('aria-label', 'Video includes narration audio');
           audioBadge.append(makeIconNode('volume-2', 11));
           thumb.append(audioBadge);
         }
@@ -740,7 +904,7 @@
       const title = document.createElement('div');
       title.className = 'spec-panel-title';
       const titleSpan = document.createElement('span');
-      titleSpan.textContent = 'Thông số bộ cài hiện tại';
+      titleSpan.textContent = 'Current Installer Spec';
       title.append(makeIconNode('shield-check', 17), titleSpan);
 
       const badge = document.createElement('span');
@@ -760,11 +924,11 @@
         return dd;
       };
 
-      const fileVal = addRow('Tên tệp');
+      const fileVal = addRow('File Name');
       fileVal.className = 'mono';
-      const dateVal = addRow('Ngày phát hành');
-      const sizeVal = addRow('Dung lượng');
-      const osVal = addRow('Hệ điều hành');
+      const dateVal = addRow('Release Date');
+      const sizeVal = addRow('File Size');
+      const osVal = addRow('Operating System');
       osVal.textContent = 'Windows 10 / 11 (64-bit)';
 
       const shaBlock = document.createElement('div');
@@ -781,7 +945,7 @@
       copyBtn.type = 'button';
       copyBtn.className = 'copy-btn';
       const copyText = document.createElement('span');
-      copyText.textContent = 'Sao chép';
+      copyText.textContent = 'Copy';
       copyBtn.append(makeIconNode('copy', 13), copyText);
 
       shaHead.append(shaLabel, copyBtn);
@@ -799,12 +963,12 @@
         const hash = this._release.sha256;
         if (!hash) return;
         const onCopied = () => {
-          copyText.textContent = 'Đã chép';
-          copyStatus.textContent = 'Đã sao chép mã SHA-256 vào bộ nhớ tạm.';
+          copyText.textContent = 'Copied';
+          copyStatus.textContent = 'SHA-256 checksum copied to clipboard.';
           copyStatus.hidden = false;
           clearTimeout(this._copyTimer);
           this._copyTimer = setTimeout(() => {
-            copyText.textContent = 'Sao chép';
+            copyText.textContent = 'Copy';
             copyStatus.hidden = true;
           }, 3000);
         };
@@ -821,13 +985,13 @@
       releasePageLink.className = 'ext-link';
       releasePageLink.href = '#phien-ban';
       const linkLabel = document.createElement('span');
-      linkLabel.textContent = 'Xem ghi chú phiên bản';
+      linkLabel.textContent = 'View release notes';
       releasePageLink.append(linkLabel, makeIconNode('arrow-right', 13));
 
       const cardDownload = document.createElement('a');
       cardDownload.className = 'btn btn-accent-solid btn-sm';
       const dlLabel = document.createElement('span');
-      dlLabel.textContent = 'Tải .exe';
+      dlLabel.textContent = 'Download .exe';
       cardDownload.append(makeIconNode('download', 14), dlLabel);
 
       foot.append(releasePageLink, cardDownload);
@@ -974,7 +1138,7 @@
       const appendFallback = () => {
         const empty = document.createElement('p');
         empty.className = 'release-notes-plain';
-        empty.textContent = 'Cải thiện hiệu năng và độ ổn định ứng dụng.';
+        empty.textContent = 'Performance and stability improvements.';
         container.append(empty);
       };
 
@@ -1063,13 +1227,13 @@
       if (isLatest) {
         const latestBadge = document.createElement('span');
         latestBadge.className = 'release-latest-badge';
-        latestBadge.textContent = 'Mới nhất';
+        latestBadge.textContent = 'Latest';
         titleGroup.append(latestBadge);
       }
 
       const parts = [];
       const dateStr = formatDateVi(rel.publishedAt);
-      if (dateStr) parts.push(`Phát hành ${dateStr}`);
+      if (dateStr) parts.push(`Released ${dateStr}`);
       if (isLatest) {
         const sizeStr = formatBytes(rel.size);
         if (sizeStr) parts.push(sizeStr);
@@ -1088,14 +1252,14 @@
         dlBtn.className = 'btn btn-accent-solid btn-sm';
         dlBtn.href = rel.downloadUrl || LATEST_RELEASE_URL;
         const dlSpan = document.createElement('span');
-        dlSpan.textContent = 'Tải bản mới nhất';
+        dlSpan.textContent = 'Download latest';
         dlBtn.append(makeIconNode('download', 14), dlSpan);
         head.append(titleGroup, dlBtn);
       } else {
         const archivedPill = document.createElement('span');
         archivedPill.className = 'release-archived-pill';
         const archivedLabel = document.createElement('span');
-        archivedLabel.textContent = 'Chỉ lưu lịch sử';
+        archivedLabel.textContent = 'Archive only';
         archivedPill.append(makeIconNode('lock', 13), archivedLabel);
         head.append(titleGroup, archivedPill);
       }
@@ -1151,8 +1315,8 @@
         const summary = document.createElement('summary');
         summary.className = 'release-archive-summary';
         summary.textContent = hiddenReleases.length > 1
-          ? `Xem thêm ${hiddenReleases.length} phiên bản trước (${firstTag} – ${lastTag})`
-          : `Xem thêm phiên bản trước (${firstTag})`;
+          ? `Show ${hiddenReleases.length} earlier releases (${firstTag} – ${lastTag})`
+          : `Show earlier release (${firstTag})`;
 
         const archiveList = document.createElement('div');
         archiveList.className = 'release-archive-list';
@@ -1180,22 +1344,26 @@
     const screens = Array.isArray(raw.screens) ? raw.screens : [];
     const valid = screens
       .filter(item => item && typeof item === 'object' && typeof item.id === 'string' && item.id.trim() && (typeof item.videoWebm === 'string' || typeof item.videoMp4 === 'string' || typeof item.image === 'string'))
-      .map((item, index) => ({
-        id: item.id.trim(),
-        order: Number(item.order) || (index + 1),
-        badge: typeof item.badge === 'string' && item.badge.trim() ? item.badge.trim() : `Màn ${index + 1}`,
-        icon: typeof item.icon === 'string' && item.icon.trim() ? item.icon.trim() : 'monitor',
-        title: typeof item.title === 'string' && item.title.trim() ? item.title.trim() : item.badge || item.id,
-        subtitle: typeof item.subtitle === 'string' ? item.subtitle.trim() : '',
-        actionHint: typeof item.actionHint === 'string' ? item.actionHint.trim() : '',
-        highlights: Array.isArray(item.highlights) ? item.highlights.filter(h => typeof h === 'string' && h.trim()).slice(0, 4) : [],
-        videoWebm: typeof item.videoWebm === 'string' ? item.videoWebm.trim() : '',
-        videoMp4: typeof item.videoMp4 === 'string' ? item.videoMp4.trim() : '',
-        poster: typeof item.poster === 'string' && item.poster.trim() ? item.poster.trim() : (typeof item.image === 'string' ? item.image.trim() : ''),
-        hash: typeof item.hash === 'string' ? item.hash.trim() : '',
-        width: Number(item.width) || 1280,
-        height: Number(item.height) || 800
-      }))
+      .map((item, index) => {
+        const id = item.id.trim();
+        const en = SCREEN_EN_OVERRIDES[id];
+        return {
+          id,
+          order: Number(item.order) || (index + 1),
+          badge: en?.badge || (typeof item.badge === 'string' && item.badge.trim() ? item.badge.trim() : `Screen ${index + 1}`),
+          icon: typeof item.icon === 'string' && item.icon.trim() ? item.icon.trim() : 'monitor',
+          title: en?.title || (typeof item.title === 'string' && item.title.trim() ? item.title.trim() : item.badge || id),
+          subtitle: en?.subtitle ?? (typeof item.subtitle === 'string' ? item.subtitle.trim() : ''),
+          actionHint: en?.actionHint ?? (typeof item.actionHint === 'string' ? item.actionHint.trim() : ''),
+          highlights: en?.highlights || (Array.isArray(item.highlights) ? item.highlights.filter(h => typeof h === 'string' && h.trim()).slice(0, 4) : []),
+          videoWebm: typeof item.videoWebm === 'string' ? item.videoWebm.trim() : '',
+          videoMp4: typeof item.videoMp4 === 'string' ? item.videoMp4.trim() : '',
+          poster: typeof item.poster === 'string' && item.poster.trim() ? item.poster.trim() : (typeof item.image === 'string' ? item.image.trim() : ''),
+          hash: typeof item.hash === 'string' ? item.hash.trim() : '',
+          width: Number(item.width) || 1280,
+          height: Number(item.height) || 800
+        };
+      })
       .sort((a, b) => a.order - b.order);
 
     if (!valid.length) return null;
@@ -1449,14 +1617,14 @@
 
       const pillsNav = document.createElement('nav');
       pillsNav.className = 'ui-story-pills';
-      pillsNav.setAttribute('aria-label', 'Chuyển nhanh xưởng sản xuất');
+      pillsNav.setAttribute('aria-label', 'Quick switch production studio');
 
       const wrap = document.createElement('div');
       wrap.className = 'ui-story-layout';
 
       const rail = document.createElement('div');
       rail.className = 'ui-story-rail';
-      rail.setAttribute('aria-label', 'Danh sách tính năng nổi bật theo bước');
+      rail.setAttribute('aria-label', 'Step-by-step studio features');
 
       const stageCol = document.createElement('div');
       stageCol.className = 'ui-story-stage-col';
@@ -1477,7 +1645,7 @@
       const stageOpenBtn = document.createElement('button');
       stageOpenBtn.type = 'button';
       stageOpenBtn.className = 'ui-story-stage-trigger';
-      stageOpenBtn.setAttribute('aria-label', 'Mở rộng video thao tác toàn màn hình');
+      stageOpenBtn.setAttribute('aria-label', 'Expand walkthrough video fullscreen');
 
       const progressTrack = document.createElement('div');
       progressTrack.className = 'ui-story-progress-track';
@@ -1501,7 +1669,7 @@
 
       const dotsNav = document.createElement('nav');
       dotsNav.className = 'ui-story-dots';
-      dotsNav.setAttribute('aria-label', 'Chọn bước tính năng');
+      dotsNav.setAttribute('aria-label', 'Select feature step');
 
       stageNav.append(hudLeft, dotsNav);
       sticky.append(stageGlow, frame, stageNav);
@@ -1540,17 +1708,17 @@
       const prevBtn = document.createElement('button');
       prevBtn.type = 'button';
       prevBtn.className = 'ui-lightbox-nav-btn';
-      prevBtn.setAttribute('aria-label', 'Tính năng trước');
+      prevBtn.setAttribute('aria-label', 'Previous feature');
       prevBtn.append(makeIconNode('chevron-left', 16));
       const nextBtn = document.createElement('button');
       nextBtn.type = 'button';
       nextBtn.className = 'ui-lightbox-nav-btn';
-      nextBtn.setAttribute('aria-label', 'Tính năng tiếp theo');
+      nextBtn.setAttribute('aria-label', 'Next feature');
       nextBtn.append(makeIconNode('chevron-right', 16));
       const closeBtn = document.createElement('button');
       closeBtn.type = 'button';
       closeBtn.className = 'ui-lightbox-close-btn';
-      closeBtn.setAttribute('aria-label', 'Đóng xem lớn');
+      closeBtn.setAttribute('aria-label', 'Close fullscreen preview');
       closeBtn.append(makeIconNode('x', 16));
       dlgActions.append(dlgCounter, prevBtn, nextBtn, closeBtn);
       dlgHead.append(dlgTitleWrap, dlgActions);
@@ -1684,7 +1852,7 @@
 
     _renderUnavailable() {
       if (!this._dom) return;
-      this._dom.emptyMsg.textContent = 'Đang đồng bộ video minh họa thao tác mới nhất — vui lòng tải lại trang sau ít phút.';
+      this._dom.emptyMsg.textContent = 'Syncing the latest live workflow walkthroughs — please refresh shortly.';
       this._dom.emptyMsg.hidden = false;
     }
 
@@ -1775,7 +1943,7 @@
         pulse.className = 'ui-action-dot';
         pulse.setAttribute('aria-hidden', 'true');
         const hintText = document.createElement('span');
-        hintText.textContent = screen.actionHint || 'Xem thao tác trực tiếp trên giao diện thật';
+        hintText.textContent = screen.actionHint || 'Watch real UI interaction';
         actionHint.append(pulse, hintText);
 
         const list = document.createElement('ul');
@@ -1836,7 +2004,7 @@
         dot.type = 'button';
         dot.className = 'ui-story-dot';
         dot.dataset.screenId = screen.id;
-        dot.setAttribute('aria-label', `Chuyển tới bước ${String(idx + 1).padStart(2, '0')}: ${screen.title}`);
+        dot.setAttribute('aria-label', `Jump to step ${String(idx + 1).padStart(2, '0')}: ${screen.title}`);
         dot.addEventListener('click', () => {
           this._setActiveScreen(screen.id, { scrollStep: true });
         });
@@ -1923,8 +2091,8 @@
       if (d.syncMeta) {
         const dateStr = formatDateVi(m.capturedAt);
         d.syncMeta.textContent = dateStr
-          ? `Tự động đồng bộ v${m.appVersion} · Cập nhật ${dateStr}`
-          : `Tự động đồng bộ v${m.appVersion}`;
+          ? `Auto-synced v${m.appVersion} · Updated ${dateStr}`
+          : `Auto-synced v${m.appVersion}`;
         d.syncMeta.hidden = false;
       }
 
@@ -2174,7 +2342,7 @@
       applyLatestToPage(FALLBACK_RELEASE);
       notesEl?.setReleases?.(
         [FALLBACK_RELEASE],
-        'Đang hiển thị thông tin phiên bản mặc định — vui lòng tải lại trang sau ít phút để cập nhật bản mới nhất.'
+        'Showing default release metadata — please refresh shortly to load the latest build.'
       );
     }
   }
