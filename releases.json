@@ -1,17 +1,25 @@
 {
-  "generatedAt": "2026-11-27T00:22:49.491Z",
+  "generatedAt": "2026-11-27T03:38:11.168Z",
   "releases": [
+    {
+      "tag": "v0.4.0",
+      "version": "0.4.0",
+      "title": "Bizora Video Studio v0.4.0",
+      "publishedAt": "2026-11-27T03:37:55Z",
+      "size": 214647439,
+      "downloadUrl": "https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases/download/v0.4.0/Bizora-Video-Studio-Setup-0.4.0.exe",
+      "assetName": "Bizora-Video-Studio-Setup-0.4.0.exe",
+      "sha256": "ad073d8dcd15a0da16856660446d3fcff848e4f41ea438d868a648543516bc66",
+      "notes": "## Bizora Video Studio v0.4.0\n\n### Điểm mới nổi bật\n- **Nâng cấp bảo mật & bảo vệ bản quyền toàn diện:** Bổ sung xác thực thiết bị theo phần cứng, kiểm tra toàn vẹn ứng dụng khi khởi chạy và chống can thiệp trái phép từ bên thứ ba.\n- **Đồng bộ cấu hình máy chủ tức thì:** Tự động cập nhật điểm kết nối dịch vụ mới nhất để giảm gián đoạn khi sử dụng.\n- **Cập nhật tự động ổn định hơn:** Giữ nguyên trạng thái bản đã tải khi kiểm tra lại gặp lỗi mạng và tự động chuyển lên bản mới nhất ngay khi hoàn tất tải xuống.\n- **Nâng cấp chất lượng tạo video & xử lý media:** Tinh chỉnh nhận diện bối cảnh sản phẩm, ổn định luồng cắt ghép review và tối ưu hiệu năng xử lý cục bộ.",
+      "isLatest": true
+    },
     {
       "tag": "v0.3.17",
       "version": "0.3.17",
       "title": "0.3.17",
       "publishedAt": "2026-11-27T00:22:12Z",
-      "size": 207193192,
-      "downloadUrl": "https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases/download/v0.3.17/Bizora-Video-Studio-Setup-0.3.17.exe",
-      "assetName": "Bizora-Video-Studio-Setup-0.3.17.exe",
-      "sha256": "86accee30a8efa7847f3f2b46f04561979ab080c1777b889ed5c6f769115c773",
       "notes": "",
-      "isLatest": true
+      "isLatest": false
     },
     {
       "tag": "v0.3.16",
@@ -66,14 +74,6 @@
       "version": "0.3.7",
       "title": "0.3.7",
       "publishedAt": "2026-11-25T03:42:27Z",
-      "notes": "",
-      "isLatest": false
-    },
-    {
-      "tag": "v0.3.6",
-      "version": "0.3.6",
-      "title": "0.3.6",
-      "publishedAt": "2026-11-25T02:36:02Z",
       "notes": "",
       "isLatest": false
     }
