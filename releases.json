@@ -1,17 +1,25 @@
 {
-  "generatedAt": "2026-11-27T21:52:24.642Z",
+  "generatedAt": "2026-11-27T23:35:22.364Z",
   "releases": [
+    {
+      "tag": "v0.4.4",
+      "version": "0.4.4",
+      "title": "0.4.4",
+      "publishedAt": "2026-11-27T23:35:10Z",
+      "size": 216021736,
+      "downloadUrl": "https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases/download/v0.4.4/Bizora-Video-Studio-Setup-0.4.4.exe",
+      "assetName": "Bizora-Video-Studio-Setup-0.4.4.exe",
+      "sha256": "04dd1bf855736569fcaa67c157402580a4215b299a8a25e23a155e1325f3cc5c",
+      "notes": "",
+      "isLatest": true
+    },
     {
       "tag": "v0.4.3",
       "version": "0.4.3",
       "title": "0.4.3",
       "publishedAt": "2026-11-27T21:51:51Z",
-      "size": 215976167,
-      "downloadUrl": "https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases/download/v0.4.3/Bizora-Video-Studio-Setup-0.4.3.exe",
-      "assetName": "Bizora-Video-Studio-Setup-0.4.3.exe",
-      "sha256": "ea9e54efb4c499751f123c7e2504d0901820168940eeba7ef89ede4943747415",
       "notes": "",
-      "isLatest": true
+      "isLatest": false
     },
     {
       "tag": "v0.4.2",
@@ -66,14 +74,6 @@
       "version": "0.3.14",
       "title": "0.3.14",
       "publishedAt": "2026-11-26T21:21:07Z",
-      "notes": "",
-      "isLatest": false
-    },
-    {
-      "tag": "v0.3.12",
-      "version": "0.3.12",
-      "title": "0.3.12",
-      "publishedAt": "2026-11-26T17:10:03Z",
       "notes": "",
       "isLatest": false
     }
