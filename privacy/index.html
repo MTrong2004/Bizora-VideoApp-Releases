@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy | Bizora Video Studio</title>
+  <meta name="description" content="Privacy Policy for Bizora Video Studio (Windows desktop application and official website at videoai.bizora.com.vn).">
+  <meta name="theme-color" content="#03050a">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://videoai.bizora.com.vn/privacy/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Bizora Video Studio">
+  <meta property="og:url" content="https://videoai.bizora.com.vn/privacy/">
+  <meta property="og:title" content="Privacy Policy | Bizora Video Studio">
+  <meta property="og:description" content="How Bizora Video Studio handles local projects, account authentication, AI processing requests, and connected social channels.">
+  <meta property="og:image" content="https://videoai.bizora.com.vn/assets/og-cover.jpg?v=20261126b">
+
+  <link rel="icon" type="image/svg+xml" href="../assets/logo.svg?v=20261126b">
+  <link rel="icon" type="image/png" sizes="256x256" href="../assets/icon.png?v=20261126b">
+  <link rel="icon" href="../favicon.ico?v=20261126b">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png?v=20261126b">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css?v=20261127a">
+  <style>
+    [hidden] {
+      display: none !important;
+    }
+
+    .privacy-shell {
+      padding-block: 7.5rem 5.5rem;
+    }
+
+    .privacy-hero {
+      max-inline-size: 52rem;
+      margin-inline: auto;
+      margin-block-end: 2.5rem;
+    }
+
+    .privacy-kicker-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-block-end: 1.25rem;
+    }
+
+    .privacy-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.3125rem 0.875rem;
+      border-radius: var(--radius-pill);
+      background: var(--accent-soft);
+      border: 1px solid var(--border-accent-soft);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-code);
+    }
+
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.25rem;
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+    }
+
+    .lang-btn {
+      position: relative;
+      min-block-size: 2.25rem;
+      padding: 0.375rem 0.9375rem;
+      border: 1px solid transparent;
+      border-radius: var(--radius-pill);
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .lang-btn:hover {
+      color: var(--text-primary);
+    }
+
+    .lang-btn[aria-pressed="true"] {
+      background: var(--accent-soft);
+      border-color: var(--border-accent-soft);
+      color: var(--text-primary);
+    }
+
+    .lang-btn[aria-pressed="true"]::after {
+      content: "";
+      position: absolute;
+      inset-inline: 0.75rem;
+      inset-block-end: 0.2rem;
+      border-block-end: 2px solid var(--accent-primary);
+    }
+
+    .privacy-hero h1 {
+      margin: 0 0 1rem;
+      font-family: var(--font-display);
+      font-size: clamp(2.1rem, 1.35rem + 2.4vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      text-wrap: balance;
+    }
+
+    .privacy-lead {
+      margin: 0 0 1.25rem;
+      font-size: 1.0625rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--text-strong);
+      text-wrap: pretty;
+    }
+
+    .privacy-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    .privacy-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+      gap: 1rem;
+      margin-block: 2rem 2.75rem;
+    }
+
+    .privacy-summary-card {
+      padding: 1.25rem 1.375rem;
+      border-radius: var(--radius-md);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+    }
+
+    .privacy-summary-card h2 {
+      margin: 0 0 0.5rem;
+      font-family: var(--font-display);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-wrap: balance;
+    }
+
+    .privacy-summary-card p {
+      margin: 0;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      text-wrap: pretty;
+    }
+
+    .privacy-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 15.5rem) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: start;
+      max-inline-size: 68rem;
+      margin-inline: auto;
+    }
+
+    .privacy-toc {
+      position: sticky;
+      inset-block-start: 6rem;
+      padding: 1.25rem;
+      border-radius: var(--radius-lg);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+    }
+
+    .privacy-toc-title {
+      margin: 0 0 0.875rem;
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-primary);
+    }
+
+    .privacy-toc ol {
+      margin: 0;
+      padding-inline-start: 1.15rem;
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .privacy-toc a {
+      font-size: 0.84375rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    .privacy-toc a:hover {
+      color: var(--text-primary);
+      text-decoration: underline;
+    }
+
+    .privacy-article {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .privacy-section {
+      padding: 1.75rem 2rem;
+      border-radius: var(--radius-lg);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+    }
+
+    .privacy-section h2 {
+      margin: 0 0 0.875rem;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--text-primary);
+      text-wrap: balance;
+    }
+
+    .privacy-section h3 {
+      margin: 1.25rem 0 0.5rem;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-strong);
+      text-wrap: balance;
+    }
+
+    .privacy-section p {
+      margin: 0 0 0.875rem;
+      font-size: 0.9375rem;
+      line-height: 1.72;
+      color: var(--text-secondary);
+      text-wrap: pretty;
+    }
+
+    .privacy-section p:last-child {
+      margin-block-end: 0;
+    }
+
+    .privacy-section ul {
+      margin: 0.5rem 0 0.875rem;
+      padding-inline-start: 1.25rem;
+      display: grid;
+      gap: 0.55rem;
+      color: var(--text-secondary);
+      font-size: 0.9375rem;
+      line-height: 1.68;
+    }
+
+    .privacy-section li strong {
+      color: var(--text-primary);
+    }
+
+    .privacy-section a {
+      color: var(--accent-primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .privacy-section a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 56rem) {
+      .privacy-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .privacy-toc {
+        position: static;
+      }
+
+      .privacy-section {
+        padding: 1.375rem 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#privacy-title">Skip to privacy policy</a>
+
+  <div class="noir-bg" aria-hidden="true">
+    <div class="noir-wash"></div>
+    <div class="noir-stars noir-stars-sm"></div>
+    <div class="noir-stars noir-stars-md"></div>
+    <div class="noir-orb"></div>
+    <div class="noir-grid"></div>
+  </div>
+
+  <div class="gradient-blur" aria-hidden="true"></div>
+
+  <header class="topbar is-scrolled">
+    <nav class="pill-nav" aria-label="Primary">
+      <a class="brand" href="../" aria-label="Bizora Video Studio Home">
+        <img class="brand-logo" src="../assets/logo.svg?v=20261125c" width="24" height="24" alt="">
+        <span class="brand-text">
+          <span class="brand-name">Bizora</span>
+          <span class="brand-sub">Studio</span>
+        </span>
+      </a>
+
+      <div class="pill-links">
+        <a href="../#giao-dien">Interface</a>
+        <a href="../#thanh-pham">Showcase</a>
+        <a href="../#phien-ban">Releases</a>
+        <a href="./" aria-current="page">Privacy Policy</a>
+      </div>
+
+      <div class="pill-actions">
+        <a class="btn-pill-rim" href="../">
+          <span class="pill-rim-ring" aria-hidden="true"></span>
+          <span class="pill-rim-core" aria-hidden="true"></span>
+          <span class="pill-rim-label">
+            <span>Home</span>
+          </span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content" class="site-main privacy-shell">
+    <div class="container">
+      <section class="privacy-hero">
+        <div class="privacy-kicker-row">
+          <span class="privacy-kicker">BIZORA VIDEO STUDIO · PRIVACY POLICY</span>
+          <div class="lang-switcher" role="group" aria-label="Policy language">
+            <button type="button" class="lang-btn" id="btn-lang-en" data-policy-lang="en" aria-pressed="true">English</button>
+            <button type="button" class="lang-btn" id="btn-lang-vi" data-policy-lang="vi" aria-pressed="false">Tiếng Việt</button>
+          </div>
+        </div>
+
+        <h1 id="privacy-title" tabindex="-1">Privacy Policy</h1>
+        <p class="privacy-lead" id="privacy-lead-text">
+          Bizora Video Studio is a local-first Windows desktop application for video review, dubbing, AI video orchestration, and channel scheduling. This policy explains clearly what data stays on your device, what is processed when you sign in or invoke cloud AI features, and how to manage or delete your information.
+        </p>
+        <div class="privacy-meta">
+          <span id="meta-effective">Effective date: November 27, 2026</span>
+          <span>Package ID: vn.bizora.videostudio</span>
+          <span>Website: https://videoai.bizora.com.vn/</span>
+        </div>
+
+        <div class="privacy-summary-grid" id="summary-en">
+          <div class="privacy-summary-card">
+            <h2>Local-First Media</h2>
+            <p>Your projects, source videos, scripts, subtitles, and exported MP4 files remain on your Windows PC.</p>
+          </div>
+          <div class="privacy-summary-card">
+            <h2>No Data Selling</h2>
+            <p>We never sell personal information or share your content with third-party advertisers.</p>
+          </div>
+          <div class="privacy-summary-card">
+            <h2>Explicit Cloud Requests</h2>
+            <p>Only prompts or inputs required for AI, voiceover, auth, or publishing features you trigger are sent securely via HTTPS.</p>
+          </div>
+        </div>
+
+        <div class="privacy-summary-grid" id="summary-vi" hidden>
+          <div class="privacy-summary-card">
+            <h2>Xử lý cục bộ trên máy</h2>
+            <p>Dự án, video nguồn, kịch bản, phụ đề và tệp MP4 xuất ra được lưu và xử lý ngay trên thiết bị Windows của bạn.</p>
+          </div>
+          <div class="privacy-summary-card">
+            <h2>Không bán dữ liệu</h2>
+            <p>Chúng tôi không bán dữ liệu cá nhân và không chia sẻ nội dung của bạn cho bên quảng cáo thứ ba.</p>
+          </div>
+          <div class="privacy-summary-card">
+            <h2>Chỉ gửi khi bạn kích hoạt</h2>
+            <p>Chỉ các prompt hoặc dữ liệu đầu vào cần cho tính năng AI, lồng tiếng, tài khoản hoặc đăng kênh do bạn bấm chạy mới được gửi qua HTTPS.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- English Version (Default visible for Microsoft Store Certification & Global Users) -->
+      <div id="policy-en" class="privacy-layout" lang="en">
+        <nav class="privacy-toc" aria-label="English table of contents">
+          <p class="privacy-toc-title">Contents</p>
+          <ol>
+            <li><a href="#en-scope">Overview &amp; Scope</a></li>
+            <li><a href="#en-local">Local-First Processing</a></li>
+            <li><a href="#en-collect">Information We Collect</a></li>
+            <li><a href="#en-use">How We Use Information</a></li>
+            <li><a href="#en-third-party">Third-Party Services</a></li>
+            <li><a href="#en-security">Security, Retention &amp; Rights</a></li>
+            <li><a href="#en-children">Children's Privacy</a></li>
+            <li><a href="#en-contact">Updates &amp; Contact</a></li>
+          </ol>
+        </nav>
+
+        <article class="privacy-article">
+          <section id="en-scope" class="privacy-section">
+            <h2>1. Overview &amp; Scope</h2>
+            <p>
+              This Privacy Policy applies to the <strong>Bizora Video Studio</strong> desktop application for Windows 10/11 (Microsoft Store identity <code>BizoraVideoStudio</code>, publisher <strong>Bizora Studio</strong>) and its official website at <a href="https://videoai.bizora.com.vn/">https://videoai.bizora.com.vn/</a>.
+            </p>
+            <p>
+              By installing or using Bizora Video Studio, you agree to the practices described in this policy. If you do not agree, please discontinue use of the application and remove your local workspace data.
+            </p>
+          </section>
+
+          <section id="en-local" class="privacy-section">
+            <h2>2. Local-First Processing</h2>
+            <p>
+              Bizora Video Studio is architected as a local-first studio. Core media assembly, FFmpeg transcoding, subtitle burning, audio mixing, project state files, and exported MP4 videos are stored and executed directly on your Windows device.
+            </p>
+            <p>
+              We do not automatically scan your personal drives or silently upload your private projects or exported videos to external servers.
+            </p>
+          </section>
+
+          <section id="en-collect" class="privacy-section">
+            <h2>3. Information We Collect</h2>
+            <p>Depending on which features you choose to use, Bizora Video Studio processes the following categories of data:</p>
+            <ul>
+              <li>
+                <strong>Account &amp; Authentication Information:</strong> When you sign in (e.g., via email or Google sign-in powered by Supabase Auth), we collect your email address, account ID, display name, subscription/entitlement status, and credit balance to manage your workspace access.
+              </li>
+              <li>
+                <strong>Billing &amp; Credit Transactions:</strong> When you purchase credits, our payment processor (such as PayOS) handles the payment transaction. We receive and store transaction identifiers, purchased credit package details, status, and timestamps. We do not collect or store your bank password or full payment card number.
+              </li>
+              <li>
+                <strong>User-Initiated AI &amp; Cloud Media Inputs:</strong> When you explicitly invoke AI scriptwriting, subtitle translation, text-to-speech (TTS) voiceover, AI image/video/music generation, or cloud rendering, only the text prompts, scripts, or media inputs required to complete your request are sent over HTTPS to our media backend and/or configured AI providers.
+              </li>
+              <li>
+                <strong>Optional Connected Social Channels:</strong> If you choose to link YouTube, TikTok, or Facebook accounts for scheduling or publishing videos, authorization tokens are stored encrypted locally on your Windows device (using OS-protected storage and Electron cookie encryption) and are used strictly to publish or manage drafts that you initiate.
+              </li>
+              <li>
+                <strong>Application Updates &amp; Local Diagnostics:</strong> Checking for app updates sends basic version metadata to retrieve release manifests. Diagnostic logs are written locally on your computer for troubleshooting and are not uploaded automatically.
+              </li>
+            </ul>
+          </section>
+
+          <section id="en-use" class="privacy-section">
+            <h2>4. How We Use Information</h2>
+            <p>We use collected information strictly to:</p>
+            <ul>
+              <li>Authenticate your account, enforce entitlements, and track credit balances accurately.</li>
+              <li>Execute AI generation, translation, dubbing, and publishing actions requested by you.</li>
+              <li>Deliver software updates, verify application integrity, and protect services from abuse or unauthorized access.</li>
+              <li>Respond to technical support inquiries and data deletion requests.</li>
+            </ul>
+            <p>
+              <strong>We do not sell, rent, or trade your personal data</strong>, and we do not use your private media projects to serve third-party advertisements.
+            </p>
+          </section>
+
+          <section id="en-third-party" class="privacy-section">
+            <h2>5. Third-Party Services</h2>
+            <p>
+              Certain optional or cloud-assisted features rely on third-party infrastructure governed by their own privacy policies:
+            </p>
+            <ul>
+              <li><strong>Supabase:</strong> Authentication, user profile records, and credit ledger management.</li>
+              <li><strong>Payment Gateways (PayOS):</strong> Processing credit top-up orders and verifying payment completion.</li>
+              <li><strong>AI &amp; Media API Providers:</strong> Processing text prompts, audio synthesis, translation, or media generation when you explicitly run an AI job.</li>
+              <li><strong>Connected Social Platforms (YouTube, TikTok, Facebook):</strong> Only when you explicitly authorize a channel connection and trigger a publish action.</li>
+            </ul>
+          </section>
+
+          <section id="en-security" class="privacy-section">
+            <h2>6. Security, Retention &amp; Your Rights</h2>
+            <p>
+              All network communication with authentication, billing, and cloud media services uses HTTPS/TLS encryption. Local session credentials and cookies inside Bizora Video Studio are protected using Electron cookie encryption and Windows user-scoped storage.
+            </p>
+            <p>You retain full control over your data:</p>
+            <ul>
+              <li><strong>Local Data:</strong> You can delete projects, media caches, and exported videos directly on your computer or uninstall the app at any time.</li>
+              <li><strong>Social Connections:</strong> You can disconnect any linked social channel inside the Publishing settings at any time to revoke local token usage.</li>
+              <li><strong>Account Deletion:</strong> You may request deletion of your account record and associated server-side profile data using the contact channel below. Account data is retained only as long as your account remains active or as required by applicable accounting/tax laws.</li>
+            </ul>
+          </section>
+
+          <section id="en-children" class="privacy-section">
+            <h2>7. Children's Privacy</h2>
+            <p>
+              Bizora Video Studio is not directed to children under the age of 13 (or the minimum legal age in your jurisdiction), and we do not knowingly collect personal information from children.
+            </p>
+          </section>
+
+          <section id="en-contact" class="privacy-section">
+            <h2>8. Policy Updates &amp; Contact</h2>
+            <p>
+              We may update this Privacy Policy from time to time to reflect product improvements or legal requirements. Any changes will be posted on this page with an updated effective date.
+            </p>
+            <p>
+              For privacy questions, support, or account/data deletion requests, please reach us through our official distribution support channel at <a href="https://github.com/MTrong2004/Bizora-VideoApp-Releases/issues" rel="noopener noreferrer">https://github.com/MTrong2004/Bizora-VideoApp-Releases/issues</a> or visit <a href="https://videoai.bizora.com.vn/">https://videoai.bizora.com.vn/</a>.
+            </p>
+          </section>
+        </article>
+      </div>
+
+      <!-- Vietnamese Version (Toggleable) -->
+      <div id="policy-vi" class="privacy-layout" lang="vi" hidden>
+        <nav class="privacy-toc" aria-label="Mục lục tiếng Việt">
+          <p class="privacy-toc-title">Mục lục</p>
+          <ol>
+            <li><a href="#vi-scope">Phạm vi áp dụng</a></li>
+            <li><a href="#vi-local">Kiến trúc xử lý cục bộ</a></li>
+            <li><a href="#vi-collect">Thông tin được thu thập</a></li>
+            <li><a href="#vi-use">Mục đích sử dụng</a></li>
+            <li><a href="#vi-third-party">Dịch vụ bên thứ ba</a></li>
+            <li><a href="#vi-security">Bảo mật, lưu trữ &amp; quyền của bạn</a></li>
+            <li><a href="#vi-children">Quyền riêng tư trẻ em</a></li>
+            <li><a href="#vi-contact">Cập nhật &amp; Liên hệ</a></li>
+          </ol>
+        </nav>
+
+        <article class="privacy-article">
+          <section id="vi-scope" class="privacy-section">
+            <h2>1. Phạm vi áp dụng</h2>
+            <p>
+              Chính sách bảo mật này áp dụng cho ứng dụng máy tính <strong>Bizora Video Studio</strong> trên Windows 10/11 (mã định danh Microsoft Store <code>BizoraVideoStudio</code>, nhà phát hành <strong>Bizora Studio</strong>) và trang web chính thức tại <a href="https://videoai.bizora.com.vn/">https://videoai.bizora.com.vn/</a>.
+            </p>
+            <p>
+              Khi cài đặt hoặc sử dụng Bizora Video Studio, bạn đồng ý với các nguyên tắc xử lý dữ liệu nêu trong tài liệu này.
+            </p>
+          </section>
+
+          <section id="vi-local" class="privacy-section">
+            <h2>2. Kiến trúc xử lý cục bộ</h2>
+            <p>
+              Bizora Video Studio hoạt động theo mô hình ưu tiên cục bộ (local-first). Quá trình dựng video bằng FFmpeg, gắn phụ đề, trộn âm thanh, lưu tệp dự án và xuất tệp MP4 đều được thực hiện trực tiếp trên máy tính Windows của bạn.
+            </p>
+            <p>
+              Ứng dụng không tự ý quét ổ đĩa cá nhân và không tự động tải tệp dự án hay video riêng tư của bạn lên máy chủ đám mây.
+            </p>
+          </section>
+
+          <section id="vi-collect" class="privacy-section">
+            <h2>3. Thông tin được thu thập</h2>
+            <p>Tùy thuộc vào tính năng bạn chủ động sử dụng, Bizora Video Studio có thể xử lý các nhóm thông tin sau:</p>
+            <ul>
+              <li>
+                <strong>Thông tin tài khoản &amp; xác thực:</strong> Khi bạn đăng nhập (qua email hoặc Google thông qua Supabase Auth), hệ thống lưu địa chỉ email, mã định danh người dùng, tên hiển thị, gói quyền hạn và số dư credit.
+              </li>
+              <li>
+                <strong>Giao dịch nạp credit:</strong> Khi bạn mua credit qua cổng thanh toán tích hợp (như PayOS), hệ thống chỉ lưu mã giao dịch, gói credit, trạng thái và thời gian thanh toán. Chúng tôi không thu thập hay lưu mật khẩu ngân hàng hoặc số thẻ đầy đủ.
+              </li>
+              <li>
+                <strong>Dữ liệu đầu vào khi bạn chạy tính năng AI / Cloud:</strong> Khi bạn bấm tạo kịch bản AI, dịch phụ đề, tạo giọng đọc (TTS), tạo ảnh/video/nhạc AI hoặc render đám mây, chỉ phần văn bản, prompt hoặc tư liệu cần thiết cho tác vụ đó mới được gửi qua HTTPS tới máy chủ xử lý media của Bizora hoặc nhà cung cấp AI tương ứng.
+              </li>
+              <li>
+                <strong>Kết nối kênh mạng xã hội (tùy chọn):</strong> Nếu bạn chủ động liên kết YouTube, TikTok hoặc Facebook để lên lịch đăng bài, mã xác thực OAuth được mã hóa và lưu cục bộ trên máy Windows của bạn, chỉ dùng để thực hiện thao tác đăng tải do bạn kích hoạt.
+              </li>
+              <li>
+                <strong>Cập nhật ứng dụng &amp; nhật ký cục bộ:</strong> Khi kiểm tra bản cập nhật, ứng dụng gửi thông tin phiên bản hiện tại để đối chiếu bản phát hành mới. Nhật ký lỗi kỹ thuật được lưu cục bộ trên máy và không tự động gửi ra ngoài.
+              </li>
+            </ul>
+          </section>
+
+          <section id="vi-use" class="privacy-section">
+            <h2>4. Mục đích sử dụng</h2>
+            <p>Thông tin thu thập chỉ được dùng để:</p>
+            <ul>
+              <li>Xác thực tài khoản, kiểm tra quyền sử dụng tính năng và hạch toán số dư credit chính xác.</li>
+              <li>Thực thi các yêu cầu tạo nội dung AI, dịch thuật, lồng tiếng và xuất bản video do chính bạn thao tác.</li>
+              <li>Cung cấp bản cập nhật phần mềm, bảo vệ tính toàn vẹn ứng dụng và ngăn chặn lạm dụng hệ thống.</li>
+              <li>Hỗ trợ kỹ thuật và giải quyết yêu cầu xóa dữ liệu tài khoản.</li>
+            </ul>
+            <p>
+              <strong>Chúng tôi không bán dữ liệu cá nhân</strong> và không sử dụng nội dung riêng tư của bạn cho mục đích quảng cáo của bên thứ ba.
+            </p>
+          </section>
+
+          <section id="vi-third-party" class="privacy-section">
+            <h2>5. Dịch vụ bên thứ ba</h2>
+            <p>Một số tính năng tùy chọn sử dụng hạ tầng của đối tác bên thứ ba theo chính sách riêng của từng đơn vị:</p>
+            <ul>
+              <li><strong>Supabase:</strong> Xác thực đăng nhập, quản lý hồ sơ người dùng và lịch sử credit.</li>
+              <li><strong>Cổng thanh toán (PayOS):</strong> Xử lý giao dịch nạp credit và xác nhận thanh toán.</li>
+              <li><strong>Nhà cung cấp AI &amp; Media API:</strong> Xử lý prompt, giọng đọc, dịch thuật hoặc tạo media khi bạn chủ động kích hoạt tác vụ.</li>
+              <li><strong>Nền tảng mạng xã hội (YouTube, TikTok, Facebook):</strong> Chỉ tương tác khi bạn cấp quyền liên kết kênh và bấm đăng video.</li>
+            </ul>
+          </section>
+
+          <section id="vi-security" class="privacy-section">
+            <h2>6. Bảo mật, lưu trữ &amp; quyền của bạn</h2>
+            <p>
+              Mọi kết nối tới dịch vụ xác thực, thanh toán và media API đều được mã hóa qua HTTPS/TLS. Cookie và thông tin phiên cục bộ trong ứng dụng được bảo vệ bằng cơ chế mã hóa cookie của Electron và phân quyền lưu trữ theo tài khoản Windows.
+            </p>
+            <ul>
+              <li><strong>Dữ liệu trên máy:</strong> Bạn có thể xóa dự án, bộ nhớ đệm, video đã xuất hoặc gỡ cài đặt ứng dụng bất kỳ lúc nào.</li>
+              <li><strong>Ngắt kết nối kênh:</strong> Bạn có thể hủy liên kết YouTube/TikTok/Facebook ngay trong phần cài đặt Kênh đăng bất cứ lúc nào.</li>
+              <li><strong>Yêu cầu xóa tài khoản:</strong> Bạn có thể gửi yêu cầu xóa tài khoản và dữ liệu liên quan trên máy chủ qua kênh hỗ trợ bên dưới. Dữ liệu chỉ được lưu trong thời gian tài khoản còn hoạt động hoặc theo quy định lưu trữ chứng từ giao dịch hợp pháp.</li>
+            </ul>
+          </section>
+
+          <section id="vi-children" class="privacy-section">
+            <h2>7. Quyền riêng tư trẻ em</h2>
+            <p>
+              Bizora Video Studio không hướng tới đối tượng dưới 13 tuổi (hoặc độ tuổi tối thiểu theo pháp luật địa phương) và không cố ý thu thập thông tin cá nhân từ trẻ em.
+            </p>
+          </section>
+
+          <section id="vi-contact" class="privacy-section">
+            <h2>8. Cập nhật &amp; Liên hệ</h2>
+            <p>
+              Chính sách này có thể được cập nhật định kỳ khi ứng dụng bổ sung tính năng mới hoặc theo yêu cầu pháp lý. Ngày hiệu lực mới sẽ luôn được hiển thị ở đầu trang.
+            </p>
+            <p>
+              Mọi câu hỏi về quyền riêng tư, hỗ trợ kỹ thuật hoặc yêu cầu xóa tài khoản/dữ liệu, vui lòng liên hệ qua kênh hỗ trợ chính thức tại <a href="https://github.com/MTrong2004/Bizora-VideoApp-Releases/issues" rel="noopener noreferrer">https://github.com/MTrong2004/Bizora-VideoApp-Releases/issues</a> hoặc trang chủ <a href="https://videoai.bizora.com.vn/">https://videoai.bizora.com.vn/</a>.
+            </p>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand-col">
+        <div class="footer-brand">
+          <img src="../assets/logo.svg?v=20261125c" width="24" height="24" alt="">
+          <span>Bizora Video Studio</span>
+        </div>
+        <p class="footer-tagline">
+          Local-first AI video studio for Windows 10 &amp; 11 (64-bit) — film &amp; story review, dubbing, affiliate video, and 3D AI animation.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="../#giao-dien">Interface</a></li>
+          <li><a href="../#thanh-pham">Showcase</a></li>
+          <li><a href="../#huong-dan">Install &amp; SHA-256</a></li>
+          <li><a href="../#phien-ban">Releases</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Legal &amp; Support</h4>
+        <ul>
+          <li><a href="./">Privacy Policy</a></li>
+          <li><a href="https://github.com/MTrong2004/Bizora-VideoApp-Releases/issues" rel="noopener noreferrer">Support &amp; Data Requests</a></li>
+          <li><a href="../">Official Website</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Bizora Video Studio · Official Windows Distribution</p>
+      <div class="footer-bottom-links">
+        <a href="../">Home</a>
+        <a href="./">Privacy Policy</a>
+        <a href="#privacy-title">Top</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const btnEn = document.getElementById('btn-lang-en');
+      const btnVi = document.getElementById('btn-lang-vi');
+      const policyEn = document.getElementById('policy-en');
+      const policyVi = document.getElementById('policy-vi');
+      const summaryEn = document.getElementById('summary-en');
+      const summaryVi = document.getElementById('summary-vi');
+      const titleEl = document.getElementById('privacy-title');
+      const leadEl = document.getElementById('privacy-lead-text');
+      const metaEffectiveEl = document.getElementById('meta-effective');
+
+      const COPY = {
+        en: {
+          docTitle: 'Privacy Policy | Bizora Video Studio',
+          title: 'Privacy Policy',
+          lead: 'Bizora Video Studio is a local-first Windows desktop application for video review, dubbing, AI video orchestration, and channel scheduling. This policy explains clearly what data stays on your device, what is processed when you sign in or invoke cloud AI features, and how to manage or delete your information.',
+          effective: 'Effective date: November 27, 2026'
+        },
+        vi: {
+          docTitle: 'Chính sách bảo mật | Bizora Video Studio',
+          title: 'Chính sách bảo mật',
+          lead: 'Bizora Video Studio là ứng dụng máy tính ưu tiên xử lý cục bộ trên Windows để dựng video review, dịch lồng tiếng, tạo video AI và lên lịch đăng kênh. Chính sách này giải thích rõ dữ liệu nào ở lại trên máy bạn, dữ liệu nào được xử lý khi đăng nhập hoặc dùng tính năng AI đám mây, và cách bạn kiểm soát dữ liệu của mình.',
+          effective: 'Ngày hiệu lực: 27/11/2026'
+        }
+      };
+
+      function applyLang(lang, updateHash = false) {
+        const isVi = lang === 'vi';
+        const c = isVi ? COPY.vi : COPY.en;
+        document.documentElement.lang = isVi ? 'vi' : 'en';
+        document.title = c.docTitle;
+        titleEl.textContent = c.title;
+        leadEl.textContent = c.lead;
+        metaEffectiveEl.textContent = c.effective;
+
+        btnEn.setAttribute('aria-pressed', String(!isVi));
+        btnVi.setAttribute('aria-pressed', String(isVi));
+        policyEn.hidden = isVi;
+        summaryEn.hidden = isVi;
+        policyVi.hidden = !isVi;
+        summaryVi.hidden = !isVi;
+
+        if (updateHash) {
+          history.replaceState(null, '', isVi ? '#vi' : '#en');
+        }
+      }
+
+      btnEn.addEventListener('click', () => applyLang('en', true));
+      btnVi.addEventListener('click', () => applyLang('vi', true));
+
+      if (window.location.hash === '#vi' || new URLSearchParams(window.location.search).get('lang') === 'vi') {
+        applyLang('vi', false);
+      }
+    })();
+  </script>
+</body>
+</html>
