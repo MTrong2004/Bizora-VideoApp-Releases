@@ -1,17 +1,25 @@
 {
-  "generatedAt": "2026-11-27T07:28:56.464Z",
+  "generatedAt": "2026-11-27T10:28:44.181Z",
   "releases": [
+    {
+      "tag": "v0.4.1",
+      "version": "0.4.1",
+      "title": "0.4.1",
+      "publishedAt": "2026-11-27T10:28:31Z",
+      "size": 214824080,
+      "downloadUrl": "https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases/download/v0.4.1/Bizora-Video-Studio-Setup-0.4.1.exe",
+      "assetName": "Bizora-Video-Studio-Setup-0.4.1.exe",
+      "sha256": "a8ae37bb69ab37509e89365f9d06e1d48cd3629990e9b6b69429de904997a53a",
+      "notes": "",
+      "isLatest": true
+    },
     {
       "tag": "v0.4.0",
       "version": "0.4.0",
       "title": "Bizora Video Studio v0.4.0",
       "publishedAt": "2026-11-27T03:37:55Z",
-      "size": 214647439,
-      "downloadUrl": "https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases/download/v0.4.0/Bizora-Video-Studio-Setup-0.4.0.exe",
-      "assetName": "Bizora-Video-Studio-Setup-0.4.0.exe",
-      "sha256": "ad073d8dcd15a0da16856660446d3fcff848e4f41ea438d868a648543516bc66",
       "notes": "- Nâng cấp xưởng Tạo Video AI: Tách riêng khu vực Google Flow và Muse, hiển thị rõ email đang kết nối, tách biệt hồ sơ theo từng người dùng và nâng cao độ chính xác khi dựng kịch bản sản phẩm.\n- Nâng cấp Review Phim & Review Truyện: Tự động nhận diện chuyển cảnh, hỗ trợ làm mờ phụ đề gốc tự nhiên, nâng cấp cắt khung truyện với hiệu ứng lia dọc 16:9 và giữ nhịp hình ảnh khớp sát lời thuyết minh.\n- Minh bạch gói Credit & dự toán chi phí: Hiển thị đầy đủ quyền lợi từng gói nạp và đồng bộ bảng tính Credit ước tính sát với chi phí xử lý thực tế.\n- Kết nối mượt mà & cập nhật ổn định: Tự động đồng bộ cấu hình hệ thống tức thì để hạn chế gián đoạn, đồng thời tối ưu trình cập nhật nền giúp chuyển sang phiên bản mới liền mạch hơn.\n- Tăng cường bảo mật & bảo vệ bản quyền: Nâng cấp toàn diện hệ thống bảo vệ ứng dụng, tài khoản và bản quyền sử dụng, mang lại trải nghiệm vận hành an toàn và tin cậy hơn.",
-      "isLatest": true
+      "isLatest": false
     },
     {
       "tag": "v0.3.17",
@@ -66,14 +74,6 @@
       "version": "0.3.8",
       "title": "0.3.8",
       "publishedAt": "2026-11-25T06:54:37Z",
-      "notes": "",
-      "isLatest": false
-    },
-    {
-      "tag": "v0.3.7",
-      "version": "0.3.7",
-      "title": "0.3.7",
-      "publishedAt": "2026-11-25T03:42:27Z",
       "notes": "",
       "isLatest": false
     }
