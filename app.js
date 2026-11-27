@@ -917,34 +917,132 @@
       }
     }
 
-    _renderNotesContent(container, rawText) {
-      const clean = String(rawText || '').replace(/\r\n?/g, '\n').trim();
-      if (!clean) {
+    _appendInlineFormatted(parent, text, { autoBoldLead = false } = {}) {
+      const value = String(text || '');
+      if (!value) return;
+
+      const tokenRe = /(\*\*[^*\n]+?\*\*|__[^_\n]+?__|`[^`\n]+?`)/g;
+      if (autoBoldLead && !/(\*\*[^*\n]+?\*\*|__[^_\n]+?__)/.test(value)) {
+        const leadMatch = value.match(/^([^:\n]{3,72}:)(\s+[\s\S]+)$/);
+        if (leadMatch && !/^https?:/i.test(leadMatch[1])) {
+          const strong = document.createElement('strong');
+          strong.className = 'release-notes-lead';
+          strong.textContent = leadMatch[1];
+          parent.append(strong);
+          this._appendInlineFormatted(parent, leadMatch[2], { autoBoldLead: false });
+          return;
+        }
+      }
+
+      let lastIndex = 0;
+      for (const match of value.matchAll(tokenRe)) {
+        const idx = match.index ?? 0;
+        if (idx > lastIndex) {
+          parent.append(document.createTextNode(value.slice(lastIndex, idx)));
+        }
+        const token = match[0];
+        if (token.startsWith('`') && token.endsWith('`')) {
+          const code = document.createElement('code');
+          code.className = 'release-notes-code';
+          code.textContent = token.slice(1, -1);
+          parent.append(code);
+        } else {
+          const strong = document.createElement('strong');
+          strong.className = 'release-notes-lead';
+          strong.textContent = token.slice(2, -2);
+          parent.append(strong);
+        }
+        lastIndex = idx + token.length;
+      }
+      if (lastIndex < value.length) {
+        parent.append(document.createTextNode(value.slice(lastIndex)));
+      }
+    }
+
+    _isRedundantReleaseHeading(headingText, rel) {
+      const norm = String(headingText || '').trim().toLowerCase().replace(/\s+/g, ' ');
+      if (!norm) return true;
+      const tag = String(rel?.tag || '').trim().toLowerCase();
+      const ver = String(rel?.version || '').trim().toLowerCase();
+      const title = String(rel?.title || '').trim().toLowerCase().replace(/\s+/g, ' ');
+      const candidates = new Set([title, tag, ver, ver ? `v${ver}` : '', tag ? `bizora video studio ${tag}` : '', ver ? `bizora video studio v${ver}` : ''].filter(Boolean));
+      return candidates.has(norm);
+    }
+
+    _renderNotesContent(container, rawText, rel = null) {
+      const clean = String(rawText || '').replace(/^\uFEFF/, '').replace(/\r\n?/g, '\n').trim();
+      const appendFallback = () => {
         const empty = document.createElement('p');
         empty.className = 'release-notes-plain';
         empty.textContent = 'Cải thiện hiệu năng và độ ổn định ứng dụng.';
         container.append(empty);
+      };
+
+      if (!clean) {
+        appendFallback();
         return;
       }
 
       const lines = clean.split('\n').map(l => l.trim()).filter(Boolean);
-      const bulletLines = lines.filter(l => /^[-*•]\s+/.test(l));
-      if (bulletLines.length >= 1 && bulletLines.length === lines.length) {
-        const ul = document.createElement('ul');
-        ul.className = 'release-notes-lines';
-        for (const line of bulletLines) {
-          const li = document.createElement('li');
-          li.textContent = line.replace(/^[-*•]\s+/, '');
-          ul.append(li);
+      let activeList = null;
+      let activeParagraphLines = [];
+
+      const flushParagraph = () => {
+        if (!activeParagraphLines.length) return;
+        const p = document.createElement('p');
+        p.className = 'release-notes-plain';
+        activeParagraphLines.forEach((lineText, idx) => {
+          if (idx > 0) p.append(document.createElement('br'));
+          this._appendInlineFormatted(p, lineText, { autoBoldLead: false });
+        });
+        container.append(p);
+        activeParagraphLines = [];
+      };
+
+      const flushList = () => {
+        if (!activeList) return;
+        container.append(activeList);
+        activeList = null;
+      };
+
+      for (const line of lines) {
+        const headingMatch = line.match(/^#{1,6}\s+(.+)$/);
+        if (headingMatch) {
+          flushList();
+          flushParagraph();
+          const headingText = headingMatch[1].replace(/^\*\*(.+)\*\*$/, '$1').replace(/^__(.+)__$/, '$1').trim();
+          if (!this._isRedundantReleaseHeading(headingText, rel)) {
+            const h4 = document.createElement('h4');
+            h4.className = 'release-notes-heading';
+            h4.textContent = headingText;
+            container.append(h4);
+          }
+          continue;
         }
-        container.append(ul);
-        return;
+
+        const bulletMatch = line.match(/^[-*•]\s+(.+)$/);
+        if (bulletMatch) {
+          flushParagraph();
+          if (!activeList) {
+            activeList = document.createElement('ul');
+            activeList.className = 'release-notes-lines';
+          }
+          const li = document.createElement('li');
+          this._appendInlineFormatted(li, bulletMatch[1], { autoBoldLead: true });
+          activeList.append(li);
+          continue;
+        }
+
+        flushList();
+        activeParagraphLines.push(line);
       }
 
-      const p = document.createElement('p');
-      p.className = 'release-notes-plain';
-      p.textContent = lines.map(l => l.replace(/^#{1,6}\s+/, '')).join('\n');
-      container.append(p);
+      flushList();
+      flushParagraph();
+
+      if (!container.childNodes.length) {
+        appendFallback();
+      }
     }
 
     _buildReleaseCard(rel, isLatest) {
@@ -1004,7 +1102,7 @@
 
       const notesScroll = document.createElement('div');
       notesScroll.className = 'notes-scroll';
-      this._renderNotesContent(notesScroll, rel.notes);
+      this._renderNotesContent(notesScroll, rel.notes, rel);
 
       card.append(head, notesScroll);
       return card;
@@ -2039,6 +2137,7 @@
     const feedMissingExe = !feedTop.size || /\/releases\/tag\//i.test(feedTop.downloadUrl || '');
     if (liveHasExe && feedMissingExe) return true;
     if (liveTop.sha256 && !feedTop.sha256) return true;
+    if (liveTop.notes && liveTop.notes !== feedTop.notes) return true;
     return false;
   }
 
