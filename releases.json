@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-27T03:38:26.954Z",
+  "generatedAt": "2026-11-27T07:28:56.464Z",
   "releases": [
     {
       "tag": "v0.4.0",
@@ -10,7 +10,7 @@
       "downloadUrl": "https://github.com/MTrong2004/Bizora-VideoApp-Releases/releases/download/v0.4.0/Bizora-Video-Studio-Setup-0.4.0.exe",
       "assetName": "Bizora-Video-Studio-Setup-0.4.0.exe",
       "sha256": "ad073d8dcd15a0da16856660446d3fcff848e4f41ea438d868a648543516bc66",
-      "notes": "## Bizora Video Studio v0.4.0\n\n### Điểm mới nổi bật\n- **Nâng cấp bảo mật & bảo vệ bản quyền toàn diện:** Bổ sung xác thực thiết bị theo phần cứng, kiểm tra toàn vẹn ứng dụng khi khởi chạy và chống can thiệp trái phép từ bên thứ ba.\n- **Đồng bộ cấu hình máy chủ tức thì:** Tự động cập nhật điểm kết nối dịch vụ mới nhất để giảm gián đoạn khi sử dụng.\n- **Cập nhật tự động ổn định hơn:** Giữ nguyên trạng thái bản đã tải khi kiểm tra lại gặp lỗi mạng và tự động chuyển lên bản mới nhất ngay khi hoàn tất tải xuống.\n- **Nâng cấp chất lượng tạo video & xử lý media:** Tinh chỉnh nhận diện bối cảnh sản phẩm, ổn định luồng cắt ghép review và tối ưu hiệu năng xử lý cục bộ.",
+      "notes": "- Nâng cấp xưởng Tạo Video AI: Tách riêng khu vực Google Flow và Muse, hiển thị rõ email đang kết nối, tách biệt hồ sơ theo từng người dùng và nâng cao độ chính xác khi dựng kịch bản sản phẩm.\n- Nâng cấp Review Phim & Review Truyện: Tự động nhận diện chuyển cảnh, hỗ trợ làm mờ phụ đề gốc tự nhiên, nâng cấp cắt khung truyện với hiệu ứng lia dọc 16:9 và giữ nhịp hình ảnh khớp sát lời thuyết minh.\n- Minh bạch gói Credit & dự toán chi phí: Hiển thị đầy đủ quyền lợi từng gói nạp và đồng bộ bảng tính Credit ước tính sát với chi phí xử lý thực tế.\n- Kết nối mượt mà & cập nhật ổn định: Tự động đồng bộ cấu hình hệ thống tức thì để hạn chế gián đoạn, đồng thời tối ưu trình cập nhật nền giúp chuyển sang phiên bản mới liền mạch hơn.\n- Tăng cường bảo mật & bảo vệ bản quyền: Nâng cấp toàn diện hệ thống bảo vệ ứng dụng, tài khoản và bản quyền sử dụng, mang lại trải nghiệm vận hành an toàn và tin cậy hơn.",
       "isLatest": true
     },
     {
